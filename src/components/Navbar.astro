@@ -1,0 +1,65 @@
+---
+const navlinks = ["Home", "Projects", "Contact"];
+---
+
+<nav>
+  <div>
+    <img class="logo" src="logo0.png" alt="" srcset="" />
+  </div>
+  <div class="nav-list">
+    <ul class="nav-links">
+      {navlinks.map((navlink) => <li>{navlink}</li>)}
+    </ul>
+  </div>
+
+  <div class="hamburger-menu" style="display: none;">
+    <div id="hamburger" class="hamburger-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="overlay-nav-list">
+      <ul class="nav-links">
+        <li>Home</li>
+        <li>Projects</li>
+        <li>Contact</li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<style>
+  nav {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 0 0 16px 16px;
+    /* for sticky to apply */
+    position: sticky;
+    top: 0;
+  }
+  .nav-list {
+    display: flex;
+    align-items: center;
+  }
+  .nav-links {
+    color: var(--base-color);
+    padding: 0 1rem;
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+  .logo {
+    width: 50px;
+    margin: 0.5rem;
+  }
+  @media screen and (max-width: 530px) {
+    .container {
+      width: 100%;
+    }
+    nav {
+      border-radius: 0;
+    }
+    .nav-links {
+      display: none;
+    }
+  }
+</style>
