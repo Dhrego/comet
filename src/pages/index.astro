@@ -46,10 +46,9 @@ import Layout from "../layouts/Layout.astro";
   const logoSvg = document.querySelector(".logo svg path");
 
   function changeColor(index) {
-    root.style.setProperty("--base-color", colors[index]);
-    logoSvg.setAttribute("fill", colors[index]);
-
     setTimeout(() => {
+      root.style.setProperty("--base-color", colors[index]);
+      logoSvg.setAttribute("fill", colors[index]);
       changeColor((index + 1) % colors.length);
     }, 3000);
   }
