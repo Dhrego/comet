@@ -12,16 +12,8 @@ import Layout from "../layouts/Layout.astro";
     </main>
   </div>
 </Layout>
+
 <style>
-  /* .container {
-    width: 80%;
-    margin: 0 auto;
-  }
-  @media screen and (max-width: 530px) {
-    .container {
-      width: 100%;
-    }
-  } */
   main {
     min-height: 80vh;
     display: flex;
@@ -34,6 +26,7 @@ import Layout from "../layouts/Layout.astro";
     height: 589px;
     border-radius: 50%;
     background-color: var(--base-color);
+    transition: all 2s ease;
   }
 
   .glassCard {
@@ -41,14 +34,25 @@ import Layout from "../layouts/Layout.astro";
     width: 420px;
     height: 660px;
     background: rgba(255, 255, 255, 0.2);
-    /* fill: radial-gradient(
-      106.07% 139.76% at -2.28% 1.21%,
-      rgba(255, 255, 255, 0.4) 0%,
-      rgba(255, 255, 255, 0) 100%
-    ); */
     stroke-width: 3px;
     stroke: #fff;
     backdrop-filter: blur(15px);
     border-radius: 2rem;
   }
 </style>
+<script>
+  const colors = ["#F77126", "#26F7AC", "#26C5F7", "#D439D7", "#fff"];
+  const root = document.documentElement;
+  const svg = document.querySelector(".logo svg path");
+
+  function changeColor(index) {
+    root.style.setProperty("--base-color", colors[index]);
+    svg.style.fill = colors[index];
+
+    setTimeout(() => {
+      changeColor((index + 1) % colors.length);
+    }, 3000); // Using 3000 milliseconds instead of 3 * 1000
+  }
+
+  changeColor(0);
+</script>
