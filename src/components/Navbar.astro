@@ -3,22 +3,20 @@ const navlinks = ["Home", "Projects", "Contact"];
 ---
 
 <nav>
-  <div>
-    <!-- <img class="logo" src="logo0.png" alt="" srcset="" /> -->
-    <div class="logo">
-      <svg
-        width="357"
-        height="241"
-        viewBox="0 0 357 241"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M356.257 162.119C346.988 188.282 329.273 210.297 306.13 224.412C282.987 238.528 255.849 243.871 229.339 239.531C202.828 235.191 75.0995 222.991 57.2572 202.167C39.415 181.342 132.563 153.18 131.489 125.324C130.414 97.4685 -14.9239 197.538 1.25723 175.297C17.4384 153.056 194.138 9.88056 220.229 3.35144C246.319 -3.17768 273.782 -0.107226 297.938 12.0396C322.094 24.1865 341.448 44.6582 352.703 69.9666L295.875 97.2366C290.694 85.5857 281.784 76.1613 270.663 70.5694C259.543 64.9775 246.9 63.564 234.889 66.5697C222.878 69.5755 242.338 86.9978 234.889 97.2366C227.44 107.475 193.542 109.897 194.037 122.721C194.532 135.545 212.015 130.073 220.229 139.66C228.442 149.247 226.879 173.299 239.083 175.297C251.287 177.295 253.742 155.498 264.396 149C275.05 142.502 293.244 151.704 297.511 139.66L356.257 162.119Z"
-          fill="#8AAAE5"></path>
-      </svg>
-    </div>
+  <div class="logo">
+    <svg
+      width="357"
+      height="241"
+      viewBox="0 0 357 241"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M356.257 162.119C346.988 188.282 329.273 210.297 306.13 224.412C282.987 238.528 255.849 243.871 229.339 239.531C202.828 235.191 75.0995 222.991 57.2572 202.167C39.415 181.342 132.563 153.18 131.489 125.324C130.414 97.4685 -14.9239 197.538 1.25723 175.297C17.4384 153.056 194.138 9.88056 220.229 3.35144C246.319 -3.17768 273.782 -0.107226 297.938 12.0396C322.094 24.1865 341.448 44.6582 352.703 69.9666L295.875 97.2366C290.694 85.5857 281.784 76.1613 270.663 70.5694C259.543 64.9775 246.9 63.564 234.889 66.5697C222.878 69.5755 242.338 86.9978 234.889 97.2366C227.44 107.475 193.542 109.897 194.037 122.721C194.532 135.545 212.015 130.073 220.229 139.66C228.442 149.247 226.879 173.299 239.083 175.297C251.287 177.295 253.742 155.498 264.396 149C275.05 142.502 293.244 151.704 297.511 139.66L356.257 162.119Z"
+        fill="#8AAAE5"></path>
+    </svg>
   </div>
+
   <div class="nav-list" style="">
     <ul class="nav-links">
       {navlinks.map((navlink) => <li class="nav-link">{navlink}</li>)}
@@ -31,6 +29,7 @@ const navlinks = ["Home", "Projects", "Contact"];
     <span></span>
   </div>
 </nav>
+
 <style>
   nav {
     display: flex;
@@ -67,7 +66,7 @@ const navlinks = ["Home", "Projects", "Contact"];
   }
 
   .logo svg {
-    max-width: 50px;
+    max-width: 40px;
     height: auto;
   }
 
@@ -80,7 +79,10 @@ const navlinks = ["Home", "Projects", "Contact"];
     background-color: var(--base-color);
     height: 3px;
     width: 25px;
-    transition: 2s ease;
+    transition:
+      background 2s ease,
+      transform 0.7s ease,
+      opacity 0.7s ease;
   }
 
   .hamburger-menu {
@@ -88,6 +90,15 @@ const navlinks = ["Home", "Projects", "Contact"];
     position: relative;
   }
 
+  .hamburger-menu.active span:first-child {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .hamburger-menu.active span:nth-child(even) {
+    opacity: 0;
+  }
+  .hamburger-menu.active span:last-child {
+    transform: translateY(-7px) rotate(-45deg);
+  }
   @media screen and (max-width: 530px) {
     nav {
       border-radius: 0;
@@ -107,3 +118,10 @@ const navlinks = ["Home", "Projects", "Contact"];
     }
   }
 </style>
+
+<script>
+  const menu = document.querySelector(".hamburger-menu");
+  menu.addEventListener("click", () => {
+    menu.classList.toggle("active");
+  });
+</script>
