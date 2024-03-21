@@ -8,10 +8,15 @@ let year = date.getFullYear();
 </footer>
 <style>
   footer {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
     padding: 1rem 0;
-    width: inherit;
     color: var(--base-color);
-    text-align: center;
   }
 </style>
 <script>
