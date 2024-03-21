@@ -41,17 +41,24 @@ import Layout from "../layouts/Layout.astro";
   }
 </style>
 <script>
-  const colors = ["#F77126", "#26F7AC", "#26C5F7", "#D439D7", "#fff"];
+  const colors = [
+    "#f77126",
+    "#26f7ac",
+    "#26c5f7",
+    "#d439d7",
+    "#fff",
+    "#8aaae5",
+  ];
   const root = document.documentElement;
   const logoSvg = document.querySelector(".logo svg path");
 
-  function changeColor(index) {
+  const changeColor = (index) => {
     setTimeout(() => {
       root.style.setProperty("--base-color", colors[index]);
       logoSvg.setAttribute("fill", colors[index]);
       changeColor((index + 1) % colors.length);
     }, 3000);
-  }
+  };
 
   changeColor(0);
 </script>
