@@ -42,10 +42,12 @@ const navlinks = ["Home", "Projects", "Contact"];
     position: sticky;
     top: 0;
   }
+
   .nav-list {
     display: flex;
     align-items: center;
   }
+
   .nav-links {
     color: var(--base-color);
     padding: 0 1rem;
@@ -59,20 +61,20 @@ const navlinks = ["Home", "Projects", "Contact"];
     cursor: pointer;
     transition: transform 0.5s ease;
   }
+
   .navlink:hover {
     transform: scale(1.1);
   }
-  /* .logo {
-    max-width: 50px;
-    margin: 0.5rem;
-  } */
+
   .logo svg {
     max-width: 50px;
     height: auto;
   }
+
   .logo svg path {
     transition: all 2s ease;
   }
+
   span {
     margin: 2px 0;
     background-color: var(--base-color);
@@ -80,18 +82,22 @@ const navlinks = ["Home", "Projects", "Contact"];
     width: 20px;
     transition: 0.3s;
   }
+
   .hamburger-menu {
     display: none;
     position: relative;
   }
+
   @media screen and (max-width: 530px) {
     nav {
       border-radius: 0;
       width: 100%;
     }
+
     .nav-links {
       display: none;
     }
+
     .hamburger-menu {
       display: flex;
       flex-direction: column;
