@@ -43,15 +43,15 @@ import Layout from "../layouts/Layout.astro";
 <script>
   const colors = ["#F77126", "#26F7AC", "#26C5F7", "#D439D7", "#fff"];
   const root = document.documentElement;
-  const svg = document.querySelector(".logo svg path");
+  const logoSvg = document.querySelector(".logo svg path");
 
   function changeColor(index) {
     root.style.setProperty("--base-color", colors[index]);
-    svg.style.fill = colors[index];
+    logoSvg.style.fill = colors[index];
 
     setTimeout(() => {
       changeColor((index + 1) % colors.length);
-    }, 3000); // Using 3000 milliseconds instead of 3 * 1000
+    }, 3000);
   }
 
   changeColor(0);
