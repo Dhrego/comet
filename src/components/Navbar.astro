@@ -21,7 +21,7 @@ const navlinks = ["Home", "Projects", "Contact"];
   </div>
   <div class="nav-list" style="">
     <ul class="nav-links">
-      {navlinks.map((navlink) => <li class="navlink">{navlink}</li>)}
+      {navlinks.map((navlink) => <li class="nav-link">{navlink}</li>)}
     </ul>
   </div>
 
@@ -57,12 +57,12 @@ const navlinks = ["Home", "Projects", "Contact"];
     transition: color 2s ease;
   }
 
-  .navlink {
+  .nav-link {
     cursor: pointer;
-    transition: transform 0.5s ease;
+    transition: transform 0.5s ease-out;
   }
 
-  .navlink:hover {
+  .nav-link:hover {
     transform: scale(1.1);
   }
 
@@ -78,9 +78,9 @@ const navlinks = ["Home", "Projects", "Contact"];
   span {
     margin: 2px 0;
     background-color: var(--base-color);
-    height: 2px;
-    width: 20px;
-    transition: 0.3s;
+    height: 3px;
+    width: 25px;
+    transition: 2s ease;
   }
 
   .hamburger-menu {
@@ -92,6 +92,8 @@ const navlinks = ["Home", "Projects", "Contact"];
     nav {
       border-radius: 0;
       width: 100%;
+      padding-inline: 10px;
+      align-items: center;
     }
 
     .nav-links {

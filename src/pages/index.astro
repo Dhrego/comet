@@ -37,6 +37,28 @@ import Layout from "../layouts/Layout.astro";
     backdrop-filter: blur(15px);
     border-radius: 2rem;
   }
+
+  @media only screen and (max-width: 768px) {
+    .circle {
+      width: 480px;
+      height: 480px;
+    }
+    .glassCard {
+      height: 600px;
+      width: 400px;
+    }
+  }
+  @media only screen and (max-width: 480px) {
+    .circle {
+      width: 280px;
+      height: 280px;
+    }
+    .glassCard {
+      height: 400px;
+      width: 220px;
+      border-radius: 12px;
+    }
+  }
 </style>
 <script>
   const colors = [
