@@ -58,7 +58,7 @@ const navlinks = ["Home", "Projects", "Contact"];
 
   .nav-link {
     cursor: pointer;
-    transition: transform 0.5s ease-out;
+    transition: transform 0.4s ease-out;
   }
 
   .nav-link:hover {
@@ -75,14 +75,14 @@ const navlinks = ["Home", "Projects", "Contact"];
   }
 
   span {
-    margin: 3px 0;
+    margin-bottom: 6px;
     background-color: var(--base-color);
     height: 3px;
     width: 30px;
     transition:
       background 2s ease,
       transform 0.4s ease,
-      opacity 0.3s ease;
+      opacity 0.9s ease;
   }
 
   .hamburger-menu {
@@ -91,14 +91,110 @@ const navlinks = ["Home", "Projects", "Contact"];
   }
 
   .hamburger-menu.active span:first-child {
-    transform: translateY(9px) rotate(45deg);
+    animation:
+      leftTO 0.4s forwards,
+      0.4s ease 0.4s rotateTO forwards;
   }
   .hamburger-menu.active span:nth-child(even) {
     opacity: 0;
   }
   .hamburger-menu.active span:last-child {
-    transform: translateY(-9px) rotate(-45deg);
+    animation:
+      leftBO 0.4s forwards,
+      0.4s ease 0.4s rotateBO forwards;
   }
+
+  .hamburger-menu span:first-child {
+    animation:
+      rotateTC 0.4s forwards,
+      0.4s ease 0.4s leftTC forwards;
+  }
+
+  .hamburger-menu span:last-child {
+    animation:
+      rotateBC 0.4s forwards,
+      0.4s ease 0.4s leftBC forwards;
+  }
+
+  @keyframes leftTO {
+    0% {
+      transform: translateX(-7px);
+    }
+
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes rotateTO {
+    from {
+      transform: rotate(0);
+    }
+
+    to {
+      transform: rotate(45deg) translateY(13px);
+    }
+  }
+
+  @keyframes leftTC {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-7px);
+    }
+  }
+
+  @keyframes rotateTC {
+    from {
+      transform: rotate(45deg) translateY(13px);
+    }
+
+    to {
+      transform: rotate(0);
+    }
+  }
+
+  @keyframes leftBO {
+    0% {
+      transform: translateX(-7px);
+    }
+
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes rotateBO {
+    from {
+      transform: rotate(0);
+    }
+
+    to {
+      transform: rotate(-45deg) translateY(-13px);
+    }
+  }
+
+  @keyframes leftBC {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-7px);
+    }
+  }
+
+  @keyframes rotateBC {
+    from {
+      transform: rotate(-45deg) translateY(-13px);
+    }
+    to {
+      transform: rotate(0);
+    }
+  }
+
   @media screen and (max-width: 530px) {
     nav {
       border-radius: 0;
