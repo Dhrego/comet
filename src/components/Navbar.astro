@@ -17,11 +17,11 @@ const navlinks = ["Home", "Projects", "Contact"];
     </svg>
   </div>
 
-  <div class="nav-list" style="">
+  <!-- <div class="nav-list" style="">
     <ul class="nav-links">
       {navlinks.map((navlink) => <li class="nav-link">{navlink}</li>)}
     </ul>
-  </div>
+  </div> -->
 
   <div class="hamburger-menu">
     <span></span>
@@ -37,7 +37,7 @@ const navlinks = ["Home", "Projects", "Contact"];
     border-radius: 0 0 16px 16px;
     width: 80vw;
     margin: 0 auto;
-    padding-block: 10px;
+    padding-block: 20px 10px;
     position: sticky;
     top: 0;
   }
@@ -85,9 +85,15 @@ const navlinks = ["Home", "Projects", "Contact"];
       opacity 0.9s ease;
   }
 
-  .hamburger-menu {
+  /* .hamburger-menu {
     display: none;
     position: relative;
+  } */
+
+  .hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .hamburger-menu.active span:first-child {
