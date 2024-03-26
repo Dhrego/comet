@@ -29,7 +29,14 @@ const navlinks = ["Home", "Projects", "Contact"];
     <span></span>
   </div>
 
-  <div class="overlay"></div>
+  <div class="overlay">
+    <div class="buck">
+      <div class="a active">HOME</div>
+      <div class="a">ME</div>
+      <div class="a">WORKS</div>
+      <div class="a">CONTACT</div>
+    </div>
+  </div>
 </nav>
 
 <style>
@@ -76,6 +83,12 @@ const navlinks = ["Home", "Projects", "Contact"];
     transition: all 2s ease;
   }
 
+  /* -------------- */
+
+  /* need to fix navlinks in the overlay *use* 'ul'  */
+
+  /* -------------- */
+
   .overlay {
     position: fixed;
     top: 0;
@@ -84,11 +97,34 @@ const navlinks = ["Home", "Projects", "Contact"];
     width: 100vw;
     height: 0;
     z-index: 999;
-    transition: 0.8s ease;
+    transition: height 0.8s ease;
+    display: flex;
+    align-items: center;
+  }
+  .buck {
+    margin-left: 45px;
+    font-family: "Jolly Lodger";
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: 10vw;
   }
 
+  .overlay.active .buck {
+    transition-delay: 0.9s;
+    opacity: 1;
+  }
   .overlay.active {
     height: 100vh;
+  }
+
+  .buck .a {
+    cursor: pointer;
+  }
+
+  .a.active {
+    transition: color 2s ease;
+    color: var(--base-color);
   }
 
   span {
