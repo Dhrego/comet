@@ -132,7 +132,7 @@ const navlinks = [
 
   .hamburger-menu.active span:first-child {
     animation:
-      leftTO 0.4s forwards,
+      leftToRight 0.4s forwards,
       0.4s ease 0.4s rotateTO forwards;
   }
   .hamburger-menu.active span:nth-child(even) {
@@ -140,29 +140,39 @@ const navlinks = [
   }
   .hamburger-menu.active span:last-child {
     animation:
-      leftBO 0.4s forwards,
+      leftToRight 0.4s forwards,
       0.4s ease 0.4s rotateBO forwards;
   }
 
   .hamburger-menu span:first-child {
     animation:
       rotateTC 0.4s forwards,
-      0.4s ease 0.4s leftTC forwards;
+      0.4s ease 0.4s rightToLeft forwards;
   }
 
   .hamburger-menu span:last-child {
     animation:
       rotateBC 0.4s forwards,
-      0.4s ease 0.4s leftBC forwards;
+      0.4s ease 0.4s rightToLeft forwards;
   }
 
-  @keyframes leftTO {
+  @keyframes leftToRight {
     0% {
       transform: translateX(-7px);
     }
 
     100% {
       transform: translateX(0);
+    }
+  }
+
+  @keyframes rightToLeft {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-7px);
     }
   }
 
@@ -176,16 +186,6 @@ const navlinks = [
     }
   }
 
-  @keyframes leftTC {
-    0% {
-      transform: translateX(0);
-    }
-
-    100% {
-      transform: translateX(-7px);
-    }
-  }
-
   @keyframes rotateTC {
     from {
       transform: rotate(45deg) translateY(13px);
@@ -196,16 +196,6 @@ const navlinks = [
     }
   }
 
-  @keyframes leftBO {
-    0% {
-      transform: translateX(-7px);
-    }
-
-    100% {
-      transform: translateX(0);
-    }
-  }
-
   @keyframes rotateBO {
     from {
       transform: rotate(0);
@@ -213,16 +203,6 @@ const navlinks = [
 
     to {
       transform: rotate(-45deg) translateY(-13px);
-    }
-  }
-
-  @keyframes leftBC {
-    0% {
-      transform: translateX(0);
-    }
-
-    100% {
-      transform: translateX(-7px);
     }
   }
 
