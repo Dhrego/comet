@@ -5,7 +5,6 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="Home">
   <Loader />
-
   <div class="container">
     <main>
       <div class="glassCard"></div>
@@ -38,7 +37,6 @@ import Layout from "../layouts/Layout.astro";
     height: 660px;
     background: rgba(255, 255, 255, 0.2);
     /* background: rgba(0, 0, 0, 0.2);  when on light theme*/
-
     stroke-width: 3px;
     stroke: #fff;
     backdrop-filter: blur(15px);
@@ -55,15 +53,13 @@ import Layout from "../layouts/Layout.astro";
       height: 600px;
       width: 400px;
     }
-    .counter {
-      right: 20px;
-    }
   }
   @media only screen and (max-width: 480px) {
     .circle {
       width: 280px;
       height: 280px;
     }
+
     .glassCard {
       height: 400px;
       width: 220px;
