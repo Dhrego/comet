@@ -284,4 +284,17 @@ const navlinks = ["Home", "Projects", "Contact"];
     menu.classList.toggle("active");
     overlay.classList.toggle("active");
   });
+  const links = document.querySelectorAll(".a");
+
+  // need to fix this
+  links.forEach(function (link) {
+    link.addEventListener("click", (event) => {
+      links.forEach((link) => {
+        link.classList.remove("active");
+      });
+      link.classList.toggle("active");
+      overlay.classList.remove("active");
+      menu.classList.remove("active");
+    });
+  });
 </script>
