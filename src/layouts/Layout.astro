@@ -2,6 +2,7 @@
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/app.css";
+const { title } = Astro.props;
 ---
 
 <!doctype html>
@@ -12,7 +13,7 @@ import "../styles/app.css";
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="logo.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>Home</title>
+    <title>{title}</title>
   </head>
   <body>
     <Navbar />

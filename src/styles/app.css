@@ -5,6 +5,7 @@
 :root {
   --base-color: #8aaae5;
   --bg-color: #343434;
+  /* --bg-color: #fff; when on LIGHT theme */
 }
 * {
   margin: 0;
