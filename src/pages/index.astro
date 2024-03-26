@@ -1,16 +1,16 @@
 ---
-import Loader from "../components/Loader.astro";
 import Layout from "../layouts/Layout.astro";
+import Loader from "../components/Loader.astro";
 ---
 
 <Layout title="Home">
-  <Loader />
   <div class="container">
     <main>
       <div class="glassCard"></div>
       <div id="circle" class="circle"></div>
     </main>
   </div>
+  <Loader />
 </Layout>
 
 <style>
