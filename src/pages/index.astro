@@ -1,22 +1,10 @@
 ---
+import Loader from "../components/Loader.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Home">
-  <h1 class="counter">0</h1>
-
-  <div class="overlay-loader">
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-  </div>
+  <Loader />
 
   <div class="container">
     <main>
@@ -32,20 +20,6 @@ import Layout from "../layouts/Layout.astro";
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .counter {
-    position: fixed;
-    right: 40px;
-    bottom: 0;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    font-family: "Jolly Lodger";
-    font-size: 14vw;
-    z-index: 100000;
-    transition: 0.3s ease;
-    /* color: #fff; */
   }
 
   .circle {
@@ -69,23 +43,6 @@ import Layout from "../layouts/Layout.astro";
     stroke: #fff;
     backdrop-filter: blur(15px);
     border-radius: 2rem;
-  }
-
-  .overlay-loader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 2;
-    display: flex;
-  }
-
-  .bar {
-    width: 10vw;
-    height: 105vh;
-    /* background-color: #8aaae5; */
-    background-color: #dadada;
   }
 
   @media only screen and (max-width: 768px) {
@@ -116,32 +73,6 @@ import Layout from "../layouts/Layout.astro";
 </style>
 
 <script>
-  import { gsap } from "gsap";
-
-  const startLoader = () => {
-    let counterElement = document.querySelector(".counter");
-    let currentValue = 0;
-
-    const updateCounter = () => {
-      if (currentValue === 100) {
-        return;
-      }
-
-      currentValue += Math.floor(Math.random() * 10) + 1;
-
-      if (currentValue > 100) {
-        currentValue = 100;
-      }
-
-      counterElement.textContent = `${currentValue}`;
-
-      let delay = Math.floor(Math.random() * 200) + 50;
-
-      setTimeout(updateCounter, delay);
-    };
-    updateCounter();
-  };
-
   const changeColor = (index) => {
     root.style.setProperty("--base-color", colors[index]);
     logoSvg.setAttribute("fill", colors[index]);
@@ -152,27 +83,6 @@ import Layout from "../layouts/Layout.astro";
       changeColor(index);
     }, 5000);
   };
-
-  gsap.to(".counter", {
-    duration: 0.25,
-    delay: 2.5,
-    opacity: 0,
-  });
-
-  gsap.to(".bar", {
-    duration: 1.25,
-    delay: 3,
-    height: 0,
-    stagger: {
-      amount: 0.5,
-    },
-    ease: "power4.inOut",
-    onComplete: () => {
-      gsap.to(".overlay-loader", {
-        display: "none",
-      });
-    },
-  });
 
   const colors = [
     "#8aaae5",
@@ -186,6 +96,5 @@ import Layout from "../layouts/Layout.astro";
   let root = document.documentElement;
   let logoSvg = document.querySelector(".logo svg path");
 
-  startLoader();
   changeColor(0);
 </script>

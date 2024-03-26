@@ -1,5 +1,24 @@
 ---
-const navlinks = ["Home", "Projects", "Contact"];
+import Navlink from "./Navlink.astro";
+
+const navlinks = [
+  {
+    text: "Home",
+    href: "/",
+  },
+  {
+    text: "Me",
+    href: "/me",
+  },
+  {
+    text: "Works",
+    href: "/works",
+  },
+  {
+    text: "Contact",
+    href: "/contact",
+  },
+];
 ---
 
 <nav>
@@ -17,12 +36,6 @@ const navlinks = ["Home", "Projects", "Contact"];
     </svg>
   </div>
 
-  <!-- <div class="nav-list" style="">
-    <ul class="nav-links">
-      {navlinks.map((navlink) => <li class="nav-link">{navlink}</li>)}
-    </ul>
-  </div> -->
-
   <div class="hamburger-menu">
     <span></span>
     <span></span>
@@ -30,12 +43,15 @@ const navlinks = ["Home", "Projects", "Contact"];
   </div>
 
   <div class="overlay">
-    <div class="buck">
-      <div class="a active">HOME</div>
-      <div class="a">ME</div>
-      <div class="a">WORKS</div>
-      <div class="a">CONTACT</div>
-    </div>
+    <ul class="nav-links">
+      {
+        navlinks.map((navlink) => (
+          <li>
+            <Navlink href={navlink.href}>{navlink.text}</Navlink>
+          </li>
+        ))
+      }
+    </ul>
   </div>
 </nav>
 
@@ -50,28 +66,21 @@ const navlinks = ["Home", "Projects", "Contact"];
     position: sticky;
     top: 0;
   }
-
-  .nav-list {
-    display: flex;
-    align-items: center;
-  }
-
   .nav-links {
-    color: var(--base-color);
+    margin-left: 45px;
+    font-family: "Jolly Lodger";
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: 10vw;
     padding: 0 1rem;
+    text-transform: uppercase;
     list-style: none;
-    display: flex;
-    gap: 2rem;
-    transition: color 2s ease;
   }
 
-  .nav-link {
-    cursor: pointer;
-    transition: transform 0.4s ease-out;
-  }
-
-  .nav-link:hover {
-    transform: scale(1.1);
+  .overlay.active .nav-links {
+    transition-delay: 0.9s;
+    opacity: 1;
   }
 
   .logo svg {
@@ -82,12 +91,6 @@ const navlinks = ["Home", "Projects", "Contact"];
   .logo svg path {
     transition: all 2s ease;
   }
-
-  /* -------------- */
-
-  /* need to fix navlinks in the overlay *use* 'ul'  */
-
-  /* -------------- */
 
   .overlay {
     position: fixed;
@@ -101,30 +104,9 @@ const navlinks = ["Home", "Projects", "Contact"];
     display: flex;
     align-items: center;
   }
-  .buck {
-    margin-left: 45px;
-    font-family: "Jolly Lodger";
-    color: #fff;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    font-size: 10vw;
-  }
 
-  .overlay.active .buck {
-    transition-delay: 0.9s;
-    opacity: 1;
-  }
   .overlay.active {
     height: 100vh;
-  }
-
-  .buck .a {
-    cursor: pointer;
-  }
-
-  .a.active {
-    transition: color 2s ease;
-    color: var(--base-color);
   }
 
   span {
@@ -137,11 +119,6 @@ const navlinks = ["Home", "Projects", "Contact"];
       transform 0.4s ease,
       opacity 0.9s ease;
   }
-
-  /* .hamburger-menu {
-    display: none;
-    position: relative;
-  } */
 
   .hamburger-menu {
     position: relative;
@@ -265,9 +242,9 @@ const navlinks = ["Home", "Projects", "Contact"];
       align-items: center;
     }
 
-    .nav-links {
+    /* .nav-links {
       display: none;
-    }
+    } */
 
     .hamburger-menu {
       display: flex;
@@ -284,17 +261,17 @@ const navlinks = ["Home", "Projects", "Contact"];
     menu.classList.toggle("active");
     overlay.classList.toggle("active");
   });
-  const links = document.querySelectorAll(".a");
+  // const links = document.querySelectorAll(".nav-link");
 
-  // need to fix this
-  links.forEach(function (link) {
-    link.addEventListener("click", (event) => {
-      links.forEach((link) => {
-        link.classList.remove("active");
-      });
-      link.classList.toggle("active");
-      overlay.classList.remove("active");
-      menu.classList.remove("active");
-    });
-  });
+  // // need to fix this
+  // links.forEach(function (link) {
+  //   link.addEventListener("click", (event) => {
+  //     links.forEach((link) => {
+  //       link.classList.remove("active");
+  //     });
+  //     link.classList.toggle("active");
+  //     overlay.classList.remove("active");
+  //     menu.classList.remove("active");
+  //   });
+  // });
 </script>
