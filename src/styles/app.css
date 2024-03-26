@@ -10,6 +10,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent; /* to remove all blue highlights when an element is clicked */
 }
 body {
   font-family: "Sedgwick Ave Display", cursive;
