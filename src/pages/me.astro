@@ -5,7 +5,12 @@ import Layout from "../layouts/Layout.astro";
 <Layout title="Me">
   <div class="container">
     <main>
-        ME
+      <div class="me">
+        <img
+          src="https://api.dicebear.com/8.x/adventurer-neutral/svg?seed=dhrego&glasses=variant01"
+          alt="avatar" />
+         <span>The name's Andrea, pleasure meeting you</span>
+      </div>
     </main>
   </div>
 </Layout>
@@ -19,6 +24,41 @@ import Layout from "../layouts/Layout.astro";
     justify-content: center;
     background-color: :red;
   }
+  .me{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+  
+img {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: bounceUp 1s infinite;
+  transition: transform 1s ease;
+}
+
+span {
+  font-size: 40px;
+}
+
+@keyframes bounceDown {
+  from {
+    transform: translateY(-150px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceUp {
+  0%,100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-150px);
+  }
+}
 
 </style>
 
