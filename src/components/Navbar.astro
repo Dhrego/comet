@@ -72,6 +72,7 @@ const navlinks = [
     font-family: "Jolly Lodger";
     color: #fff;
     opacity: 0;
+    visibility: hidden;
     transition: opacity 0.3s ease;
     font-size: 10vw;
     padding: 0 1rem;
@@ -80,7 +81,8 @@ const navlinks = [
   }
 
   .overlay.active .nav-links {
-    transition-delay: 0.9s;
+    transition-delay: 0.7s;
+    visibility: visible;
     opacity: 1;
   }
 
