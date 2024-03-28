@@ -99,13 +99,15 @@ const navlinks = [
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.9);
+    /* background-color: rgba(0, 0, 0, 0.9); */
+    background-color: rgba(0, 0, 0, 0.5);
     width: 100vw;
     height: 0;
     z-index: 999;
     transition: height 0.8s ease;
     display: flex;
     align-items: center;
+    backdrop-filter: blur(150px) saturate(1.5);
   }
 
   .overlay.active {
