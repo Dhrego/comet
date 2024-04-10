@@ -6,17 +6,29 @@ import Loader from "../components/Loader.astro";
 <Layout title="Home">
   <div class="container">
     <main>
-      <div class="glassCard"></div>
-      <div id="circle" class="circle"></div>
+      <!-- <div class="glassCard"></div> -->
+      <!-- <div id="circle" class="circle"></div> -->
+
+      <div class="svg">
+        <img src="blend.svg" alt="" srcset="" />
+      </div>
     </main>
   </div>
   <Loader />
 </Layout>
 
 <style>
+  .svg {
+    max-width: 300px;
+  }
+  .svg img {
+    width: 100%;
+  }
+
   main {
     min-height: 80vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
   }
@@ -26,7 +38,6 @@ import Loader from "../components/Loader.astro";
     z-index: -2;
     width: 600px;
     height: 600px;
-    /* height: 589px; */
     border-radius: 50%;
     background-color: var(--base-color);
     transition: background 2s ease;
