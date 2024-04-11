@@ -1,0 +1,45 @@
+<div class="circle bg-transition"></div>
+<style>
+  .circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 600px;
+    height: 600px;
+    z-index: -3;
+    border-radius: 50%;
+    background-color: var(--base-color);
+    transition: background 2s ease;
+  }
+
+  .circle.open {
+    transform: translate(-50%, -50%) scale(1);
+    transition:
+      background 2s ease,
+      transform 1s ease-out 0.5s;
+  }
+  @media only screen and (max-width: 768px) {
+    .circle {
+      width: 480px;
+      height: 480px;
+    }
+
+    .glassCard {
+      height: 600px;
+      width: 400px;
+    }
+  }
+  @media only screen and (max-width: 480px) {
+    .circle {
+      width: 280px;
+      height: 280px;
+    }
+
+    .glassCard {
+      height: 400px;
+      width: 220px;
+      border-radius: 12px;
+    }
+  }
+</style>

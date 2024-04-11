@@ -1,4 +1,5 @@
 ---
+import Circle from "./Circle.astro";
 import Navlink from "./Navlink.astro";
 const { items } = Astro.props;
 ---
@@ -22,7 +23,8 @@ const { items } = Astro.props;
         }
       </ul>
     </div>
-    <div class="circle bg-transition"></div>
+    <!-- <div class="circle bg-transition"></div> -->
+    <Circle />
   </div>
 </div>
 
@@ -48,7 +50,7 @@ const { items } = Astro.props;
     transform: translate(-50%, -50%) scale(1);
   } */
 
-  .circle {
+  /* .circle {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -66,7 +68,7 @@ const { items } = Astro.props;
     transition:
       background 2s ease,
       transform 1s ease-out 0.5s;
-  }
+  } */
 
   .nav-links {
     margin-left: 45px;
