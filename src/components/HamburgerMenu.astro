@@ -23,53 +23,11 @@ const { items } = Astro.props;
         }
       </ul>
     </div>
-    <!-- <div class="circle bg-transition"></div> -->
     <Circle />
   </div>
 </div>
 
 <style>
-  /* .circle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    width: 600px;
-    height: 600px;
-    z-index: -3;
-    border-radius: 50%;
-    background-color: var(--base-color);
-    transition:
-      background 2s ease,
-      transform 1s ease;
-  }
-
-  .circle.open {
-    transition-delay: 0.55s;
-    transition-property: transform;
-    transform: translate(-50%, -50%) scale(1);
-  } */
-
-  /* .circle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    width: 600px;
-    height: 600px;
-    z-index: -3;
-    border-radius: 50%;
-    background-color: var(--base-color);
-    transition: background 2s ease;
-  }
-
-  .circle.open {
-    transform: translate(-50%, -50%) scale(1);
-    transition:
-      background 2s ease,
-      transform 1s ease-out 0.5s;
-  } */
-
   .nav-links {
     margin-left: 45px;
     font-family: "Jolly Lodger";
@@ -89,6 +47,7 @@ const { items } = Astro.props;
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.5);
+    /* background-color: rgba(0, 0, 0, 0.9);  */
     width: 100vw;
     height: 0;
     z-index: 999;
@@ -108,7 +67,7 @@ const { items } = Astro.props;
     width: 100vw;
     height: 100%;
     z-index: 999;
-    transition: height 0.8s ease;
+    /* transition: height 0.8s ease; */
     display: flex;
     align-items: center;
     backdrop-filter: blur(150px) saturate(1.5);
@@ -123,24 +82,6 @@ const { items } = Astro.props;
     visibility: visible;
     opacity: 1;
   }
-  /* .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.9); 
-    background-color: rgba(0, 0, 0, 0.5);
-    width: 100vw;
-    height: 0;
-    z-index: 999;
-    transition: height 0.8s ease;
-    display: flex;
-    align-items: center;
-    backdrop-filter: blur(150px) saturate(1.5);
-  } */
-
-  /* .overlay.active {
-    height: 100vh;
-  } */
 
   span {
     margin-bottom: 6px;
