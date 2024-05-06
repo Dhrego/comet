@@ -1,11 +1,16 @@
+---
+import Globe from "./Globe.astro";
+---
+
 <>
   <h1 class="counter">
-    <div class="bounce">
+    <!-- <div class="bounce">
       <img
         src="https://api.dicebear.com/8.x/adventurer-neutral/svg?seed=dhrego&glasses=variant01"
         alt="avatar"
       />
-    </div>
+    </div> -->
+    <Globe />
     <span>0</span>
   </h1>
 
@@ -28,11 +33,7 @@
     position: fixed;
     right: 40px;
     bottom: 0;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
     font-family: "Jolly Lodger";
-    gap: 20px;
     font-size: 14vw;
     z-index: 100000;
     transition: 0.3s ease;
@@ -41,7 +42,8 @@
 
   .counter span {
     display: inline-block;
-
+    width: 200px;
+    height: auto;
     /* min-width: 200px; */
   }
 
@@ -92,8 +94,13 @@
     }
 
     .counter {
-      right: 20px;
+      right: 0;
     }
+
+    .counter span {
+      width: 45px;
+    }
+
     .bounce img {
       border-radius: 50%;
       width: 60px;

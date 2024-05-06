@@ -1,0 +1,183 @@
+<div class="container">
+  <div class="globe">
+    <div class="overlay"></div>
+    <div class="globe-wrap">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle-hor"></div>
+      <div class="circle-hor-middle"></div>
+    </div>
+  </div>
+</div>
+<style>
+  .container {
+    position: absolute;
+    top: 50%;
+    left: -205px;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: auto;
+    padding: 1.5rem;
+    background: #ccc;
+  }
+
+  .globe {
+    width: clamp(50px, 5em, 0.6em);
+    height: clamp(50px, 5em, 0.6em);
+    will-change: transform;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .globe-wrap {
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: block;
+    transform: translate(-50%, -50%) rotate(30deg);
+    animation-timeline: auto;
+    animation-range-start: normal;
+    animation-range-end: normal;
+    box-shadow: inset 0 0 0 0.04em #000;
+    border-radius: 50%;
+    animation: 5.4s cubic-bezier(0.35, 0, 0.65, 1) 0s infinite normal none
+      running globe;
+    overflow: hidden;
+  }
+
+  .globe .circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    box-shadow: inset 0.1em 0 0 0.08em #000;
+    font-size: 0.15em;
+    border-radius: 50%;
+    animation: 2.7s linear 0s infinite normal none running circle1;
+  }
+
+  .globe .circle:nth-child(1) {
+    animation-delay: -1.8s;
+  }
+
+  .globe .circle:nth-child(2) {
+    animation-delay: -0.9s;
+  }
+
+  .globe .circle-hor {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    transform: translate(-50%, -50%);
+    height: 55%;
+    box-shadow: inset 0 0 0 0.15em #000;
+    font-size: 0.15em;
+    border-radius: 50%;
+  }
+
+  .globe .circle-hor-middle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    transform: translate(-50%, -50%);
+    height: 0.15em;
+    font-size: 0.15em;
+    border-radius: 0%;
+    background: #000;
+  }
+
+  .overlay {
+    height: 100%;
+    width: 100%;
+    animation: bg 8s ease-in-out infinite;
+  }
+
+  @keyframes circle1 {
+    0% {
+      box-shadow: inset 0.1em 0 0 0.08em #000;
+      width: 100%;
+      border-radius: 50%;
+    }
+
+    49% {
+      box-shadow: inset 0.1em 0 0 0.08em #000;
+      border-radius: 50%;
+      background: transparent;
+    }
+
+    50% {
+      width: 0.175em;
+      border-radius: 0%;
+      background: #000;
+    }
+
+    51% {
+      box-shadow: inset -0.1em 0 0 0.08em #000;
+      border-radius: 50%;
+      background: transparent;
+    }
+
+    100% {
+      box-shadow: inset -0.1em 0 0 0.08em #000;
+      width: 100%;
+      border-radius: 50%;
+    }
+  }
+
+  /* @keyframes globe {
+    0% {
+      transform: translate(-50%, -50%) rotate(15deg);
+    }
+
+    50% {
+      transform: translate(-50%, -50%) rotate(-15deg);
+    }
+
+    100% {
+      transform: translate(-50%, -50%) rotate(15deg);
+    }
+  } */
+
+  @keyframes bg {
+    0% {
+      background: #8aaae5;
+    }
+
+    20% {
+      background: #41914c;
+    }
+
+    40% {
+      background: #f77126;
+    }
+
+    60% {
+      background: #26f7ac;
+    }
+
+    80% {
+      background: #e04c4c;
+    }
+
+    100% {
+      background: #8aaae5;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .container {
+      left: -50px;
+      padding: 0.5rem;
+    }
+  }
+</style>
