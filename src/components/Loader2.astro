@@ -25,36 +25,15 @@ import Globe from "./Globe.astro";
   </div>
 
   <div id="square-container"></div>
-  <!-- <div class="test-base"></div> -->
 </div>
 <style>
-  /* * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-  } */
-
-  /* body {
-    overflow: hidden;
-  } */
-
   .loader-base {
     position: fixed;
     top: 0;
     min-height: 100vh;
-    /* height: 100%; */
     width: 100vw;
     background-color: #dadada;
   }
-
-  /* .test-base {
-    display: none;
-    min-height: 100vh;
-    height: 100%;
-    width: 100vw;
-    background-color: #303030;
-  } */
 
   .counter {
     padding-inline: 20px;
@@ -90,7 +69,6 @@ import Globe from "./Globe.astro";
     flex-wrap: wrap;
     justify-content: flex-start;
     align-content: flex-start;
-    /* box-sizing: border-box; */
     overflow: hidden;
     z-index: 1000;
     pointer-events: none;
@@ -99,7 +77,6 @@ import Globe from "./Globe.astro";
     bottom: 0;
     left: 0;
     right: 0;
-    /* background: #b8181843; */
   }
 
   .square {
@@ -126,12 +103,10 @@ import Globe from "./Globe.astro";
     text-transform: capitalize;
     width: 200px;
     font-size: 18px;
-    font-family: monospace;
-    text-align: center;
+    font-weight: 400;
     height: 200px;
-    color: rgba(158, 158, 158);
+    color: rgb(158, 158, 158);
     border: 0.01px solid rgba(158, 158, 158);
-    border-radius: 8px;
     transition: color 0.3s ease;
     border-radius: 50%;
     display: flex;
@@ -194,6 +169,9 @@ import Globe from "./Globe.astro";
 
     .counter span {
       width: 45px;
+    }
+    .ring {
+      font-size: clamp(15px, 2vw, 30px);
     }
   }
 </style>
@@ -410,7 +388,7 @@ import Globe from "./Globe.astro";
       ease: "power2.inOut",
     });
     gsap.to($(".btn-text"), 0.3, {
-      startAt: { color: "#1C1D20" },
+      startAt: { color: "rgb(158, 158, 158)" },
       color: "#FFFFFF",
       ease: "power3.in",
     });
@@ -421,7 +399,7 @@ import Globe from "./Globe.astro";
       ease: "power2.inOut",
     });
     gsap.to($(".btn-text"), 0.3, {
-      color: "#1C1D20",
+      color: "rgb(158, 158, 158)",
       ease: "power3.out",
       delay: 0.3,
     });
