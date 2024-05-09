@@ -4,12 +4,6 @@ import Globe from "./Globe.astro";
 
 <>
   <h1 class="counter">
-    <!-- <div class="bounce">
-      <img
-        src="https://api.dicebear.com/8.x/adventurer-neutral/svg?seed=dhrego&glasses=variant01"
-        alt="avatar"
-      />
-    </div> -->
     <Globe />
     <span>0</span>
   </h1>
@@ -45,14 +39,6 @@ import Globe from "./Globe.astro";
     width: 200px;
     height: auto;
     /* min-width: 200px; */
-  }
-
-  .bounce img {
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    animation: bounce 1s infinite;
-    transition: transform 1s ease;
   }
 
   .overlay-loader {
@@ -100,19 +86,16 @@ import Globe from "./Globe.astro";
     .counter span {
       width: 45px;
     }
-
-    .bounce img {
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      animation: bounce 1s infinite;
-      transition: transform 1s ease;
-    }
   }
 </style>
 
 <script>
   import { gsap } from "gsap";
+  import $ from "jquery";
+
+  $(".logo").on("click", () => {
+    console.log("Button clicked!");
+  });
 
   const startLoader = () => {
     let counterElement = document.querySelector(".counter span");

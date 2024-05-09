@@ -1,0 +1,417 @@
+---
+import Globe from "./Globe.astro";
+---
+
+<div>
+  <div class="loader-base">
+    <h1 class="counter">
+      <Globe />
+      <span>0</span>
+    </h1>
+
+    <div class="pre" id="preloader-btn">
+      <span class="btn-fill"></span>
+      <span class="btn-text">click me</span>
+    </div>
+    <div class="pulse">
+      <div class="ring">Hello</div>
+      <div class="ring">Ciao</div>
+      <div class="ring">こんにちわ</div>
+      <div class="ring">Bonjour</div>
+      <div class="ring">Olá</div>
+      <div class="ring">Hallo</div>
+      <div class="ringscale"></div>
+    </div>
+  </div>
+
+  <div id="square-container"></div>
+  <!-- <div class="test-base"></div> -->
+</div>
+<style>
+  /* * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  } */
+
+  /* body {
+    overflow: hidden;
+  } */
+
+  .loader-base {
+    position: fixed;
+    top: 0;
+    min-height: 100vh;
+    /* height: 100%; */
+    width: 100vw;
+    background-color: #dadada;
+  }
+
+  /* .test-base {
+    display: none;
+    min-height: 100vh;
+    height: 100%;
+    width: 100vw;
+    background-color: #303030;
+  } */
+
+  .counter {
+    padding-inline: 20px;
+    position: fixed;
+    right: 40px;
+    bottom: 0;
+    font-family: "Jolly Lodger";
+    font-size: clamp(60px, 14vw, 200px);
+    z-index: 100000;
+    transition: 0.3s ease;
+  }
+
+  .counter span {
+    display: inline-block;
+    width: 200px;
+    height: auto;
+  }
+
+  .overlay-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+    display: flex;
+  }
+
+  #square-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    /* box-sizing: border-box; */
+    overflow: hidden;
+    z-index: 1000;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* background: #b8181843; */
+  }
+
+  .square {
+    width: 100px;
+    height: 100px;
+    /* background: #3b3b3b; */
+    background: #8aaae5;
+    box-sizing: border-box;
+    pointer-events: none;
+    /* outline: 0.07em solid #02d1ffae; */
+    /* outline: 0.07em solid rgba(64, 225, 96, 0.678); */
+    outline: 0.07em solid rgba(40, 40, 40, 0.14);
+  }
+
+  #preloader-btn {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    cursor: pointer;
+    text-transform: capitalize;
+    width: 200px;
+    font-size: 18px;
+    font-family: monospace;
+    text-align: center;
+    height: 200px;
+    color: rgba(158, 158, 158);
+    border: 0.01px solid rgba(158, 158, 158);
+    border-radius: 8px;
+    transition: color 0.3s ease;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    will-change: transform;
+    z-index: 2;
+    font-family: "Ubuntu Sans", sans-serif;
+  }
+
+  .btn-fill {
+    /* background: #706c9f; */
+    background: #8aaae5;
+    position: absolute;
+    width: 175%;
+    height: 200%;
+    border-radius: 50%;
+    top: -50%;
+    left: -25%;
+    transform: translate3d(0, -76%, 0);
+    will-change: transform;
+    transition: background-color ease-in-out 0.25s;
+  }
+
+  .pulse {
+    visibility: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    height: 15vmax;
+    width: 15vmax;
+    border-radius: 100%;
+    z-index: 1;
+  }
+
+  .ring,
+  .ringscale {
+    position: absolute;
+    background-color: inherit;
+    height: 100%;
+    width: 100%;
+    border-radius: 100%;
+    opacity: 0.8;
+    font-size: clamp(15px, 14vw, 30px);
+    /* font-family: "Ubuntu Sans", sans-serif; */
+    font-family: "Teachers", sans-serif;
+    font-weight: 500;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
+<script>
+  import { gsap } from "gsap";
+  import $ from "jquery";
+
+  const startLoader = (delay) => {
+    let counterElement = document.querySelector(".counter span");
+    let currentValue = 0;
+
+    const updateCounter = () => {
+      if (currentValue === 100) {
+        return;
+      }
+
+      currentValue += Math.floor(Math.random() * 10) + 1;
+
+      if (currentValue > 100) {
+        currentValue = 100;
+      }
+
+      counterElement.textContent = `${currentValue}`;
+
+      let delay = Math.floor(Math.random() * 200) + 50;
+
+      setTimeout(updateCounter, delay);
+    };
+    setTimeout(updateCounter, delay);
+  };
+
+  window.addEventListener("load", () => {
+    startLoader(500);
+
+    //ALTERNATE ANIMATION
+    var tl = gsap.timeline();
+    tl.to(".counter", {
+      duration: 0.25,
+      delay: 3.5,
+      opacity: 0,
+      ease: "power1.Out",
+      onComplete: () => {
+        gsap.set(".counter", { delay: 1, display: "none" });
+      },
+    });
+
+    tl.to(".ring", {
+      visibility: "visible",
+      duration: 1,
+      scale: 1.75,
+      opacity: 0,
+      stagger: {
+        each: 0.5,
+      },
+      ease: "power1.out",
+      delay: 0.5,
+    });
+
+    tl.fromTo(
+      ".ringscale",
+      {
+        scale: 0.8,
+      },
+      {
+        visibility: "visible",
+        opacity: 1,
+        duration: 1,
+        scale: Math.max(window.innerWidth, window.innerHeight) / 50,
+        ease: "power2.in",
+      },
+      "-=0.5"
+    );
+
+    tl.to(
+      "#preloader-btn",
+      {
+        duration: 0.35,
+        visibility: "visible",
+        opacity: 1,
+        ease: "power1.in",
+      },
+      "-=0.5"
+    );
+  });
+
+  window.addEventListener("DOMContentLoaded", () => {
+    // const loader = document.querySelector(".loader");
+    const squareContainer = document.getElementById("square-container");
+    const squareSize = 100;
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+    const numCols = Math.ceil(screenWidth / squareSize);
+    const numRows = Math.ceil(screenHeight / squareSize);
+    const numSquares = numCols * numRows;
+
+    squareContainer.style.width = `${numCols * squareSize}px`;
+    squareContainer.style.height = `${numRows * squareSize}px`;
+
+    let squares = [];
+
+    function applyStyles(element) {
+      element.style.height = "100px";
+      element.style.width = "100px";
+      element.style.backgroundColor = "#8aaae5";
+      element.style.outline = "0.07em solid rgba(40, 40, 40, 0.14)";
+    }
+
+    function createSquares() {
+      for (let i = 0; i < numSquares; i++) {
+        const square = document.createElement("div");
+        applyStyles(square);
+        // square.classList.add("square");
+        squareContainer.appendChild(square);
+        squares.push(square);
+      }
+    }
+
+    function animateSquares() {
+      gsap.fromTo(
+        squares,
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+          delay: 0.5,
+          duration: 0.0005,
+          stagger: {
+            each: 0.004,
+            from: "random",
+          },
+          onComplete: () => {
+            gsap.set(".ring", { display: "none" });
+            gsap.set(".loader-base", { display: "none" });
+          },
+        }
+      );
+
+      gsap.to(squares, {
+        opacity: 0,
+        delay: 1.5,
+        duration: 0.0005,
+        stagger: {
+          each: 0.004,
+          from: "random",
+        },
+        onComplete: () => {
+          gsap.set("#square-container", { display: "none" });
+        },
+      });
+    }
+
+    document.getElementById("preloader-btn").addEventListener("click", () => {
+      squareContainer.innerHTML = "";
+      squares = [];
+      createSquares();
+      animateSquares();
+
+      gsap.to("#preloader-btn", {
+        opacity: 0,
+        ease: "power1.out",
+      });
+    });
+  });
+
+  const button = document.querySelector("#preloader-btn");
+
+  let boundingRect = button.getBoundingClientRect();
+
+  window.addEventListener("resize", () => {
+    boundingRect = button.getBoundingClientRect();
+  });
+
+  button.addEventListener("mousemove", (e: MouseEvent) => {
+    const mousePosX = e.clientX - boundingRect.left;
+    const mousePosY = e.clientY - boundingRect.top;
+
+    gsap.to(button, {
+      x: (mousePosX - boundingRect.width / 2) * 0.4,
+      y: (mousePosY - boundingRect.height / 2) * 0.4,
+      duration: 0.8,
+      ease: "power4.out",
+    });
+    gsap.to($(".btn-text"), {
+      x: (mousePosX - boundingRect.width / 2) * 0.3,
+      y: (mousePosY - boundingRect.height / 2) * 0.3,
+      duration: 0.8,
+      ease: "power4.out",
+    });
+  });
+
+  //Event listener for when the mouse leaves the button area
+  button.addEventListener("mouseleave", () => {
+    gsap.to(button, {
+      x: 0,
+      y: 0,
+      duration: 0.8,
+      ease: "elastic.out(1,0.3)",
+    });
+    gsap.to($(".btn-text"), {
+      x: 0,
+      y: 0,
+      duration: 0.8,
+      ease: "elastic.out(1,0.3)",
+    });
+  });
+
+  $(".pre").on("mouseenter", () => {
+    gsap.to($(".btn-fill"), 0.6, {
+      startAt: { y: "76%" },
+      y: "0%",
+      ease: "power2.inOut",
+    });
+    gsap.to($(".btn-text"), 0.3, {
+      startAt: { color: "#1C1D20" },
+      color: "#FFFFFF",
+      ease: "power3.in",
+    });
+  });
+  $(".pre").on("mouseleave", () => {
+    gsap.to($(".btn-fill"), 0.6, {
+      y: "-76%",
+      ease: "power2.inOut",
+    });
+    gsap.to($(".btn-text"), 0.3, {
+      color: "#1C1D20",
+      ease: "power3.out",
+      delay: 0.3,
+    });
+  });
+</script>
