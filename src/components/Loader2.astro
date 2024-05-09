@@ -186,6 +186,16 @@ import Globe from "./Globe.astro";
     justify-content: center;
     align-items: center;
   }
+
+  @media only screen and (max-width: 768px) {
+    .counter {
+      right: 0;
+    }
+
+    .counter span {
+      width: 45px;
+    }
+  }
 </style>
 <script>
   import { gsap } from "gsap";
@@ -317,7 +327,9 @@ import Globe from "./Globe.astro";
           },
           onComplete: () => {
             gsap.set(".ring", { display: "none" });
-            gsap.set(".loader-base", { display: "none" });
+            gsap.set(".loader-base", {
+              display: "none",
+            });
           },
         }
       );
