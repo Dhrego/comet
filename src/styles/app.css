@@ -1,20 +1,28 @@
-@import url("https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Jolly+Lodger&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Teachers:ital,wght@0,400..800;1,400..800&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap");
 :root {
   --base-color: #8aaae5;
   --bg-color: #343434;
   /* --bg-color: #fff; when on LIGHT theme */
+
+  --font-Sedgwick: "Sedgwick Ave Display";
+  --font-Jolly: "Jolly Lodger";
+  --font-Exp-Black: "Mona Sans Expanded Black";
+  --font-Black-It: "Mona Sans Black Italic";
+  --font-Black: "Mona Sans Black";
+  --font-Bold: "Mona Sans Bold";
+  --font-Regular: "Mona Sans Regular";
+  --font-Light: "Mona Sans Light";
 }
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent; /* to remove all blue highlights when an element is clicked */
+  -webkit-tap-highlight-color: transparent;
+  /* to remove all blue highlights when an element is clicked */
 }
+
 body {
-  font-family: "Sedgwick Ave Display", cursive;
+  font-family: var(--font-Sedgwick), cursive;
   font-size: 20px;
   background-color: var(--bg-color);
   cursor: none;
@@ -22,6 +30,7 @@ body {
   position: relative;
  */
 }
+
 .cursor-outline,
 .cursor-dot {
   opacity: 0;
@@ -33,7 +42,9 @@ body {
   position: absolute;
   width: 80px;
   height: 80px;
-  border: solid 7px #2e91cb;
+  /* border: solid 7px #2e91cb; */
+  border: solid 5px #fff;
+
   mix-blend-mode: difference;
   pointer-events: none;
 }
@@ -44,8 +55,10 @@ body {
   position: absolute;
   width: 80px;
   height: 80px;
-  background-color: #53a5d5;
-  border: solid 1px #53a5d5;
+  /* background-color: #53a5d5;
+  border: solid 1px #53a5d5; */
+  background-color: #fff;
+  border: solid 1px #fff;
   pointer-events: none;
 }
 
@@ -63,6 +76,7 @@ body {
   body {
     cursor: auto;
   }
+
   .cursor-outline,
   .cursor-dot {
     display: none;

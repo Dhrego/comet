@@ -1,0 +1,71 @@
+@font-face {
+  font-family: "Sedgwick Ave Display";
+  src: url("SedgwickAveDisplay-Regular.woff2") format("woff2"),
+    url("SedgwickAveDisplay-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Jolly Lodger";
+  src: url("JollyLodger.woff2") format("woff2"),
+    url("JollyLodger.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Mona Sans Expanded Black";
+  src: url("MonaSansExpanded-Black.woff2") format("woff2"),
+    url("MonaSansExpanded-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Mona Sans Black Italic";
+  src: url("MonaSans-BlackItalic.woff2") format("woff2"),
+    url("MonaSans-BlackItalic.woff") format("woff");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Mona Sans Black";
+  src: url("MonaSans-Black.woff2") format("woff2"),
+    url("MonaSans-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Mona Sans Bold";
+  src: url("MonaSans-Bold.woff2") format("woff2"),
+    url("MonaSans-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Mona Sans Regular";
+  src: url("MonaSans-Regular.woff2") format("woff2"),
+    url("MonaSans-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Mona Sans Light";
+  src: url("MonaSans-Light.woff2") format("woff2"),
+    url("MonaSans-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}

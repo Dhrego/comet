@@ -11,7 +11,7 @@ import Globe from "./Globe.astro";
 
     <div class="pre" id="preloader-btn">
       <span class="btn-fill"></span>
-      <span class="btn-text">click me</span>
+      <span class="btn-text">Enter</span>
     </div>
     <div class="pulse">
       <div class="ring">Hello</div>
@@ -20,6 +20,7 @@ import Globe from "./Globe.astro";
       <div class="ring">Bonjour</div>
       <div class="ring">Olá</div>
       <div class="ring">Hallo</div>
+      <div class="ring">Mema wo akye</div>
       <div class="ringscale"></div>
     </div>
   </div>
@@ -40,10 +41,11 @@ import Globe from "./Globe.astro";
     position: fixed;
     right: 40px;
     bottom: 0;
-    font-family: "Jolly Lodger";
+    font-family: var(--font-Jolly);
     font-size: clamp(60px, 14vw, 200px);
     z-index: 100000;
     transition: 0.3s ease;
+    pointer-events: none;
   }
 
   .counter span {
@@ -99,11 +101,9 @@ import Globe from "./Globe.astro";
     left: 50%;
     transform: translate(-50%, -50%);
     overflow: hidden;
-    /* cursor: pointer; */
     text-transform: capitalize;
     width: 200px;
     font-size: 18px;
-    font-weight: 400;
     height: 200px;
     color: rgb(158, 158, 158);
     border: 0.01px solid rgba(158, 158, 158);
@@ -114,7 +114,7 @@ import Globe from "./Globe.astro";
     align-items: center;
     will-change: transform;
     z-index: 2;
-    font-family: "Ubuntu Sans", sans-serif;
+    font-family: var(--font-Light);
   }
 
   .btn-fill {
@@ -153,9 +153,7 @@ import Globe from "./Globe.astro";
     border-radius: 100%;
     opacity: 0.8;
     font-size: clamp(15px, 14vw, 30px);
-    /* font-family: "Ubuntu Sans", sans-serif; */
-    font-family: "Teachers", sans-serif;
-    font-weight: 500;
+    font-family: var(--font-Regular);
     pointer-events: none;
     display: flex;
     justify-content: center;
