@@ -105,7 +105,7 @@ import Globe from "./Globe.astro";
     width: 200px;
     font-size: 18px;
     height: 200px;
-    color: rgb(158, 158, 158);
+    color: rgb(0, 0, 0);
     border: 0.01px solid rgba(158, 158, 158);
     transition: color 0.3s ease;
     border-radius: 50%;
@@ -277,7 +277,7 @@ import Globe from "./Globe.astro";
       element.style.outline = "0.07em solid rgba(40, 40, 40, 0.14)";
     }
 
-    function createSquares() {
+    const createSquares = () => {
       for (let i = 0; i < numSquares; i++) {
         const square = document.createElement("div");
         applyStyles(square);
@@ -285,7 +285,7 @@ import Globe from "./Globe.astro";
         squareContainer.appendChild(square);
         squares.push(square);
       }
-    }
+    };
 
     function animateSquares() {
       gsap.fromTo(
@@ -386,7 +386,7 @@ import Globe from "./Globe.astro";
       ease: "power2.inOut",
     });
     gsap.to($(".btn-text"), 0.3, {
-      startAt: { color: "rgb(158, 158, 158)" },
+      startAt: { color: "rgb(0, 0, 0)" },
       color: "#FFFFFF",
       ease: "power3.in",
     });
@@ -397,7 +397,7 @@ import Globe from "./Globe.astro";
       ease: "power2.inOut",
     });
     gsap.to($(".btn-text"), 0.3, {
-      color: "rgb(158, 158, 158)",
+      color: "rgb(0, 0, 0)",
       ease: "power3.out",
       delay: 0.3,
     });
