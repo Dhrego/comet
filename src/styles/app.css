@@ -1,6 +1,8 @@
 :root {
   --base-color: #8aaae5;
   --bg-color: #343434;
+  --white: #fff;
+  --black: #000;
   /* --bg-color: #fff; when on LIGHT theme */
 
   --font-Sedgwick: "Sedgwick Ave Display";
