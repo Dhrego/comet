@@ -7,10 +7,7 @@ import Layout from "../layouts/Layout.astro";
   <div class="container">
     <main>
       <div class="me">
-        <!-- <img
-          src="https://api.dicebear.com/8.x/adventurer-neutral/svg?seed=dhrego&glasses=variant01"
-          alt="avatar" /> -->
-         <span>The name's Andrea, pleasure meeting you</span>
+        The name's Andrea, pleasure meeting you
       </div>
     </main>
   </div>
@@ -25,44 +22,10 @@ import Layout from "../layouts/Layout.astro";
     justify-content: center;
     background-color: :red;
   }
-  .me{
-    position: relative;
-    z-index: -1;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-  
-img {
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  animation: bounceUp 1s infinite;
-  transition: transform 1s ease;
-}
 
-span {
-  font-family: var(--font-Regular);
-  font-size: 40px;
-}
-
-/* @keyframes bounceDown {
-  from {
-    transform: translateY(-150px);
+  .me {
+    font-family: var(--font-Regular);
+    font-size: 40px;
   }
-  to {
-    transform: translateY(0);
-  }
-}
-
-@keyframes bounceUp {
-  0%,100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-150px);
-  }
-} */
-
 </style>
 
