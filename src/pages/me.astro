@@ -7,9 +7,9 @@ import Layout from "../layouts/Layout.astro";
   <div class="container">
     <main>
       <div class="me">
-        <img
+        <!-- <img
           src="https://api.dicebear.com/8.x/adventurer-neutral/svg?seed=dhrego&glasses=variant01"
-          alt="avatar" />
+          alt="avatar" /> -->
          <span>The name's Andrea, pleasure meeting you</span>
       </div>
     </main>
@@ -19,7 +19,7 @@ import Layout from "../layouts/Layout.astro";
 <style>
   main {
     color: #fff;
-    min-height: 80vh;
+    min-height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -34,7 +34,6 @@ import Layout from "../layouts/Layout.astro";
 }
   
 img {
-  
   border-radius: 50%;
   width: 120px;
   height: 120px;
@@ -43,10 +42,11 @@ img {
 }
 
 span {
+  font-family: var(--font-Regular);
   font-size: 40px;
 }
 
-@keyframes bounceDown {
+/* @keyframes bounceDown {
   from {
     transform: translateY(-150px);
   }
@@ -62,7 +62,7 @@ span {
   50% {
     transform: translateY(-150px);
   }
-}
+} */
 
 </style>
 

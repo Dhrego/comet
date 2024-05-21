@@ -196,12 +196,24 @@ const { items } = Astro.props;
   });
 </script> -->
 <script>
-  const menu = document.querySelector(".hamburger-menu");
-  const overlay = document.querySelector(".koko");
-  const circle = document.querySelector(".circle");
-  menu.addEventListener("click", () => {
-    menu.classList.toggle("active");
-    overlay.classList.toggle("active");
-    circle.classList.toggle("open");
+  import $ from "jquery";
+
+  const $menu = $(".hamburger-menu");
+  const $overlay = $(".koko");
+  const $circle = $(".circle");
+
+  $menu.on("click", function () {
+    $menu.toggleClass("active");
+    $overlay.toggleClass("active");
+    $circle.toggleClass("open");
+    activeHandler();
   });
+
+  function activeHandler() {
+    if ($overlay.hasClass("active")) {
+      $("body").css("overflow", "hidden");
+    } else {
+      $("body").css("overflow", "auto");
+    }
+  }
 </script>
