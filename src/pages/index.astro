@@ -7,24 +7,23 @@ import Loader2 from "../components/Loader2.astro";
 <Layout title="Home">
   <div class="container">
     <main>
-      <!-- <div class="glassCard"></div> -->
-      <!-- <div id="circle" class="circle"></div> -->
-
-      <div class="svg">
-        <img src="blend.svg" alt="" srcset="" />
-      </div>
-
-      <span class="sub">introducing</span>
+      <!-- <span class="sub">introducing</span>
       <div class="hero">andrea</div>
-      <div class="desc">SOFTWARE DEVELOPER AND UI/UX DESIGNER</div>
+      <div class="desc">SOFTWARE DEVELOPER AND UI/UX DESIGNER</div> -->
+
+      <div class="hero">
+        <div class="hero-intro">introducing</div>
+        <div class="hero-main">andrea</div>
+        <div class="hero-sub">software developer and ui/ux designer</div>
+      </div>
     </main>
   </div>
   <!-- <Loader /> -->
-  <Loader2 />
+  <!-- <Loader2 /> -->
 </Layout>
 
 <style>
-  .hero {
+  /* .hero {
     position: absolute;
     top: 30%;
     left: 50%;
@@ -42,6 +41,12 @@ import Loader2 from "../components/Loader2.astro";
     z-index: -1;
     font-family: var(--font-Exp-Black);
     text-transform: uppercase;
+  } */
+
+  .hero {
+    height: 100%;
+    width: 100%;
+    display: flex;
   }
 
   .desc {
@@ -86,50 +91,4 @@ import Loader2 from "../components/Loader2.astro";
     align-items: center;
     justify-content: center;
   }
-
-  .circle {
-    position: absolute;
-    z-index: -2;
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    background-color: var(--base-color);
-    transition: background 2s ease;
-  }
-
-  .glassCard {
-    z-index: -1;
-    width: 420px;
-    height: 660px;
-    background: rgba(255, 255, 255, 0.2);
-    /* background: rgba(0, 0, 0, 0.2);  when on light theme*/
-    stroke-width: 3px;
-    stroke: #fff;
-    backdrop-filter: blur(15px);
-    border-radius: 2rem;
-  }
-
-  /* @media only screen and (max-width: 768px) {
-    .circle {
-      width: 480px;
-      height: 480px;
-    }
-
-    .glassCard {
-      height: 600px;
-      width: 400px;
-    }
-  }
-  @media only screen and (max-width: 480px) {
-    .circle {
-      width: 280px;
-      height: 280px;
-    }
-
-    .glassCard {
-      height: 400px;
-      width: 220px;
-      border-radius: 12px;
-    }
-  } */
 </style>
