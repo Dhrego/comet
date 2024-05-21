@@ -1,6 +1,7 @@
 :root {
   --base-color: #8aaae5;
   --bg-color: #343434;
+  /* --bg-color: #0e100f; alternative color to bg*/
   --white: #fff;
   --black: #000;
   /* --bg-color: #fff; when on LIGHT theme */
@@ -19,9 +20,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-
-  /* to remove all blue highlights when an element is clicked */
 }
 
 body {
@@ -77,6 +75,7 @@ body {
 @media screen and (max-width: 768px) {
   body {
     cursor: auto;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .cursor-outline,
