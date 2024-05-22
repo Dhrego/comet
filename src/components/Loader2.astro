@@ -102,9 +102,9 @@ import Globe from "./Globe.astro";
     transform: translate(-50%, -50%);
     overflow: hidden;
     text-transform: capitalize;
-    width: 200px;
+    width: 250px;
     font-size: 18px;
-    height: 200px;
+    height: 250px;
     color: rgb(0, 0, 0);
     border: 0.01px solid rgba(158, 158, 158);
     transition: color 0.3s ease;
@@ -175,6 +175,11 @@ import Globe from "./Globe.astro";
     .ring {
       font-size: clamp(15px, 2vw, 30px);
     }
+
+    #preloader-btn {
+      width: 175px;
+      height: 175px;
+    }
   }
 </style>
 <script>
@@ -241,7 +246,7 @@ import Globe from "./Globe.astro";
         visibility: "visible",
         opacity: 1,
         duration: 1,
-        scale: Math.max(window.innerWidth, window.innerHeight) / 50,
+        scale: Math.max(window.innerWidth, window.innerHeight) / 100,
         ease: "power2.in",
       },
       "-=0.5"

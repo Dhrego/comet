@@ -16,7 +16,7 @@ const { items } = Astro.props;
       <ul class="nav-links">
         {
           items.map((navlink) => (
-            <li>
+            <li class="nav-link">
               <Navlink href={navlink.href}>{navlink.text}</Navlink>
             </li>
           ))
@@ -42,6 +42,11 @@ const { items } = Astro.props;
     /* display: flex; */
   }
 
+  .nav-link {
+    opacity: 0;
+    transform: translateY(80px);
+  }
+
   .koko {
     position: fixed;
     top: 0;
@@ -52,7 +57,7 @@ const { items } = Astro.props;
     height: 0;
     z-index: 999;
     /* transition: height 1s cubic-bezier(0.76, 0, 0.24, 1); */
-    transition: height 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+    /* transition: height 1s cubic-bezier(0.25, 0.1, 0.25, 1); */
     /* transition: transform 0.8s ease; */
     display: flex;
     align-items: center;
@@ -72,12 +77,18 @@ const { items } = Astro.props;
     align-items: center;
     backdrop-filter: blur(150px) saturate(1.5);
   }
-
+  /* 
   .koko.active {
     height: 100vh;
-  }
-
+  } */
+  /* 
   .koko.active .overlay .nav-links {
+    transition-delay: 0.55s;
+    visibility: visible;
+    opacity: 1;
+  } */
+
+  .hamburger-menu.active + .koko .overlay .nav-links {
     transition-delay: 0.55s;
     visibility: visible;
     opacity: 1;
@@ -190,6 +201,10 @@ const { items } = Astro.props;
 
 <script>
   import $ from "jquery";
+  import { gsap } from "gsap";
+  import { CustomEase } from "gsap/CustomEase";
+
+  gsap.registerPlugin(CustomEase);
 
   const $menu = $(".hamburger-menu");
   const $overlay = $(".koko");
@@ -197,16 +212,44 @@ const { items } = Astro.props;
 
   $menu.on("click", () => {
     $menu.toggleClass("active");
-    $overlay.toggleClass("active");
+    // $overlay.toggleClass("active");
     $circle.toggleClass("open");
     activeHandler();
+
+    const duration = 0.5;
+    const easing = CustomEase.create("custom", "0.104,0.204,0.492,1");
+
+    gsap.to($overlay, {
+      height: $menu.hasClass("active") ? "100vh" : "0",
+      duration: duration,
+      ease: easing,
+    });
+
+    gsap.to(".nav-link", {
+      duration: 1,
+      opacity: $menu.hasClass("active") ? 1 : 0,
+      y: $menu.hasClass("active") ? 0 : 100,
+      ease: "power1.inOut",
+      stagger: {
+        each: 0.1,
+      },
+    });
+
+    // gsap.to($circle, {
+    //   transform: $menu.hasClass("active")
+    //     ? "translate(-50%, -50%) scale(1)"
+    //     : "translate(-50%, -50%) scale(0)",
+    //   opacity: $menu.hasClass("active") ? 1 : 0,
+    //   delay: $menu.hasClass("active") ? 0.5 : 0,
+    //   ease: easing,
+    // });
   });
 
   const activeHandler = () => {
-    if ($overlay.hasClass("active")) {
-      $("body").css("overflow", "hidden");
+    if ($menu.hasClass("active")) {
+      $("body").css("overflowY", "hidden");
     } else {
-      $("body").css("overflow", "auto");
+      $("body").css("overflowY", "auto");
     }
   };
 </script>
