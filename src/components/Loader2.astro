@@ -103,7 +103,7 @@ import Globe from "./Globe.astro";
     overflow: hidden;
     text-transform: capitalize;
     width: 250px;
-    font-size: 18px;
+    font-size: clamp(16px, 2vw, 20px);
     height: 250px;
     color: rgb(0, 0, 0);
     border: 0.01px solid rgba(158, 158, 158);
@@ -307,6 +307,8 @@ import Globe from "./Globe.astro";
           delay: 0.5,
           duration: 0.0005,
           stagger: {
+            // Dynamic Animation Speed:
+            //TODO: Check for wider screens (2560px) for faster animation of boxes (0.002)
             each: 0.004,
             from: "random",
           },
