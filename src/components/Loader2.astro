@@ -282,7 +282,8 @@ import Globe from "./Globe.astro";
     function applyStyles(element) {
       element.style.height = "100px";
       element.style.width = "100px";
-      element.style.backgroundColor = "#8aaae5";
+      // element.style.backgroundColor = "#8aaae5";
+      element.style.backgroundColor = "#dedede";
       element.style.outline = "0.07em solid rgba(40, 40, 40, 0.14)";
     }
 
@@ -367,8 +368,8 @@ import Globe from "./Globe.astro";
       ease: "power4.out",
     });
     gsap.to($(".btn-text"), {
-      x: (mousePosX - boundingRect.width / 2) * 0.3,
-      y: (mousePosY - boundingRect.height / 2) * 0.3,
+      x: (mousePosX - boundingRect.width / 2) * 0.35,
+      y: (mousePosY - boundingRect.height / 2) * 0.35,
       duration: 0.8,
       ease: "power4.out",
     });
