@@ -80,18 +80,18 @@ import Globe from "./Globe.astro";
     left: 0;
     right: 0;
   }
-
+  /* 
   .square {
     width: 100px;
-    height: 100px;
-    /* background: #3b3b3b; */
-    background: #8aaae5;
+    height: 100px; */
+  /* background: #3b3b3b; */
+  /* background: #8aaae5;
     box-sizing: border-box;
-    pointer-events: none;
-    /* outline: 0.07em solid #02d1ffae; */
-    /* outline: 0.07em solid rgba(64, 225, 96, 0.678); */
-    outline: 0.07em solid rgba(40, 40, 40, 0.14);
-  }
+    pointer-events: none; */
+  /* outline: 0.07em solid #02d1ffae; */
+  /* outline: 0.07em solid rgba(64, 225, 96, 0.678); */
+  /* outline: 0.07em solid rgba(40, 40, 40, 0.14);
+  } */
 
   #preloader-btn {
     visibility: hidden;
@@ -103,18 +103,19 @@ import Globe from "./Globe.astro";
     overflow: hidden;
     text-transform: capitalize;
     width: 250px;
-    font-size: clamp(16px, 2vw, 20px);
     height: 250px;
+    font-size: clamp(16px, 2vw, 20px);
     color: rgb(0, 0, 0);
     border: 0.01px solid rgba(158, 158, 158);
-    transition: color 0.3s ease;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: color 0.3s ease;
     will-change: transform;
     z-index: 2;
     font-family: var(--font-Light);
+    cursor: pointer;
   }
 
   .btn-text {

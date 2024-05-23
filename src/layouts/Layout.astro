@@ -31,7 +31,7 @@ const { title } = Astro.props;
 <script>
   import gsap from "gsap";
 
-  const changeColor = (index) => {
+  const changeColor = (index: number) => {
     root.style.setProperty("--base-color", colors[index]);
     logoSvg.setAttribute("fill", colors[index]);
 
@@ -123,6 +123,7 @@ const { title } = Astro.props;
   //     .to(".cursor-dot", { scale: 0.1, duration: 0.3 });
   // });
 
+  //click animation handler
   function handlePointerEvent(e: MouseEvent) {
     if (e.type === "pointerdown") {
       gsap.timeline().to(".cursor-dot", { scale: 0.2, duration: 0.3 });
@@ -130,11 +131,24 @@ const { title } = Astro.props;
       gsap.timeline().to(".cursor-dot", { scale: 0.1, duration: 0.3 });
     }
   }
+
   document.addEventListener("pointerdown", function (e) {
     handlePointerEvent(e);
   });
 
   document.addEventListener("pointerup", function (e) {
     handlePointerEvent(e);
+  });
+
+  //Navlink animation handler
+  let navlinks = document.querySelectorAll(".nav-link a");
+
+  function handleCursorScale(scale: number) {
+    gsap.to(".cursor-dot", { scale: scale, duration: 0.3 });
+  }
+
+  navlinks.forEach((navlink) => {
+    navlink.addEventListener("mouseenter", () => handleCursorScale(2));
+    navlink.addEventListener("mouseleave", () => handleCursorScale(0.1));
   });
 </script>
