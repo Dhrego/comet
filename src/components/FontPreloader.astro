@@ -1,0 +1,18 @@
+---
+// const fonts = await Astro.glob("/src/fonts/*.{woff,woff2}");
+const fonts = await Astro.glob("/src/fonts/*.woff2");
+---
+
+<>
+  {
+    fonts.map((font) => (
+      <link
+        rel="preload"
+        as="font"
+        href={font.default}
+        type={`font/${font.default.split(".").pop()}`}
+        crossorigin="anonymous"
+      />
+    ))
+  }
+</>

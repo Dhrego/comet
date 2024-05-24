@@ -3,7 +3,7 @@ import "../styles/app.css";
 import "../fonts/stylesheet.css";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
-
+import FontPreloader from "../components/FontPreloader.astro";
 const { title } = Astro.props;
 ---
 
@@ -14,6 +14,23 @@ const { title } = Astro.props;
     <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="logo.svg" />
+    <FontPreloader />
+    <!--TODO: COMPONENT to render all fonts in the fonts folder -->
+    <!-- <link
+      rel="preload"
+      as="font"
+      href="src/fonts/JollyLodger.woff2"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      as="font"
+      href="src/fonts/SedgwickAveDisplay-Regular.woff2"
+      type="font/woff2"
+      crossorigin="anonymous"
+    /> -->
+
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
@@ -24,131 +41,129 @@ const { title } = Astro.props;
 
     <div class="cursor-outline"></div>
     <div class="cursor-dot"></div>
-  </body>
-  <!-- <script src="../scripts/app.js"></script> -->
+    <script>
+      import gsap from "gsap";
+
+      const changeColor = (index: number) => {
+        root.style.setProperty("--base-color", colors[index]);
+        logoSvg.setAttribute("fill", colors[index]);
+
+        index = (index + 1) % colors.length;
+
+        setTimeout(() => {
+          changeColor(index);
+        }, 5000);
+      };
+
+      const colors = [
+        "#8aaae5",
+        "#f77126",
+        "#26f7ac",
+        "#26c5f7",
+        "#d439d7",
+        "#e04c4c",
+      ];
+
+      let root = document.documentElement;
+      let logoSvg = document.querySelector(".logo svg path");
+
+      changeColor(0);
+
+      //CURSOR POINTER ANIMATION
+      gsap.set(".cursor-dot", { scale: 0.1 });
+      gsap.set(".cursor-outline", { scale: 0.3 });
+
+      document.addEventListener("mousemove", mouseMove);
+
+      let xCTo = gsap.quickTo(".cursor-outline", "left", {
+        duration: 0.2,
+        ease: "power3",
+      });
+      let yCTo = gsap.quickTo(".cursor-outline", "top", {
+        duration: 0.2,
+        ease: "power3",
+      });
+
+      let xDTo = gsap.quickTo(".cursor-dot", "left", {
+        duration: 0.6,
+        ease: "power3",
+      });
+      let yDTo = gsap.quickTo(".cursor-dot", "top", {
+        duration: 0.6,
+        ease: "power3",
+      });
+
+      let isVisible = false;
+
+      function mouseMove(e: MouseEvent) {
+        if (!isVisible) {
+          gsap.set(".cursor-outline, .cursor-dot", { opacity: 1 });
+          isVisible = true;
+        }
+
+        const cursorPosition = {
+          left: e.clientX,
+          top: e.clientY,
+        };
+
+        xCTo(cursorPosition.left);
+        yCTo(cursorPosition.top);
+        xDTo(cursorPosition.left);
+        yDTo(cursorPosition.top);
+      }
+
+      let scaleAnim = gsap.timeline({ paused: true });
+
+      scaleAnim
+        .to(".cursor-outline", {
+          scale: 1,
+        })
+        .to(
+          ".cursor-dot",
+          {
+            scale: 1,
+            duration: 0.35,
+          },
+          0
+        );
+
+      // document.addEventListener("pointerdown", () => {
+      //   console.log("Pointer down event");
+
+      //   gsap
+      //     .timeline()
+      //     .to(".cursor-dot", { scale: 0.2, duration: 0.3 })
+      //     .to(".cursor-dot", { scale: 0.1, duration: 0.3 });
+      // });
+
+      //click animation handler
+      function handlePointerEvent(e: MouseEvent) {
+        if (e.type === "pointerdown") {
+          gsap.timeline().to(".cursor-dot", { scale: 0.2, duration: 0.3 });
+        } else if (e.type === "pointerup") {
+          gsap.timeline().to(".cursor-dot", { scale: 0.1, duration: 0.3 });
+        }
+      }
+
+      document.addEventListener("pointerdown", function (e) {
+        handlePointerEvent(e);
+      });
+
+      document.addEventListener("pointerup", function (e) {
+        handlePointerEvent(e);
+      });
+
+      //Navlink animation handler
+      let navlinks = document.querySelectorAll(".nav-link a");
+
+      function handleCursorScale(scale: number) {
+        gsap.to(".cursor-dot", { scale: scale, duration: 0.3 });
+      }
+
+      navlinks.forEach((navlink) => {
+        navlink.addEventListener("mouseenter", () => handleCursorScale(2));
+        navlink.addEventListener("mouseleave", () => handleCursorScale(0.1));
+      });
+    </script>
+  </body><!-- <script src="../scripts/app.js"></script> -->
 </html>
-
-<script>
-  import gsap from "gsap";
-
-  const changeColor = (index: number) => {
-    root.style.setProperty("--base-color", colors[index]);
-    logoSvg.setAttribute("fill", colors[index]);
-
-    index = (index + 1) % colors.length;
-
-    setTimeout(() => {
-      changeColor(index);
-    }, 5000);
-  };
-
-  const colors = [
-    "#8aaae5",
-    "#f77126",
-    "#26f7ac",
-    "#26c5f7",
-    "#d439d7",
-    "#e04c4c",
-  ];
-
-  let root = document.documentElement;
-  let logoSvg = document.querySelector(".logo svg path");
-
-  changeColor(0);
-
-  //CURSOR POINTER ANIMATION
-  gsap.set(".cursor-dot", { scale: 0.1 });
-  gsap.set(".cursor-outline", { scale: 0.3 });
-
-  document.addEventListener("mousemove", mouseMove);
-
-  let xCTo = gsap.quickTo(".cursor-outline", "left", {
-    duration: 0.2,
-    ease: "power3",
-  });
-  let yCTo = gsap.quickTo(".cursor-outline", "top", {
-    duration: 0.2,
-    ease: "power3",
-  });
-
-  let xDTo = gsap.quickTo(".cursor-dot", "left", {
-    duration: 0.6,
-    ease: "power3",
-  });
-  let yDTo = gsap.quickTo(".cursor-dot", "top", {
-    duration: 0.6,
-    ease: "power3",
-  });
-
-  let isVisible = false;
-
-  function mouseMove(e: MouseEvent) {
-    if (!isVisible) {
-      gsap.set(".cursor-outline, .cursor-dot", { opacity: 1 });
-      isVisible = true;
-    }
-
-    const cursorPosition = {
-      left: e.clientX,
-      top: e.clientY,
-    };
-
-    xCTo(cursorPosition.left);
-    yCTo(cursorPosition.top);
-    xDTo(cursorPosition.left);
-    yDTo(cursorPosition.top);
-  }
-
-  let scaleAnim = gsap.timeline({ paused: true });
-
-  scaleAnim
-    .to(".cursor-outline", {
-      scale: 1,
-    })
-    .to(
-      ".cursor-dot",
-      {
-        scale: 1,
-        duration: 0.35,
-      },
-      0
-    );
-
-  // document.addEventListener("pointerdown", () => {
-  //   console.log("Pointer down event");
-
-  //   gsap
-  //     .timeline()
-  //     .to(".cursor-dot", { scale: 0.2, duration: 0.3 })
-  //     .to(".cursor-dot", { scale: 0.1, duration: 0.3 });
-  // });
-
-  //click animation handler
-  function handlePointerEvent(e: MouseEvent) {
-    if (e.type === "pointerdown") {
-      gsap.timeline().to(".cursor-dot", { scale: 0.2, duration: 0.3 });
-    } else if (e.type === "pointerup") {
-      gsap.timeline().to(".cursor-dot", { scale: 0.1, duration: 0.3 });
-    }
-  }
-
-  document.addEventListener("pointerdown", function (e) {
-    handlePointerEvent(e);
-  });
-
-  document.addEventListener("pointerup", function (e) {
-    handlePointerEvent(e);
-  });
-
-  //Navlink animation handler
-  let navlinks = document.querySelectorAll(".nav-link a");
-
-  function handleCursorScale(scale: number) {
-    gsap.to(".cursor-dot", { scale: scale, duration: 0.3 });
-  }
-
-  navlinks.forEach((navlink) => {
-    navlink.addEventListener("mouseenter", () => handleCursorScale(2));
-    navlink.addEventListener("mouseleave", () => handleCursorScale(0.1));
-  });
-</script>
