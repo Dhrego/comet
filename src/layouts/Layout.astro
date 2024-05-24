@@ -141,7 +141,7 @@ const { title } = Astro.props;
   });
 
   //Navlink animation handler
-  let navlinks = document.querySelectorAll(".nav-link ");
+  let navlinks = document.querySelectorAll(".nav-link a");
 
   function handleCursorScale(scale: number) {
     gsap.to(".cursor-dot", { scale: scale, duration: 0.3 });
