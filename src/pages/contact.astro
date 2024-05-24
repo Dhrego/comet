@@ -5,10 +5,72 @@ import Layout from "../layouts/Layout.astro";
 <Layout title="Contact">
   <div class="container">
     <main>
+      <form action="/">
+        <div class="contact-row">
+          <div class="contact-form">
+            <div class="heading">
+              Let's work together! <br />Fill out this form.
+            </div>
+            <div class="form-group">
+              <label for="inputFullname">first and last name</label>
+              <input
+                id="inputFullname"
+                class="form-control custom-input"
+                type="text"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="inputCompany">company name</label>
+              <input
+                id="inputCompany"
+                class="form-control custom-input"
+                type="text"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="inputEmail">email</label>
+              <input
+                id="inputEmail"
+                class="form-control custom-input"
+                type="email"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label class="mb-2" for="inputDetails">
+                tell me about your company and project
+              </label>
+              <textarea
+                id="inputDetails"
+                placeholder="Type something interesting..."
+                class="form-control textarea custom-input-textarea"></textarea>
+              <button type="button" class="btn btn-outline-success">
+                Get in touch
+              </button>
+            </div>
+          </div>
+          <hr class="separator" />
+          <div class="contact-info">
+            <div class="img-block">
+              <img src="guy.svg" alt="" class="guy" />
+            </div>
+            <div class="info-details">
+              <div class="info-item">
+                <small>let's collaborate</small>
+                <a href="#" class="info-link">work@dhrego.com</a>
+              </div>
+              <div class="info-item">
+                <small>feature me</small>
+                <a href="#" class="info-link">press@dhrego.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
       <!-- I'll reach out to you later -->
-      <div class="img-block">
-        <img src="guy.svg" alt="" class="guy" />
-      </div>
     </main>
   </div>
 </Layout>
@@ -16,18 +78,196 @@ import Layout from "../layouts/Layout.astro";
 <style>
   main {
     color: #fff;
-    min-height: 90vh;
+    min-height: calc(100vh - 88.88px);
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: var(--font-Black-It);
   }
-  .guy {
+
+  .img-block {
     width: 300px;
     height: 300px;
-  }
-  .img-block {
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .img-block img {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Container styles */
+  /* .contact-container {
+    margin: 0 auto;
+    padding: 1rem;
+    max-width: 100%;
+  } */
+
+  /* Row styles */
+  .contact-row {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .contact-row {
+      flex-direction: row;
+    }
+  }
+
+  /* Form styles */
+  .contact-form {
+    flex: 2;
+    padding: 1rem 3rem;
+  }
+
+  .heading {
+    font-size: 48px;
+    font-family: var(--font-Light);
+    margin-bottom: 2rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 0.5rem;
+    /* border: 1px solid #ced4da; */
+    border-radius: 8px;
+  }
+
+  .custom-input {
+    transition: all 0.3s ease;
+    font-family: monospace;
+    font-size: 1rem;
+    border: none;
+    border-bottom: 1px solid #ced4da;
+    border-radius: 0;
+    padding: 1rem 0;
+    box-shadow: none;
+    background-color: transparent;
+    outline: none !important;
+    color: var(--white);
+  }
+
+  .custom-input:focus {
+    outline: none;
+    box-shadow: none;
+    border-bottom: 1px solid rgb(180, 217, 155);
+    color: rgb(108, 186, 55);
+  }
+
+  .custom-input-textarea:focus {
+    outline: none;
+    box-shadow: none;
+    border: 1px solid rgb(180, 217, 155);
+    color: rgb(108, 186, 55);
+  }
+
+  .custom-input-textarea {
+    transition: all 0.15s ease;
+    font-family: monospace;
+    font-size: 1rem;
+    border: 1px solid var(--white);
+    margin-top: 32px;
+    padding: 8px;
+    box-shadow: none;
+    background-color: transparent;
+    outline: none !important;
+    color: var(--white);
+  }
+
+  .custom-input-textarea:focus::placeholder {
+    transition: all 0.15s ease-in;
+    color: rgb(108, 186, 55);
+  }
+
+  .textarea {
+    min-height: 150px;
+  }
+
+  .btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid green;
+    background-color: transparent;
+    color: green;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background-color: green;
+    color: white;
+  }
+
+  /* Separator styles */
+  .separator {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 2rem 0;
+  }
+
+  /* Info styles */
+  .contact-info {
+    flex: 1;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .img-block {
+    display: none;
+  }
+
+  @media (min-width: 992px) {
+    .img-block {
+      display: block;
+    }
+  }
+
+  .info-details {
+    margin-top: 2rem;
+  }
+
+  .info-item {
+    margin-bottom: 1.5rem;
+  }
+
+  .info-link {
+    display: block;
+    font-size: 1.25rem;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .info-link:hover {
+    text-decoration: underline;
+  }
+
+  label {
+    text-transform: uppercase;
+    font-size: 16px;
+    font-family: var(--font-Regular);
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .info-item small {
+    font-size: 14px;
+    font-family: var(--font-Regular);
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+  }
+
+  .info-item .info-link {
+    color: var(--white);
+    font-family: var(--font-Bold);
+    font-size: 28px;
   }
 </style>
