@@ -187,7 +187,7 @@ import Globe from "./Globe.astro";
   import { gsap } from "gsap";
   import $ from "jquery";
 
-  const startLoader = (delay) => {
+  const startLoader = (delay: number) => {
     let counterElement = document.querySelector(".counter span");
     let currentValue = 0;
 
