@@ -15,22 +15,6 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="logo.svg" />
     <FontPreloader />
-    <!--TODO: COMPONENT to render all fonts in the fonts folder -->
-    <!-- <link
-      rel="preload"
-      as="font"
-      href="src/fonts/JollyLodger.woff2"
-      type="font/woff2"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="preload"
-      as="font"
-      href="src/fonts/SedgwickAveDisplay-Regular.woff2"
-      type="font/woff2"
-      crossorigin="anonymous"
-    /> -->
-
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
@@ -126,15 +110,6 @@ const { title } = Astro.props;
           },
           0
         );
-
-      // document.addEventListener("pointerdown", () => {
-      //   console.log("Pointer down event");
-
-      //   gsap
-      //     .timeline()
-      //     .to(".cursor-dot", { scale: 0.2, duration: 0.3 })
-      //     .to(".cursor-dot", { scale: 0.1, duration: 0.3 });
-      // });
 
       //click animation handler
       function handlePointerEvent(e: MouseEvent) {
