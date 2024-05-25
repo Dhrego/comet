@@ -125,8 +125,15 @@ import Layout from "../layouts/Layout.astro";
     padding: 1rem 3rem;
   }
 
+  @media screen and (max-width: 768px) {
+    .contact-form {
+      padding: 1rem;
+    }
+  }
+
   .heading {
-    font-size: 48px;
+    /* font-size: 48px; */
+    font-size: clamp(32px, 5vw, 48px);
     font-family: var(--font-Light);
     margin-bottom: 2rem;
   }
