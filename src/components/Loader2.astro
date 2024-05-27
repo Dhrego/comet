@@ -275,6 +275,7 @@ import Globe from "./Globe.astro";
     const numRows = Math.ceil(screenHeight / squareSize);
     const numSquares = numCols * numRows;
 
+    //TODO: occasionally both width and height aren't equal to actual dimensions of the page
     squareContainer.style.width = `${numCols * squareSize}px`;
     squareContainer.style.height = `${numRows * squareSize}px`;
 

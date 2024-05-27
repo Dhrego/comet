@@ -202,16 +202,24 @@ import Layout from "../layouts/Layout.astro";
   }
 
   .btn {
-    padding: 0.5rem 1rem;
-    border: 1px solid green;
-    background-color: transparent;
-    color: green;
+    font-family: var(--font-Regular);
+    padding: 0.8rem 1.2rem;
+
+    background-color: green;
+    color: rgb(255, 255, 255);
     cursor: pointer;
+    border-radius: 8px;
+    transition: filter 0.3s ease;
+    outline: none;
+    border: none;
   }
 
   .btn:hover {
-    background-color: green;
-    color: white;
+    filter: brightness(0.9);
+  }
+
+  .btn:active {
+    filter: brightness(0.7);
   }
 
   /* Separator styles */
