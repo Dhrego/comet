@@ -265,61 +265,136 @@ import Globe from "./Globe.astro";
     );
   });
 
+  // window.addEventListener("DOMContentLoaded", () => {
+  //   // const loader = document.querySelector(".loader");
+  //   const squareContainer = document.getElementById("square-container");
+  //   const squareSize = 100;
+  //   const screenWidth = window.innerWidth;
+  //   const screenHeight = window.innerHeight;
+  //   const numCols = Math.ceil(screenWidth / squareSize);
+  //   const numRows = Math.ceil(screenHeight / squareSize);
+  //   const numSquares = numCols * numRows;
+
+  //   //TODO: occasionally both width and height aren't equal to actual dimensions of the page
+  //   squareContainer.style.width = `${numCols * squareSize}px`;
+  //   squareContainer.style.height = `${numRows * squareSize}px`;
+
+  //   let squares = [];
+
+  //   function applyStyles(element) {
+  //     element.style.height = "100px";
+  //     element.style.width = "100px";
+  //     // element.style.backgroundColor = "#8aaae5";
+  //     element.style.backgroundColor = "#dedede";
+  //     element.style.outline = "0.07em solid rgba(40, 40, 40, 0.14)";
+  //   }
+
+  //   const createSquares = () => {
+  //     for (let i = 0; i < numSquares; i++) {
+  //       const square = document.createElement("div");
+  //       applyStyles(square);
+  //       // square.classList.add("square");
+  //       squareContainer.appendChild(square);
+  //       squares.push(square);
+  //     }
+  //   };
+
+  //   function animateSquares() {
+  //     gsap.fromTo(
+  //       squares,
+  //       {
+  //         opacity: 0,
+  //       },
+  //       {
+  //         opacity: 1,
+  //         delay: 0.5,
+  //         duration: 0.0005,
+  //         stagger: {
+  //           // Dynamic Animation Speed:
+  //           //TODO: Check for wider screens (2560px) for faster animation of boxes (0.002)
+  //           each: 0.004,
+  //           from: "random",
+  //         },
+  //         onComplete: () => {
+  //           gsap.set(".ring", { display: "none" });
+  //           gsap.set(".loader-base", {
+  //             display: "none",
+  //           });
+  //         },
+  //       }
+  //     );
+
+  //     gsap.to(squares, {
+  //       opacity: 0,
+  //       delay: 1.5,
+  //       duration: 0.0005,
+  //       stagger: {
+  //         each: 0.004,
+  //         from: "random",
+  //       },
+  //       onComplete: () => {
+  //         gsap.set("#square-container", { display: "none" });
+  //       },
+  //     });
+  //   }
+
+  //   document.getElementById("preloader-btn").addEventListener("click", () => {
+  //     squareContainer.innerHTML = "";
+  //     squares = [];
+  //     createSquares();
+  //     animateSquares();
+
+  //     gsap.to("#preloader-btn", {
+  //       opacity: 0,
+  //       ease: "power1.out",
+  //     });
+  //   });
+  // });
+
   window.addEventListener("DOMContentLoaded", () => {
-    // const loader = document.querySelector(".loader");
-    const squareContainer = document.getElementById("square-container");
     const squareSize = 100;
-    const screenWidth = window.innerWidth;
-    const screenHeight = window.innerHeight;
-    const numCols = Math.ceil(screenWidth / squareSize);
-    const numRows = Math.ceil(screenHeight / squareSize);
-    const numSquares = numCols * numRows;
+    const squareContainer = document.getElementById("square-container");
 
-    //TODO: occasionally both width and height aren't equal to actual dimensions of the page
-    squareContainer.style.width = `${numCols * squareSize}px`;
-    squareContainer.style.height = `${numRows * squareSize}px`;
+    const initializeSquareContainer = () => {
+      const screenWidth = window.innerWidth;
+      const screenHeight = window.innerHeight;
+      const numCols = Math.ceil(screenWidth / squareSize);
+      const numRows = Math.ceil(screenHeight / squareSize);
+      squareContainer.style.width = `${numCols * squareSize}px`;
+      squareContainer.style.height = `${numRows * squareSize}px`;
+      return { numCols, numRows, numSquares: numCols * numRows };
+    };
 
-    let squares = [];
-
-    function applyStyles(element) {
+    const applyStyles = (element) => {
       element.style.height = "100px";
       element.style.width = "100px";
-      // element.style.backgroundColor = "#8aaae5";
       element.style.backgroundColor = "#dedede";
       element.style.outline = "0.07em solid rgba(40, 40, 40, 0.14)";
-    }
+    };
 
-    const createSquares = () => {
+    const createAndStyleSquares = ({ numSquares }) => {
+      const squares = [];
       for (let i = 0; i < numSquares; i++) {
         const square = document.createElement("div");
         applyStyles(square);
-        // square.classList.add("square");
         squareContainer.appendChild(square);
         squares.push(square);
       }
+      return squares;
     };
 
-    function animateSquares() {
+    const animateSquares = (squares) => {
       gsap.fromTo(
         squares,
-        {
-          opacity: 0,
-        },
+        { opacity: 0 },
         {
           opacity: 1,
           delay: 0.5,
           duration: 0.0005,
-          stagger: {
-            // Dynamic Animation Speed:
-            //TODO: Check for wider screens (2560px) for faster animation of boxes (0.002)
-            each: 0.004,
-            from: "random",
-          },
+          stagger: { each: 0.004, from: "random" },
           onComplete: () => {
             gsap.set(".ring", { display: "none" });
-            gsap.set(".loader-base", {
-              display: "none",
-            });
+            gsap.set(".loader-base", { display: "none" });
           },
         }
       );
@@ -328,26 +403,19 @@ import Globe from "./Globe.astro";
         opacity: 0,
         delay: 1.5,
         duration: 0.0005,
-        stagger: {
-          each: 0.004,
-          from: "random",
-        },
+        stagger: { each: 0.004, from: "random" },
         onComplete: () => {
           gsap.set("#square-container", { display: "none" });
         },
       });
-    }
+    };
 
     document.getElementById("preloader-btn").addEventListener("click", () => {
-      squareContainer.innerHTML = "";
-      squares = [];
-      createSquares();
-      animateSquares();
+      const dimensions = initializeSquareContainer();
+      const squares = createAndStyleSquares(dimensions);
+      animateSquares(squares);
 
-      gsap.to("#preloader-btn", {
-        opacity: 0,
-        ease: "power1.out",
-      });
+      gsap.to("#preloader-btn", { opacity: 0, ease: "power1.out" });
     });
   });
 

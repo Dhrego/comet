@@ -5,7 +5,7 @@ import Layout from "../layouts/Layout.astro";
 <Layout title="Contact">
   <div class="container">
     <main>
-      <form action="/">
+      <form action="#">
         <div class="contact-row">
           <div class="contact-form">
             <div class="heading">
@@ -45,8 +45,9 @@ import Layout from "../layouts/Layout.astro";
               <textarea
                 id="inputDetails"
                 placeholder="Type something interesting..."
-                class="form-control textarea custom-input-textarea"></textarea>
-              <button type="button" class="btn btn-outline-success">
+                class="form-control textarea custom-input-textarea"
+                required></textarea>
+              <button type="submit" class="btn btn-outline-success">
                 Get in touch
               </button>
             </div>
