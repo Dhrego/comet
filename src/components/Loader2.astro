@@ -32,7 +32,9 @@ import Globe from "./Globe.astro";
     position: fixed;
     top: 0;
     min-height: 100vh;
+    height: 100%;
     width: 100vw;
+    min-width: 320px;
     background-color: #dadada;
   }
 
@@ -266,7 +268,22 @@ import Globe from "./Globe.astro";
   });
 
   window.addEventListener("DOMContentLoaded", () => {
-    const squareSize = 100;
+    const getSquareSize = () => {
+      const screenWidth = window.innerWidth;
+      if (screenWidth < 600) {
+        // Mobile
+        return 50;
+      } else if (screenWidth < 900) {
+        // Tablet
+        return 75;
+      } else {
+        // Desktop
+        return 100;
+      }
+    };
+
+    const squareSize = getSquareSize();
+    console.log(squareSize);
     const squareContainer = document.getElementById("square-container");
 
     const initializeSquareContainer = () => {
@@ -279,9 +296,9 @@ import Globe from "./Globe.astro";
       return { numCols, numRows, numSquares: numCols * numRows };
     };
 
-    const applyStyles = (element) => {
-      element.style.height = "100px";
-      element.style.width = "100px";
+    const applyStyles = (element, size) => {
+      element.style.height = `${size}px`;
+      element.style.width = `${size}px`;
       element.style.backgroundColor = "#dedede";
       element.style.outline = "0.07em solid rgba(40, 40, 40, 0.14)";
     };
@@ -290,7 +307,7 @@ import Globe from "./Globe.astro";
       const squares = [];
       for (let i = 0; i < numSquares; i++) {
         const square = document.createElement("div");
-        applyStyles(square);
+        applyStyles(square, squareSize);
         squareContainer.appendChild(square);
         squares.push(square);
       }
