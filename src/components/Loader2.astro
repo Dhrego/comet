@@ -271,13 +271,10 @@ import Globe from "./Globe.astro";
     const getSquareSize = () => {
       const screenWidth = window.innerWidth;
       if (screenWidth < 600) {
-        // Mobile
         return 50;
       } else if (screenWidth < 900) {
-        // Tablet
         return 75;
       } else {
-        // Desktop
         return 100;
       }
     };
@@ -296,7 +293,7 @@ import Globe from "./Globe.astro";
       return { numCols, numRows, numSquares: numCols * numRows };
     };
 
-    const applyStyles = (element, size) => {
+    const applyStyles = (element: any, size: number) => {
       element.style.height = `${size}px`;
       element.style.width = `${size}px`;
       element.style.backgroundColor = "#dedede";
@@ -314,7 +311,7 @@ import Globe from "./Globe.astro";
       return squares;
     };
 
-    const animateSquares = (squares) => {
+    const animateSquares = (squares: any) => {
       gsap.fromTo(
         squares,
         { opacity: 0 },
