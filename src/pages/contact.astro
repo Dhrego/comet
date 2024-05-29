@@ -12,7 +12,7 @@ import Layout from "../layouts/Layout.astro";
               Let's work together! <br />Fill out this form.
             </div>
             <div class="form-group">
-              <label for="inputFullname">first and last name</label>
+              <label for="inputFullname">first and last name *</label>
               <input
                 id="inputFullname"
                 class="form-control custom-input"
@@ -26,11 +26,10 @@ import Layout from "../layouts/Layout.astro";
                 id="inputCompany"
                 class="form-control custom-input"
                 type="text"
-                required
               />
             </div>
             <div class="form-group">
-              <label for="inputEmail">email</label>
+              <label for="inputEmail">email *</label>
               <input
                 id="inputEmail"
                 class="form-control custom-input"
@@ -40,7 +39,7 @@ import Layout from "../layouts/Layout.astro";
             </div>
             <div class="form-group">
               <label class="mb-2" for="inputDetails">
-                tell me about your company and project
+                tell me about your company and project *
               </label>
               <textarea
                 id="inputDetails"
@@ -124,6 +123,7 @@ import Layout from "../layouts/Layout.astro";
     font-size: clamp(32px, 5vw, 48px);
     font-family: var(--font-Light);
     margin-bottom: 2rem;
+    letter-spacing: 2px;
   }
 
   .form-group {
@@ -264,6 +264,7 @@ import Layout from "../layouts/Layout.astro";
     transition:
       color 0.3s ease,
       filter 0.3s ease;
+    letter-spacing: 2px;
   }
 
   .info-link:hover {
@@ -280,6 +281,7 @@ import Layout from "../layouts/Layout.astro";
     font-size: 16px;
     font-family: var(--font-Regular);
     color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 1px;
   }
 
   .info-item small {
@@ -287,6 +289,7 @@ import Layout from "../layouts/Layout.astro";
     font-family: var(--font-Regular);
     color: rgba(255, 255, 255, 0.6);
     text-transform: uppercase;
+    letter-spacing: 1px;
   }
 
   /* MEDIA QUERIES */
@@ -327,3 +330,7 @@ import Layout from "../layouts/Layout.astro";
     }
   }
 </style>
+
+<script>
+  import $ from "jquery";
+</script>
