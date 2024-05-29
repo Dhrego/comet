@@ -5,7 +5,7 @@ import Layout from "../layouts/Layout.astro";
 <Layout title="Contact">
   <div class="container">
     <main>
-      <form action="#">
+      <form action="#" id="emailForm">
         <div class="contact-row">
           <div class="contact-form">
             <div class="heading">
@@ -69,7 +69,7 @@ import Layout from "../layouts/Layout.astro";
           </div>
         </div>
       </form>
-
+      <p id="response"></p>
       <!-- I'll reach out to you later -->
     </main>
   </div>
@@ -333,4 +333,47 @@ import Layout from "../layouts/Layout.astro";
 
 <script>
   import $ from "jquery";
+
+  $(document).ready(function () {
+    $("#emailForm").on("submit", async function (event: any) {
+      event.preventDefault();
+
+      const capitalizeFirstLetter = (str) => {
+        if (str.length === 0) return str;
+        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+      };
+
+      const name = capitalizeFirstLetter($("#inputFullname").val());
+      const email = $("#inputEmail").val();
+      const company = capitalizeFirstLetter($("#inputCompany").val());
+      const message = capitalizeFirstLetter($("#inputDetails").val());
+
+      try {
+        const response = await fetch("api/send-email", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            company,
+            name,
+            email,
+            text: message,
+            html: `<div style="font-family: Arial, sans-serif; line-height: 1.6;">
+          <h3 style="color: #333; text-transform: uppercase;">Message from ${name}</h3>
+          ${company ? `<h4 style="color: #555;">Company: ${company}</h4>` : ""}
+          <p style="color: #333;">${message}</p>
+          <br>
+          <p style="color: #777;">Email: <a href="mailto:${email}" style="color: #1a73e8;">${email}</a></p>
+        </div>`,
+          }),
+        });
+
+        const result = await response.json();
+        $("#response").text(result.message || result.error);
+      } catch (error) {
+        $("#response").text("An error occurred while sending the email.");
+      }
+    });
+  });
 </script>
