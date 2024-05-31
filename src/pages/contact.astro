@@ -333,12 +333,20 @@ import Layout from "../layouts/Layout.astro";
 
 <script>
   import $ from "jquery";
+  import { LogSnag } from "@logsnag/node";
+
+  // // Ensure this block runs only in a Node.js environment
+  // if (typeof window === "undefined") {
+  //   // Load environment variables from .env file
+  //   import { config } from "dotenv";
+  //   config();
+  // }
 
   $(document).ready(function () {
     $("#emailForm").on("submit", async function (event: any) {
       event.preventDefault();
 
-      const capitalizeFirstLetter = (str) => {
+      const capitalizeFirstLetter = (str: string) => {
         if (str.length === 0) return str;
         return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
       };
@@ -348,31 +356,45 @@ import Layout from "../layouts/Layout.astro";
       const company = capitalizeFirstLetter($("#inputCompany").val());
       const message = capitalizeFirstLetter($("#inputDetails").val());
 
+      const logsnag = new LogSnag({
+        token: "27f2c9d17e77fc5dbb62d40c2a1f904b",
+        project: "portfolio",
+      });
+
       try {
-        const response = await fetch("api/send-email", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
+        // Track an event
+        await logsnag.track({
+          channel: "messages",
+          event: company
+            ? `${name} from ${company}`
+            : `${name} sent you a message`,
+          user_id: email, // Assuming the user's email is a unique identifier
+          icon: "✉️",
+          notify: true,
+          tags: {
+            email: email,
+            company: company || "N/A",
           },
-          body: JSON.stringify({
-            company,
-            name,
-            email,
-            text: message,
-            html: `<div style="font-family: Arial, sans-serif; line-height: 1.6;">
-          <h3 style="color: #333; text-transform: uppercase;">Message from ${name}</h3>
-          ${company ? `<h4 style="color: #555;">Company: ${company}</h4>` : ""}
-          <p style="color: #333;">${message}</p>
-          <br>
-          <p style="color: #777;">Email: <a href="mailto:${email}" style="color: #1a73e8;">${email}</a></p>
-        </div>`,
-          }),
+          description: message,
+          // message: message, // Include the text message
         });
 
-        const result = await response.json();
-        $("#response").text(result.message || result.error);
+        // Identify user traits
+        await logsnag.identify({
+          user_id: email,
+          properties: {
+            name: name,
+            email: email,
+            company: company || "N/A",
+          },
+        });
+
+        $("#response").text("Notification sent");
       } catch (error) {
-        $("#response").text("An error occurred while sending the email.");
+        console.log(error);
+        $("#response").text(
+          "An error occurred while sending the notification."
+        );
       }
     });
   });

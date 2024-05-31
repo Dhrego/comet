@@ -52,64 +52,64 @@
 //   }
 // }
 
-import { config } from "dotenv";
-import { LogSnag } from "@logsnag/node";
+// import { config } from "dotenv";
+// import { LogSnag } from "@logsnag/node";
 
-// Load environment variables from .env file
-config();
+// // Load environment variables from .env file
+// config();
 
-export const prerender = false;
+// export const prerender = false;
 
-export async function POST({ request }) {
-  const data = await request.json();
-  const { company, name, email, text } = data;
+// export async function POST({ request }) {
+//   const data = await request.json();
+//   const { company, name, email, text } = data;
 
-  const logsnag = new LogSnag({
-    token: "27f2c9d17e77fc5dbb62d40c2a1f904b",
-    project: "portfolio",
-  });
+//   const logsnag = new LogSnag({
+//     token: "27f2c9d17e77fc5dbb62d40c2a1f904b",
+//     project: "portfolio",
+//   });
 
-  try {
-    // Track an event
-    await logsnag.track({
-      channel: "messages",
-      event: company ? `${name} from ${company}` : `${name} sent you a message`,
-      user_id: email, // Assuming the user's email is a unique identifier
-      icon: "✉️",
-      notify: true,
-      tags: {
-        email: email,
-        company: company || "N/A",
-      },
-      description: text,
-      message: text, // Include the text message
-    });
+//   try {
+//     // Track an event
+//     await logsnag.track({
+//       channel: "messages",
+//       event: company ? `${name} from ${company}` : `${name} sent you a message`,
+//       user_id: email, // Assuming the user's email is a unique identifier
+//       icon: "✉️",
+//       notify: true,
+//       tags: {
+//         email: email,
+//         company: company || "N/A",
+//       },
+//       description: text,
+//       message: text, // Include the text message
+//     });
 
-    // Identify user traits
-    await logsnag.identify({
-      user_id: email,
-      properties: {
-        name: name,
-        email: email,
-        company: company || "N/A",
-      },
-    });
+//     // Identify user traits
+//     await logsnag.identify({
+//       user_id: email,
+//       properties: {
+//         name: name,
+//         email: email,
+//         company: company || "N/A",
+//       },
+//     });
 
-    return new Response(JSON.stringify({ message: "Notification sent" }), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
-  } catch (error) {
-    console.log(error);
-    return new Response(
-      JSON.stringify({
-        error: "Failed to send notification",
-        details: error.message,
-      }),
-      {
-        status: 500,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
-  }
-}
+//     return new Response(JSON.stringify({ message: "Notification sent" }), {
+//       status: 200,
+//       headers: { "Content-Type": "application/json" },
+//     });
+//   } catch (error) {
+//     console.log(error);
+//     return new Response(
+//       JSON.stringify({
+//         error: "Failed to send notification",
+//         details: error.message,
+//       }),
+//       {
+//         status: 500,
+//         headers: { "Content-Type": "application/json" },
+//       }
+//     );
+//   }
+// }
