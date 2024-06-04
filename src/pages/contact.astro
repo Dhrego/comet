@@ -69,7 +69,33 @@ import Layout from "../layouts/Layout.astro";
           </div>
         </div>
       </form>
-      <p id="response"></p>
+
+      <div class="success_msg" style="display: none;">
+        <div class="logo">
+          <span>
+            <img class="icon-1" src="smile.svg" alt="smile" srcset="" />
+          </span>
+        </div>
+        <span class="message">Message succesfully sent</span>
+        <div class="close_btn">
+          <span>
+            <img class="icon" src="close.svg" alt="close" />
+          </span>
+        </div>
+      </div>
+      <div class="error_msg" style="display: none;">
+        <div class="logo">
+          <span>
+            <img class="icon-1" src="sad.svg" alt="smile" srcset="" />
+          </span>
+        </div>
+        <span class="message">Unable to send message</span>
+        <div class="close_btn">
+          <span>
+            <img class="icon" src="close.svg" alt="close" />
+          </span>
+        </div>
+      </div>
       <!-- I'll reach out to you later -->
     </main>
   </div>
@@ -193,6 +219,8 @@ import Layout from "../layouts/Layout.astro";
 
   .textarea {
     min-height: 150px;
+    /* max-height: 250px; */
+    resize: none;
   }
 
   .btn {
@@ -292,6 +320,63 @@ import Layout from "../layouts/Layout.astro";
     letter-spacing: 1px;
   }
 
+  .icon-1 {
+    width: 45px;
+    height: 45px;
+    /* padding: 20px; */
+  }
+
+  .success_msg,
+  .error_msg {
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+    padding: 10px 15px;
+    display: flex;
+    gap: 15px;
+    /* font-size: 14px; */
+    font-family: var(--font-Light);
+    font-size: 14px;
+
+    border-radius: 8px;
+    user-select: none;
+  }
+
+  .success_msg {
+    bottom: -10%;
+    background-color: #6ca46c;
+  }
+  .error_msg {
+    background-color: #b75353;
+  }
+
+  .success_msg .logo span,
+  .error_msg .logo span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .message {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+  }
+  .close_btn {
+    display: flex;
+    align-items: center;
+  }
+  .close_btn span {
+    cursor: pointer;
+  }
+
+  .close_btn span img {
+    display: block;
+    width: 12px;
+    height: 12px;
+  }
+
   /* MEDIA QUERIES */
   @media screen and (max-width: 768px) {
     .contact-form {
@@ -333,6 +418,7 @@ import Layout from "../layouts/Layout.astro";
 
 <script>
   import $ from "jquery";
+  import { gsap } from "gsap";
   import { LogSnag } from "@logsnag/node";
 
   // // Ensure this block runs only in a Node.js environment
@@ -343,6 +429,9 @@ import Layout from "../layouts/Layout.astro";
   // }
 
   $(document).ready(function () {
+    const resetfields = () => {
+      $("input,textarea").val("");
+    };
     $("#emailForm").on("submit", async function (event: any) {
       event.preventDefault();
 
@@ -389,13 +478,31 @@ import Layout from "../layouts/Layout.astro";
           },
         });
 
-        $("#response").text("Notification sent");
+        gsap.set(".success_msg", { display: "flex", opacity: 1 });
+
+        gsap.to(".success_msg", {
+          bottom: "10px",
+          duration: 0.3,
+          ease: "power1.in",
+          onComplete: () => {
+            gsap.delayedCall(2, () => {
+              gsap.to(".success_msg", {
+                bottom: -10,
+                opacity: 0,
+                duration: 0.5,
+                ease: "power1.out",
+                onComplete: () => {
+                  gsap.set(".success_msg", { display: "none" });
+                },
+              });
+            });
+          },
+        });
       } catch (error) {
         console.log(error);
-        $("#response").text(
-          "An error occurred while sending the notification."
-        );
+        $(".error_msg").toggle();
       }
+      resetfields();
     });
   });
 </script>
