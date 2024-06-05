@@ -337,13 +337,12 @@ import Layout from "../layouts/Layout.astro";
     /* font-size: 14px; */
     font-family: var(--font-Light);
     font-size: 14px;
-
+    bottom: -10%;
     border-radius: 8px;
     user-select: none;
   }
 
   .success_msg {
-    bottom: -10%;
     background-color: #6ca46c;
   }
   .error_msg {
@@ -441,7 +440,7 @@ import Layout from "../layouts/Layout.astro";
         duration: 0.3,
         ease: "power1.in",
         onComplete: () => {
-          gsap.delayedCall(4, () => {
+          gsap.delayedCall(3, () => {
             gsap.to(elem, {
               bottom: -10,
               opacity: 0,
