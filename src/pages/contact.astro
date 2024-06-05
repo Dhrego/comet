@@ -77,11 +77,11 @@ import Layout from "../layouts/Layout.astro";
           </span>
         </div>
         <span class="message">Message succesfully sent</span>
-        <div class="close_btn">
+        <!-- <div class="close_btn">
           <span>
             <img class="icon" src="close.svg" alt="close" />
           </span>
-        </div>
+        </div> -->
       </div>
       <div class="error_msg" style="display: none;">
         <div class="logo">
@@ -90,11 +90,11 @@ import Layout from "../layouts/Layout.astro";
           </span>
         </div>
         <span class="message">Unable to send message</span>
-        <div class="close_btn">
+        <!-- <div class="close_btn">
           <span>
             <img class="icon" src="close.svg" alt="close" />
           </span>
-        </div>
+        </div> -->
       </div>
       <!-- I'll reach out to you later -->
     </main>
@@ -432,6 +432,29 @@ import Layout from "../layouts/Layout.astro";
     const resetfields = () => {
       $("input,textarea").val("");
     };
+
+    const toast = (elem: Element) => {
+      gsap.set(elem, { display: "flex", opacity: 1 });
+
+      gsap.to(elem, {
+        bottom: "10px",
+        duration: 0.3,
+        ease: "power1.in",
+        onComplete: () => {
+          gsap.delayedCall(4, () => {
+            gsap.to(elem, {
+              bottom: -10,
+              opacity: 0,
+              duration: 0.8,
+              ease: "power1.out",
+              onComplete: () => {
+                gsap.set(elem, { display: "none" });
+              },
+            });
+          });
+        },
+      });
+    };
     $("#emailForm").on("submit", async function (event: any) {
       event.preventDefault();
 
@@ -478,29 +501,11 @@ import Layout from "../layouts/Layout.astro";
           },
         });
 
-        gsap.set(".success_msg", { display: "flex", opacity: 1 });
-
-        gsap.to(".success_msg", {
-          bottom: "10px",
-          duration: 0.3,
-          ease: "power1.in",
-          onComplete: () => {
-            gsap.delayedCall(2, () => {
-              gsap.to(".success_msg", {
-                bottom: -10,
-                opacity: 0,
-                duration: 0.5,
-                ease: "power1.out",
-                onComplete: () => {
-                  gsap.set(".success_msg", { display: "none" });
-                },
-              });
-            });
-          },
-        });
+        toast($(".success_msg"));
       } catch (error) {
         console.log(error);
-        $(".error_msg").toggle();
+
+        toast($(".error_msg"));
       }
       resetfields();
     });
