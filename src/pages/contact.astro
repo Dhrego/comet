@@ -69,7 +69,6 @@ import Layout from "../layouts/Layout.astro";
           </div>
         </div>
       </form>
-
       <div class="success_msg" style="display: none;">
         <div class="logo">
           <span>
@@ -77,11 +76,6 @@ import Layout from "../layouts/Layout.astro";
           </span>
         </div>
         <span class="message">Message succesfully sent</span>
-        <!-- <div class="close_btn">
-          <span>
-            <img class="icon" src="close.svg" alt="close" />
-          </span>
-        </div> -->
       </div>
       <div class="error_msg" style="display: none;">
         <div class="logo">
@@ -90,13 +84,7 @@ import Layout from "../layouts/Layout.astro";
           </span>
         </div>
         <span class="message">Unable to send message</span>
-        <!-- <div class="close_btn">
-          <span>
-            <img class="icon" src="close.svg" alt="close" />
-          </span>
-        </div> -->
       </div>
-      <!-- I'll reach out to you later -->
     </main>
   </div>
 </Layout>
@@ -125,21 +113,12 @@ import Layout from "../layouts/Layout.astro";
     height: 100%;
   }
 
-  /* Container styles */
-  /* .contact-container {
-    margin: 0 auto;
-    padding: 1rem;
-    max-width: 100%;
-  } */
-
-  /* Row styles */
   .contact-row {
     display: flex;
     flex-direction: column;
     gap: 2rem;
   }
 
-  /* Form styles */
   .contact-form {
     flex: 2;
     padding: 1rem 3rem;
@@ -218,8 +197,7 @@ import Layout from "../layouts/Layout.astro";
   }
 
   .textarea {
-    min-height: 150px;
-    /* max-height: 250px; */
+    height: 150px;
     resize: none;
   }
 
@@ -328,16 +306,14 @@ import Layout from "../layouts/Layout.astro";
 
   .success_msg,
   .error_msg {
-    position: absolute;
+    position: fixed;
     right: 20px;
-    bottom: 10px;
+    bottom: -10%;
     padding: 10px 15px;
     display: flex;
     gap: 15px;
-    /* font-size: 14px; */
     font-family: var(--font-Light);
     font-size: 14px;
-    bottom: -10%;
     border-radius: 8px;
     user-select: none;
   }
@@ -404,19 +380,10 @@ import Layout from "../layouts/Layout.astro";
 
     .success_msg,
     .error_msg {
-      position: absolute;
       right: unset;
       height: max-content;
       bottom: unset;
       top: -10%;
-      padding: 10px 15px;
-      display: flex;
-      gap: 15px;
-      /* font-size: 14px; */
-      font-family: var(--font-Light);
-      font-size: 14px;
-      border-radius: 8px;
-      user-select: none;
     }
   }
 
@@ -489,7 +456,7 @@ import Layout from "../layouts/Layout.astro";
       const message = capitalizeFirstLetter($("#inputDetails").val());
 
       const logsnag = new LogSnag({
-        token: "27f2c9d17e77fc5dbb62d40c2a1f904b",
+        token: "27f2c9d17e77fc5dbb62d40c2a1f904bdhrego",
         project: "portfolio",
       });
 
