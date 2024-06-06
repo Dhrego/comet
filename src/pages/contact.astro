@@ -401,6 +401,23 @@ import Layout from "../layouts/Layout.astro";
     .form-group:last-child {
       margin-bottom: 0;
     }
+
+    .success_msg,
+    .error_msg {
+      position: absolute;
+      right: unset;
+      height: max-content;
+      bottom: unset;
+      top: -10%;
+      padding: 10px 15px;
+      display: flex;
+      gap: 15px;
+      /* font-size: 14px; */
+      font-family: var(--font-Light);
+      font-size: 14px;
+      border-radius: 8px;
+      user-select: none;
+    }
   }
 
   @media (min-width: 992px) {
@@ -421,33 +438,42 @@ import Layout from "../layouts/Layout.astro";
   import { gsap } from "gsap";
   import { LogSnag } from "@logsnag/node";
 
+  const innerWidth = window.innerWidth;
+
   $(document).ready(function () {
     const resetfields = () => {
       $("input,textarea").val("");
     };
 
-    const toast = (elem: Element) => {
+    const toast = (elem: Element, innerWidth: number) => {
       gsap.set(elem, { display: "flex", opacity: 1 });
 
+      const animationDirection =
+        innerWidth <= 768 ? { top: "10px" } : { bottom: "10px" };
+      const onCompleteDirection =
+        innerWidth <= 768 ? { top: "-10%" } : { bottom: "-10%" };
+      const duration = innerWidth <= 768 ? 0.5 : 0.3;
+
       gsap.to(elem, {
-        bottom: "10px",
-        duration: 0.3,
+        ...animationDirection,
+        duration: duration,
         ease: "power1.in",
         onComplete: () => {
           gsap.delayedCall(3, () => {
             gsap.to(elem, {
-              bottom: -10,
+              ...onCompleteDirection,
               opacity: 0,
               duration: 0.8,
               ease: "power1.out",
               onComplete: () => {
-                gsap.set(elem, { display: "none" });
+                gsap.set(elem, { delay: 2, display: "none" });
               },
             });
           });
         },
       });
     };
+
     $("#emailForm").on("submit", async function (event: any) {
       event.preventDefault();
 
@@ -462,7 +488,7 @@ import Layout from "../layouts/Layout.astro";
       const message = capitalizeFirstLetter($("#inputDetails").val());
 
       const logsnag = new LogSnag({
-        token: "27f2c9d17e77fc5dbb62d40c2a1f904b",
+        token: "27f2c9d17e77fc5dbb62d40c2a1f904bdhrego",
         project: "portfolio",
       });
 
@@ -494,11 +520,11 @@ import Layout from "../layouts/Layout.astro";
           },
         });
 
-        toast($(".success_msg"));
+        toast($(".success_msg"), innerWidth);
       } catch (error) {
         console.log(error);
 
-        toast($(".error_msg"));
+        toast($(".error_msg"), innerWidth);
       }
       resetfields();
     });
