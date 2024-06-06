@@ -441,6 +441,7 @@ import Layout from "../layouts/Layout.astro";
   const innerWidth = window.innerWidth;
 
   $(document).ready(function () {
+    //FUNCTIONS
     const resetfields = () => {
       $("input,textarea").val("");
     };
@@ -474,13 +475,13 @@ import Layout from "../layouts/Layout.astro";
       });
     };
 
+    const capitalizeFirstLetter = (str: string) => {
+      if (str.length === 0) return str;
+      return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    };
+
     $("#emailForm").on("submit", async function (event: any) {
       event.preventDefault();
-
-      const capitalizeFirstLetter = (str: string) => {
-        if (str.length === 0) return str;
-        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-      };
 
       const name = capitalizeFirstLetter($("#inputFullname").val());
       const email = $("#inputEmail").val();
@@ -523,7 +524,6 @@ import Layout from "../layouts/Layout.astro";
         toast($(".success_msg"), innerWidth);
       } catch (error) {
         console.log(error);
-
         toast($(".error_msg"), innerWidth);
       }
       resetfields();
