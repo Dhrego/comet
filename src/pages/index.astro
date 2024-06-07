@@ -5,6 +5,7 @@ import Loader2 from "../components/Loader2.astro";
 ---
 
 <Layout title="Home">
+  <Loader2 />
   <div class="container">
     <main>
       <!-- <span class="sub">introducing</span>
@@ -27,7 +28,6 @@ import Loader2 from "../components/Loader2.astro";
     </main>
   </div>
   <!-- <Loader /> -->
-  <Loader2 />
 </Layout>
 
 <style>
@@ -126,7 +126,7 @@ import Loader2 from "../components/Loader2.astro";
   } */
 
   main {
-    min-height: calc(100vh - 88.88px);
+    min-height: calc(100dvh - 88.88px);
     height: 100%;
     /* display: flex;
     flex-direction: column;
