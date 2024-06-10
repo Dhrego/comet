@@ -9,10 +9,10 @@ import Layout from "../layouts/Layout.astro";
       <div class="me">
         <div class="col-2">
           <ul class="sub-pages">
-            <li class="active"><a>My Story</a></li>
-            <li><a>Experience</a></li>
-            <li><a>Resume</a></li>
-            <li><a>Hobbies</a></li>
+            <li class="active"><a href="#">My Story</a></li>
+            <li><a href="#">Experience</a></li>
+            <li><a href="#">Resume</a></li>
+            <li><a href="#">Hobbies</a></li>
           </ul>
         </div>
         <div class="col-8">
@@ -124,6 +124,8 @@ import Layout from "../layouts/Layout.astro";
   }
 
   li a {
+    text-decoration: none;
+    color: inherit;
     cursor: pointer;
     user-select: none;
   }
