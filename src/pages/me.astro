@@ -9,10 +9,10 @@ import Layout from "../layouts/Layout.astro";
       <div class="me">
         <div class="col-2">
           <ul class="sub-pages">
-            <li class="active"><a href="#">My Story</a></li>
-            <li><a href="#">Experience</a></li>
-            <li><a href="#">Resume</a></li>
-            <li><a href="#">Hobbies</a></li>
+            <li><a class="sub-link active" href="#">My Story</a></li>
+            <li><a class="sub-link" href="#">Experience</a></li>
+            <li><a class="sub-link" href="#">Resume</a></li>
+            <li><a class="sub-link" href="#">Hobbies</a></li>
           </ul>
         </div>
         <div class="col-8">
@@ -119,15 +119,16 @@ import Layout from "../layouts/Layout.astro";
     margin-bottom: 40px;
     color: rgb(169, 169, 169);
   }
-  li.active {
-    color: rgba(255, 255, 255, 1);
-  }
 
   li a {
     text-decoration: none;
     color: inherit;
     cursor: pointer;
     user-select: none;
+    transition: color 0.3s ease;
+  }
+  li a.active {
+    color: rgba(255, 255, 255, 1);
   }
 
   .me {
@@ -148,3 +149,13 @@ import Layout from "../layouts/Layout.astro";
     font-family: var(--font-Regular);
   }
 </style>
+<script>
+  import $ from "jquery";
+
+  $(document).ready(function () {
+    $(".sub-link ").on("click", function () {
+      $(".sub-link ").removeClass("active");
+      $(this).addClass("active");
+    });
+  });
+</script>
