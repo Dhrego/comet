@@ -1,0 +1,43 @@
+---
+// src/pages/404.astro
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Page Not Found">
+  <div class="container">
+    <main>
+      <h1>404</h1>
+      <p>Page Not Found</p>
+      <a href="/">Go back to the homepage</a>
+    </main>
+  </div>
+</Layout>
+
+<style>
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 25rem;
+    color: var(--white);
+  }
+
+  p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  a {
+    font-size: 1rem;
+    color: var(--white);
+  }
+  main {
+    color: #fff;
+    min-height: calc(100vh - 78.88px);
+  }
+</style>
