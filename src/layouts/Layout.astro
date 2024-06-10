@@ -130,6 +130,7 @@ const { title } = Astro.props;
 
       //Navlink animation handler
       let navlinks = document.querySelectorAll(".nav-link a");
+      let links = document.querySelectorAll(".sub-pages li a");
 
       function handleCursorScale(scale: number) {
         gsap.to(".cursor-dot", { scale: scale, duration: 0.3 });
@@ -138,6 +139,10 @@ const { title } = Astro.props;
       navlinks.forEach((navlink) => {
         navlink.addEventListener("mouseenter", () => handleCursorScale(2));
         navlink.addEventListener("mouseleave", () => handleCursorScale(0.1));
+      });
+      links.forEach((link) => {
+        link.addEventListener("mouseenter", () => handleCursorScale(0.65));
+        link.addEventListener("mouseleave", () => handleCursorScale(0.1));
       });
     </script>
   </body><!-- <script src="../scripts/app.js"></script> -->
