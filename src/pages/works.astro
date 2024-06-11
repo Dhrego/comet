@@ -5,7 +5,14 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="Works">
   <div class="container">
-    <main>Still working on them ........</main>
+    <main>
+      <div class="">Still working on them ........</div>
+      <p>
+        Welcome to Dhrego's Creative Hub! 🏄🏽 Explore my innovative projects and
+        captivating artworks, showcasing my expertise as a Software Developer
+        and UI/UX Designer.
+      </p>
+    </main>
   </div>
 </Layout>
 
@@ -15,8 +22,16 @@ import Layout from "../layouts/Layout.astro";
     min-height: calc(100vh - 78.88px);
     height: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     font-family: var(--font-Black-It);
+  }
+  p {
+    font-family: var(--font-Light);
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 10px;
+    max-width: 900px;
   }
 </style>
