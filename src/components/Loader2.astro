@@ -2,7 +2,7 @@
 import Globe from "./Globe.astro";
 ---
 
-<div>
+<>
   <div class="loader-base">
     <div class="counter">
       <Globe />
@@ -26,7 +26,7 @@ import Globe from "./Globe.astro";
   </div>
 
   <div id="square-container"></div>
-</div>
+</>
 <style>
   .loader-base {
     position: fixed;
@@ -34,6 +34,7 @@ import Globe from "./Globe.astro";
     min-height: 100dvh;
     height: 100%;
     width: 100vw;
+    z-index: 9999;
     min-width: 320px;
     background-color: #dadada;
   }
@@ -83,6 +84,7 @@ import Globe from "./Globe.astro";
     bottom: 0;
     left: 0;
     right: 0;
+    z-index: 9999;
   }
   /* 
   .square {

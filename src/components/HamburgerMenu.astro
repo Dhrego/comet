@@ -15,7 +15,7 @@ const { items } = Astro.props;
     <div class="overlay">
       <ul class="nav-links">
         {
-          items.map((navlink) => (
+          items.map((navlink: any) => (
             <li class="nav-link">
               <Navlink href={navlink.href}>{navlink.text}</Navlink>
             </li>
