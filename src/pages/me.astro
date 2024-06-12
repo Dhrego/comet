@@ -414,6 +414,9 @@ import Layout from "../layouts/Layout.astro";
       link = $(this).attr("id");
       $(".block").hide();
       $(`.block[data-id="${link}"]`).show();
+
+      // $("html,body").animate({ scrollTop: 0 }, "slow");
+      $("html,body").animate({ scrollTop: 0 }, "slow");
     });
   });
 </script>
