@@ -32,6 +32,10 @@ body {
  */
 }
 
+main {
+  min-height: calc(100vh - 78.88px);
+}
+
 .cursor-outline,
 .cursor-dot {
   opacity: 0;
@@ -76,6 +80,9 @@ body {
   body {
     cursor: auto;
     -webkit-tap-highlight-color: transparent;
+  }
+  main {
+    min-height: calc(100vh - 70.88px);
   }
 
   .cursor-outline,
