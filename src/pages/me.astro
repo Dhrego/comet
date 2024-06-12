@@ -362,6 +362,36 @@ import Layout from "../layouts/Layout.astro";
     font-size: 18px;
     font-family: var(--font-Regular);
   }
+
+  @media screen and (max-width: 768px) {
+    .me {
+      flex-direction: column;
+    }
+
+    ul {
+      display: flex;
+      font-size: 25px;
+      justify-content: space-between;
+    }
+
+    li {
+      margin-bottom: 0;
+    }
+
+    .col-2 {
+      padding-block: 10px;
+      position: sticky;
+      top: 0;
+      background: #0e100f;
+    }
+    li a {
+      display: block;
+      padding: 5px;
+      background-color: #2f2f2f;
+      border-radius: 8px;
+      letter-spacing: 1px;
+    }
+  }
 </style>
 <script>
   import $ from "jquery";
