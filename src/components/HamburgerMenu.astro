@@ -29,7 +29,6 @@ const { items } = Astro.props;
 
 <style>
   .nav-links {
-    /* margin-left: 45px; */
     margin-left: 30px;
     font-family: var(--font-Jolly);
     color: #fff;
@@ -37,10 +36,8 @@ const { items } = Astro.props;
     visibility: hidden;
     transition: opacity 0.3s ease;
     font-size: clamp(30px, 10vw, 200px);
-    /* padding: 0 1rem; */
     text-transform: uppercase;
     list-style: none;
-    /* display: flex; */
   }
 
   .nav-link {
@@ -65,8 +62,8 @@ const { items } = Astro.props;
     /* backdrop-filter: blur(150px) saturate(1.5); */
   }
 
+  /* TODO:FIX OVERLAY BUG ON SAFARI */
   .overlay {
-    height: 0;
     position: relative;
     /* background-color: rgba(0, 0, 0, 0.9); */
     background-color: rgba(0, 0, 0, 0.5);
@@ -79,16 +76,6 @@ const { items } = Astro.props;
     backdrop-filter: blur(150px) saturate(1.5);
     -webkit-backdrop-filter: blur(150px) saturate(1.5);
   }
-  /* 
-  .koko.active {
-    height: 100vh;
-  } */
-  /* 
-  .koko.active .overlay .nav-links {
-    transition-delay: 0.55s;
-    visibility: visible;
-    opacity: 1;
-  } */
 
   .hamburger-menu.active + .koko .overlay .nav-links {
     transition-delay: 0.45s;
@@ -121,9 +108,11 @@ const { items } = Astro.props;
       leftToRight 0.4s forwards,
       0.4s ease 0.4s rotateTO forwards;
   }
+
   .hamburger-menu.active span:nth-child(even) {
     opacity: 0;
   }
+
   .hamburger-menu.active span:last-child {
     animation:
       leftToRight 0.4s forwards,
@@ -141,6 +130,7 @@ const { items } = Astro.props;
       rotateBC 0.4s forwards,
       0.4s ease 0.4s rightToLeft forwards;
   }
+
   @keyframes leftToRight {
     0% {
       transform: translateX(-7px);
@@ -236,15 +226,6 @@ const { items } = Astro.props;
         each: 0.125,
       },
     });
-
-    // gsap.to($circle, {
-    //   transform: $menu.hasClass("active")
-    //     ? "translate(-50%, -50%) scale(1)"
-    //     : "translate(-50%, -50%) scale(0)",
-    //   opacity: $menu.hasClass("active") ? 1 : 0,
-    //   delay: $menu.hasClass("active") ? 0.5 : 0,
-    //   ease: easing,
-    // });
   });
 
   const activeHandler = () => {
