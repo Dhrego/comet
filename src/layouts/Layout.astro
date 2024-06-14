@@ -4,6 +4,7 @@ import "../fonts/stylesheet.css";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import FontPreloader from "../components/FontPreloader.astro";
+import OgLoader from "../components/OgLoader.astro";
 const { title } = Astro.props;
 const { description } = Astro.props;
 ---
@@ -15,7 +16,7 @@ const { description } = Astro.props;
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="logo.svg" />
-    <meta property="og:image" content="/OG.png" />
+    <OgLoader />
     <FontPreloader />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
