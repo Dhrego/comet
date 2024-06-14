@@ -4,9 +4,11 @@ import "../fonts/stylesheet.css";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import FontPreloader from "../components/FontPreloader.astro";
-import OgLoader from "../components/OgLoader.astro";
+
 const { title } = Astro.props;
 const { description } = Astro.props;
+const OgImage = "https://dhrego.com/OG.png";
+const url = "https://dhrego.com";
 ---
 
 <!doctype html>
@@ -16,7 +18,22 @@ const { description } = Astro.props;
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="logo.svg" />
-    <OgLoader />
+
+    <!-- FB -->
+    <meta property="og:url" content={url} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={OgImage} />
+
+    <!-- Twitter-->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content="dhrego.com" />
+    <meta property="twitter:url" content={url} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={OgImage} />
+
     <FontPreloader />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
