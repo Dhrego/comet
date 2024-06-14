@@ -306,14 +306,12 @@ import Layout from "../layouts/Layout.astro";
 <style>
   body {
     background-color: var(--bg-color-alt);
-    scroll-behavior: smooth;
   }
 
   main {
     color: var(--white);
     height: 100%;
     display: flex;
-    /* align-items: center; */
     justify-content: center;
   }
 
@@ -346,7 +344,6 @@ import Layout from "../layouts/Layout.astro";
   .me {
     font-family: var(--font-Regular);
     font-size: 32px;
-    /* width: 90vw; */
     padding-inline: 30px;
     margin-block: 65px 35px;
     text-align: justify;
@@ -403,20 +400,24 @@ import Layout from "../layouts/Layout.astro";
 <script>
   import $ from "jquery";
 
-  let linkActive = $(".sub-link.active").attr("id");
-  $(".block").not(`[data-id="${linkActive}"]`).hide();
-
   $(document).ready(function () {
-    let link: any;
+    const $subLinks = $(".sub-link");
+    const $blocks = $(".block");
 
-    $(".sub-link ").on("click", function () {
-      $(".sub-link ").removeClass("active");
-      $(this).addClass("active");
-      link = $(this).attr("id");
-      $(".block").hide();
-      $(`.block[data-id="${link}"]`).show();
+    let linkActive = $subLinks.filter(".active").attr("id");
+    $blocks.not(`[data-id="${linkActive}"]`).hide();
 
-      $("html,body").animate({ scrollTop: 0 }, "slow");
+    $subLinks.on("click", function () {
+      const $this = $(this);
+      const link = $this.attr("id");
+
+      $subLinks.removeClass("active");
+      $this.addClass("active");
+
+      $blocks.hide();
+      $blocks.filter(`[data-id="${link}"]`).show();
+
+      $("html, body").animate({ scrollTop: 0 }, "slow");
     });
   });
 </script>
