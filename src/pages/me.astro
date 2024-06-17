@@ -359,6 +359,10 @@ import Layout from "../layouts/Layout.astro";
     font-family: var(--font-Regular);
   }
 
+  .block:not(:first-child) {
+    display: none;
+  }
+
   @media screen and (max-width: 768px) {
     .me {
       flex-direction: column;

@@ -13,12 +13,10 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
   <div class="container">
     <main>
       <DreamyGradient
-        size={{ height: "10rem", width: "10rem" }}
+        size={{ height: "9rem", width: "9rem" }}
         color={"linear-gradient(#FF512F, #DD2476)"}
-        position={{ left: "0", top: "50%" }}
+        position={{ left: "388px", top: "90px" }}
         blur={6}
-        borderRadius="50%"
-        zIndex="1"
         client:only="react"
       />
 
@@ -44,6 +42,9 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
       <div class="blend_2">
         <img src="blend_2.svg" alt="" srcset="" />
       </div>
+      <div class="blend_3">
+        <img src="blend_3.svg" alt="" srcset="" />
+      </div>
     </main>
   </div>
   <!-- <Loader /> -->
@@ -67,7 +68,7 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
   .hero-intro {
     text-align: center;
     font-size: clamp(13px, 2vw, 16px);
-    font-family: var(--font-Regular);
+    font-family: var(--font-Light);
     color: #808080;
   }
 
@@ -104,11 +105,29 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
     position: absolute;
     top: -150px;
     left: -120px;
+    animation: bounce 2s infinite ease-in-out;
   }
 
   .blend_2 {
     position: absolute;
     bottom: 150px;
     right: 120px;
+    animation: bounce 2s infinite ease-in-out 0.3s;
+  }
+  .blend_3 {
+    position: absolute;
+    bottom: 150px;
+    left: 120px;
+    animation: bounce 2s infinite ease-in-out 0.5s;
+  }
+
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(10px);
+    }
   }
 </style>
