@@ -9,41 +9,56 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
   title="Hello 👋🏾"
   description="Dive into Creativity 🌊: Immerse yourself in my projects and artworks."
 >
-  <Loader2 />
+  <!-- <Loader2 /> -->
   <div class="container">
     <main>
-      <DreamyGradient
-        size={{ height: "9rem", width: "9rem" }}
-        color={"linear-gradient(#FF512F, #DD2476)"}
-        position={{ left: "200px", top: "90px" }}
-        blur={6}
-        client:only="react"
-      />
-
-      <div class="hero">
-        <div class="hero-intro">
-          <span>
-            <img src="Star.svg" alt="" srcset="" />
-          </span>
-          <span>introducing</span>
-          <span>
-            <img src="Star.svg" alt="" srcset="" />
-          </span>
-        </div>
-        <div class="hero-main">
-          <div class="blend_1">
-            <img src="blend_1.svg" alt="" srcset="" />
+      <div class="block-1">
+        <DreamyGradient
+          size={{ height: "9rem", width: "9rem" }}
+          color={"linear-gradient(#FF512F, #DD2476)"}
+          position={{ left: "200px", top: "90px" }}
+          blur={6}
+          client:only="react"
+        />
+        <div class="hero">
+          <div class="hero-intro">
+            <span>
+              <img src="Star.svg" alt="" srcset="" />
+            </span>
+            <span>introducing</span>
+            <span>
+              <img src="Star.svg" alt="" srcset="" />
+            </span>
           </div>
-          andrea
+          <div class="hero-main">
+            <div class="blend_1">
+              <img src="blend_1.svg" alt="" srcset="" />
+            </div>
+            andrea
+          </div>
+          <div class="hero-sub">software developer and ui/ux designer</div>
         </div>
-        <div class="hero-sub">software developer and ui/ux designer</div>
+        <div class="blend_2">
+          <img src="blend_2.svg" alt="" srcset="" />
+        </div>
+        <div class="blend_3">
+          <img src="blend_3.svg" alt="" srcset="" />
+        </div>
       </div>
-
-      <div class="blend_2">
-        <img src="blend_2.svg" alt="" srcset="" />
-      </div>
-      <div class="blend_3">
-        <img src="blend_3.svg" alt="" srcset="" />
+      <div class="block-2">
+        <div class="col">
+          <div class="title">Figma ipsum component variant main layer.</div>
+          <button>About me</button>
+        </div>
+        <div class="col">
+          <p class="content">
+            Figma ipsum component variant main layer. List image library figjam
+            style layout editor font editor. Shadow effect reesizing layer
+            underline flows vector thumbnail. Reesizing style link follower
+            inspect reesizing flows flatten outline. Pen component figjam
+            connection pen font selection.
+          </p>
+        </div>
       </div>
     </main>
   </div>
@@ -54,6 +69,54 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
   body {
     background-color: var(--bg-color-alt);
   }
+
+  main {
+    min-height: 0;
+  }
+
+  .block-1 {
+    min-height: calc(100vh - 56.38px);
+  }
+  .block-2 {
+    height: 80vh;
+    display: flex;
+    justify-content: space-around;
+    padding: 0 40px;
+    color: #fff;
+    font-family: var(--font-Regular);
+  }
+
+  .block-2 .col {
+    width: 30%;
+  }
+
+  .block-2 .col .title {
+    font-family: var(--font-Regular);
+    font-size: 50px;
+    margin-bottom: 30px;
+  }
+
+  .block-2 .col .content {
+    font-family: var(--font-Regular);
+    font-size: 24px;
+  }
+
+  .block-2 button {
+    border: 1px solid #fff;
+    padding: 14px 54px;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #fff;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+    box-shadow: 0 4px 0 0px rgba(255, 255, 255, 0.7);
+  }
+
+  /* body::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  } */
 
   .hero {
     position: absolute;
