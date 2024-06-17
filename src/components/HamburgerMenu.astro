@@ -213,7 +213,7 @@ const { items } = Astro.props;
     const easing = CustomEase.create("custom", "0.104,0.204,0.492,1");
 
     gsap.to($overlay, {
-      height: $menu.hasClass("active") ? "100vh" : "0",
+      height: $menu.hasClass("active") ? "100vh" : "1px",
       duration: duration,
       ease: easing,
     });
