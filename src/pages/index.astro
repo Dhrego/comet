@@ -13,13 +13,15 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
   <div class="container">
     <main>
       <DreamyGradient
-        size={{ height: "241px", width: "241px" }}
-        color="linear-gradient(#FF512F, #DD2476)"
-        position={{ left: "388px", top: "100px" }}
-        blur={5}
+        size={{ height: "10rem", width: "10rem" }}
+        color={"linear-gradient(#FF512F, #DD2476)"}
+        position={{ left: "0", top: "50%" }}
+        blur={6}
         borderRadius="50%"
+        zIndex="1"
         client:only="react"
       />
+
       <div class="hero">
         <div class="hero-intro">
           <span>
@@ -30,8 +32,17 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
             <img src="Star.svg" alt="" srcset="" />
           </span>
         </div>
-        <div class="hero-main">andrea</div>
+        <div class="hero-main">
+          <div class="blend_1">
+            <img src="blend_1.svg" alt="" srcset="" />
+          </div>
+          andrea
+        </div>
         <div class="hero-sub">software developer and ui/ux designer</div>
+      </div>
+
+      <div class="blend_2">
+        <img src="blend_2.svg" alt="" srcset="" />
       </div>
     </main>
   </div>
@@ -60,6 +71,7 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
   }
 
   .hero-main {
+    position: relative;
     font-size: clamp(60px, 15vw, 200px);
     background: rgb(255, 255, 255);
     background: radial-gradient(
@@ -85,5 +97,17 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
 
   main {
     height: 100%;
+  }
+
+  .blend_1 {
+    position: absolute;
+    top: -150px;
+    left: -120px;
+  }
+
+  .blend_2 {
+    position: absolute;
+    bottom: 150px;
+    right: 120px;
   }
 </style>
