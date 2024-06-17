@@ -15,7 +15,7 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
       <DreamyGradient
         size={{ height: "9rem", width: "9rem" }}
         color={"linear-gradient(#FF512F, #DD2476)"}
-        position={{ left: "388px", top: "90px" }}
+        position={{ left: "200px", top: "90px" }}
         blur={6}
         client:only="react"
       />
@@ -119,6 +119,14 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
     bottom: 150px;
     left: 120px;
     animation: bounce 2s infinite ease-in-out 0.7s;
+  }
+
+  @media screen and (max-width: 768px) {
+    .blend_1,
+    .blend_2,
+    .blend_3 {
+      display: none;
+    }
   }
 
   @keyframes bounce {
