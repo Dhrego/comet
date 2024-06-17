@@ -2,20 +2,32 @@
 import Layout from "../layouts/Layout.astro";
 import Loader from "../components/Loader.astro";
 import Loader2 from "../components/Loader2.astro";
+import { DreamyGradient } from "@muridot0/dreamy-gradients";
 ---
 
-<Layout title="Hello 👋🏾" description="Dive into Creativity 🌊: Immerse yourself in my projects and artworks.">
-  <Loader2 />
+<Layout
+  title="Hello 👋🏾"
+  description="Dive into Creativity 🌊: Immerse yourself in my projects and artworks."
+>
+  <!-- <Loader2 /> -->
   <div class="container">
     <main>
+      <DreamyGradient
+        size={{ height: "241px", width: "241px" }}
+        color="linear-gradient(#FF512F, #DD2476)"
+        position={{ left: "388px", top: "100px" }}
+        blur={5}
+        borderRadius="50%"
+        client:only="react"
+      />
       <div class="hero">
         <div class="hero-intro">
           <span>
-            <img src="Star.svg" alt="" srcset="">
+            <img src="Star.svg" alt="" srcset="" />
           </span>
           <span>introducing</span>
           <span>
-            <img src="Star.svg" alt="" srcset="">
+            <img src="Star.svg" alt="" srcset="" />
           </span>
         </div>
         <div class="hero-main">andrea</div>
@@ -27,21 +39,24 @@ import Loader2 from "../components/Loader2.astro";
 </Layout>
 
 <style>
+  body {
+    background-color: var(--bg-color-alt);
+  }
+
   .hero {
     position: absolute;
     top: calc(50% - 66.38px);
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     color: var(--white);
-    z-index: -1;
+    user-select: none;
   }
 
   .hero-intro {
     text-align: center;
-    font-size: clamp(13px, 2vw, 18px);
+    font-size: clamp(13px, 2vw, 16px);
     font-family: var(--font-Regular);
-    opacity: 0.8; */
-    color: var(--white);
+    color: #808080;
   }
 
   .hero-main {
@@ -58,13 +73,13 @@ import Loader2 from "../components/Loader2.astro";
     font-family: var(--font-Exp-Black);
     text-transform: uppercase;
   }
-  
+
   .hero-sub {
     text-align: end;
     text-transform: uppercase;
     font-size: clamp(13px, 2vw, 16px);
     font-family: var(--font-Light);
-    opacity: .5;
+    opacity: 0.5;
     color: var(--white);
   }
 
