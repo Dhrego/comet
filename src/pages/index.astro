@@ -23,26 +23,26 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
         <div class="hero">
           <div class="hero-intro">
             <span>
-              <img src="Star.svg" alt="" srcset="" />
+              <img src="Star.svg" alt="" srcset="" draggable="false" />
             </span>
             <span>introducing</span>
             <span>
-              <img src="Star.svg" alt="" srcset="" />
+              <img src="Star.svg" alt="" srcset="" draggable="false" />
             </span>
           </div>
           <div class="hero-main">
             <div class="blend_1">
-              <img src="blend_1.svg" alt="" srcset="" />
+              <img src="blend_1.svg" alt="" srcset="" draggable="false" />
             </div>
             andrea
           </div>
           <div class="hero-sub">software developer and ui/ux designer</div>
         </div>
         <div class="blend_2">
-          <img src="blend_2.svg" alt="" srcset="" />
+          <img src="blend_2.svg" alt="" srcset="" draggable="false" />
         </div>
         <div class="blend_3">
-          <img src="blend_3.svg" alt="" srcset="" />
+          <img src="blend_3.svg" alt="" srcset="" draggable="false" />
         </div>
       </div>
       <div class="block-2">
@@ -79,6 +79,9 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
             connection pen font selection.
           </p>
         </div>
+        <div class="blend_4">
+          <img src="blend_4.svg" alt="" srcset="" draggable="false" />
+        </div>
       </div>
     </main>
   </div>
@@ -88,6 +91,7 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
 <style>
   body {
     background-color: var(--bg-color-alt);
+    overflow: hidden;
   }
 
   main {
@@ -98,6 +102,7 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
     min-height: calc(100vh - 56.38px);
   }
   .block-2 {
+    position: relative;
     height: 80vh;
     display: flex;
     justify-content: space-around;
@@ -109,6 +114,7 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
   .block-2 .col {
     width: 30%;
   }
+
   .btn-container {
     width: max-content;
     height: max-content;
@@ -133,7 +139,7 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
     padding: 14px 54px;
     border-radius: 8px;
     display: flex;
-    gap: 6px;
+    gap: 8px;
     background-color: transparent;
     color: #fff;
     cursor: pointer;
@@ -143,6 +149,7 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
     transition:
       top 0.3s ease,
       background 0.3s ease;
+    user-select: none;
   }
 
   .block-2 button:hover {
@@ -239,11 +246,20 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
     right: 120px;
     animation: bounce 2s infinite ease-in-out 0.3s;
   }
+
   .blend_3 {
     position: absolute;
     bottom: 150px;
     left: 120px;
     animation: bounce 2s infinite ease-in-out 0.7s;
+  }
+
+  .blend_4 {
+    position: absolute;
+    left: 0;
+    bottom: 50px;
+    animation: bounce 2s infinite ease-in-out 0.9s;
+    z-index: -2;
   }
 
   @media screen and (max-width: 768px) {

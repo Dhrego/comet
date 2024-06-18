@@ -167,7 +167,7 @@ import Globe from "./Globe.astro";
     .counter span {
       width: 45px;
     }
-    
+
     .ring {
       font-size: clamp(15px, 2vw, 30px);
     }
@@ -327,6 +327,7 @@ import Globe from "./Globe.astro";
         stagger: { each: 0.004, from: "random" },
         onComplete: () => {
           gsap.set("#square-container", { display: "none" });
+          gsap.set("body", { overflow: "auto" });
         },
       });
     };
