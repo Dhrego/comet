@@ -132,16 +132,30 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
             </div>
           </div>
         </div>
+        <div class="block-cards">
+          <div class="card">
+            <div class="card-icon">
+              <img src="https://via.placeholder.com/50" alt="icon" />
+            </div>
+            <div class="card-content">
+              <h3>Card title</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit
+                amet nulla auctor, vestibulum magna sed, convallis ex.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   </div>
-  <!-- <Loader /> -->
 </Layout>
+<!-- <Loader /> -->
 
 <style>
   body {
     background-color: var(--bg-color-alt);
-    overflow: hidden;
+    /* overflow: hidden; */
   }
 
   main {
@@ -353,6 +367,30 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
   .block-0 {
     display: flex;
     gap: 60px;
+  }
+
+  .block-cards {
+    /* height: 100%; */
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .card {
+    height: 280px;
+    width: 540px;
+    border-radius: 8px;
+    background-color: #101019;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .card-icon {
+    width: 68px;
+  }
+  .card-icon img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
   }
   @media screen and (max-width: 768px) {
     .blend_1,
