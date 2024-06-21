@@ -444,8 +444,12 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
     display: flex;
     gap: 32px;
     align-items: center;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding-left: 40px;
+  }
+
+  .block-cards:-webkit-scrollbar {
+    display: none;
   }
 
   .card {
