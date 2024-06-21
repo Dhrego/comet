@@ -134,16 +134,84 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
         </div>
         <div class="block-cards">
           <div class="card">
-            <div class="card-icon">
-              <img src="https://via.placeholder.com/50" alt="icon" />
+            <div class="top">
+              <div class="card-icon">
+                <img src="https://via.placeholder.com/50" alt="icon" />
+              </div>
+              <div class="card-content">
+                <p>
+                  Design services are focused on transforming the essence of
+                  your brand into a visually appealing and intuitively
+                </p>
+              </div>
             </div>
-            <div class="card-content">
-              <h3>Card title</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit
-                amet nulla auctor, vestibulum magna sed, convallis ex.
-              </p>
+            <div class="down">
+              <span>Design</span>
+              <span>01</span>
             </div>
+            <div class="card-bubble_1"></div>
+            <div class="card-bubble_2"></div>
+            <div class="card-bubble_3"></div>
+          </div>
+          <div class="card">
+            <div class="top">
+              <div class="card-icon">
+                <img src="https://via.placeholder.com/50" alt="icon" />
+              </div>
+              <div class="card-content">
+                <p>
+                  Design services are focused on transforming the essence of
+                  your brand into a visually appealing and intuitively
+                </p>
+              </div>
+            </div>
+            <div class="down">
+              <span>Design</span>
+              <span>01</span>
+            </div>
+            <div class="card-bubble_1"></div>
+            <div class="card-bubble_2"></div>
+            <div class="card-bubble_3"></div>
+          </div>
+          <div class="card">
+            <div class="top">
+              <div class="card-icon">
+                <img src="https://via.placeholder.com/50" alt="icon" />
+              </div>
+              <div class="card-content">
+                <p>
+                  Design services are focused on transforming the essence of
+                  your brand into a visually appealing and intuitively
+                </p>
+              </div>
+            </div>
+            <div class="down">
+              <span>Design</span>
+              <span>01</span>
+            </div>
+            <div class="card-bubble_1"></div>
+            <div class="card-bubble_2"></div>
+            <div class="card-bubble_3"></div>
+          </div>
+          <div class="card">
+            <div class="top">
+              <div class="card-icon">
+                <img src="https://via.placeholder.com/50" alt="icon" />
+              </div>
+              <div class="card-content">
+                <p>
+                  Design services are focused on transforming the essence of
+                  your brand into a visually appealing and intuitively
+                </p>
+              </div>
+            </div>
+            <div class="down">
+              <span>Design</span>
+              <span>01</span>
+            </div>
+            <div class="card-bubble_1"></div>
+            <div class="card-bubble_2"></div>
+            <div class="card-bubble_3"></div>
           </div>
         </div>
       </div>
@@ -155,7 +223,7 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
 <style>
   body {
     background-color: var(--bg-color-alt);
-    /* overflow: hidden; */
+    overflow: hidden;
   }
 
   main {
@@ -265,8 +333,8 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
     position: relative;
     height: 80vh;
     /* display: flex; */
-    justify-content: space-around;
-    padding: 0 40px;
+    /* justify-content: space-around; */
+    /* padding: 0 40px; */
     color: #fff;
     font-family: var(--font-Regular);
   }
@@ -362,6 +430,7 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
   .block-header {
     display: flex;
     justify-content: space-between;
+    padding-inline: 40px;
   }
 
   .block-0 {
@@ -373,25 +442,109 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
     /* height: 100%; */
     width: 100%;
     display: flex;
+    gap: 32px;
     align-items: center;
+    overflow-y: scroll;
+    padding-left: 40px;
   }
 
   .card {
-    height: 280px;
-    width: 540px;
+    position: relative;
+    min-height: 280px;
+    min-width: 540px;
     border-radius: 8px;
+    padding: 10px;
     background-color: #101019;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    overflow: hidden;
+    cursor: grab;
   }
 
   .card-icon {
     width: 68px;
+    height: 68px;
   }
   .card-icon img {
     width: 100%;
     height: 100%;
     border-radius: 50%;
   }
+
+  .card-content {
+    width: 60%;
+    font-family: var(--font-Light);
+    font-size: 18px;
+  }
+  .top {
+    display: flex;
+    justify-content: space-between;
+  }
+  .down {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-Regular);
+  }
+
+  .down span {
+    font-size: 40px;
+    color: #d5d5d5;
+  }
+
+  .down span:last-child {
+    color: #7f7f7f;
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-bubble_1 {
+    position: absolute;
+    left: 180px;
+    height: 64px;
+    width: 64px;
+    border-radius: 50%;
+    bottom: -9px;
+    background: rgb(174, 140, 209);
+    background: linear-gradient(
+      180deg,
+      rgba(174, 140, 209, 1) 0%,
+      rgba(83, 30, 134, 1) 100%
+    );
+    filter: blur(25px);
+  }
+  .card-bubble_2 {
+    position: absolute;
+    left: 240px;
+    height: 168px;
+    width: 168px;
+    border-radius: 50%;
+    bottom: -70px;
+    background: rgb(195, 74, 57);
+    background: linear-gradient(
+      180deg,
+      rgba(195, 74, 57, 1) 0%,
+      rgba(83, 30, 134, 1) 100%
+    );
+    filter: blur(25px);
+  }
+  .card-bubble_3 {
+    position: absolute;
+    left: 434px;
+    height: 64px;
+    width: 112px;
+    border-radius: 50%;
+    bottom: -18px;
+    background: rgb(49, 114, 134);
+    background: linear-gradient(
+      180deg,
+      rgba(49, 114, 134, 1) 0%,
+      rgba(83, 30, 134, 1) 100%
+    );
+    filter: blur(25px);
+  }
+
   @media screen and (max-width: 768px) {
     .blend_1,
     .blend_2,
