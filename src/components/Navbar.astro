@@ -46,7 +46,10 @@ const navlinks = [
     margin: 0 auto;
     padding-block: 20px 0;
     padding-inline: 30px;
-    /* position: sticky; */
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    /* backdrop-filter: blur(10px); */
   }
 
   .logo svg {
@@ -56,6 +59,12 @@ const navlinks = [
 
   .logo svg path {
     transition: all 2s ease;
+  }
+
+  @media screen and (max-width: 900px) {
+    nav {
+      position: relative;
+    }
   }
 
   @media screen and (max-width: 530px) {
