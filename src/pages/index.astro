@@ -9,7 +9,7 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
   title="Hello 👋🏾"
   description="Dive into Creativity 🌊: Immerse yourself in my projects and artworks."
 >
-  <Loader2 />
+  <!-- <Loader2 /> -->
   <div class="container">
     <main>
       <div class="block-1">
@@ -206,7 +206,7 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
               </div>
             </div>
             <div class="down">
-              <span>Last</span>
+              <span>Compatibility</span>
               <span>04</span>
             </div>
             <div class="card-bubble_1"></div>
@@ -228,7 +228,7 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
 <style>
   body {
     background-color: var(--bg-color-alt);
-    overflow: hidden;
+    /* overflow: hidden; */
   }
 
   main {
@@ -572,7 +572,7 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
   }
 
   .block-progress {
-    margin-top: 75px;
+    margin-top: 45px;
     padding: 20px;
   }
   .progress-bar {
@@ -618,20 +618,26 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
 
 <script>
   import $ from "jquery";
+  import { gsap } from "gsap";
 
   function scrollCarousel(direction: string, carousel: any) {
     let currentPosition = carousel.scrollLeft();
     let scrollAmount = {
-      prev: -245,
-      next: 245,
+      prev: -343,
+      next: 343,
     };
 
-    carousel.animate(
-      {
-        scrollLeft: currentPosition + scrollAmount[direction],
-      },
-      "slow"
-    );
+    // carousel.animate(
+    //   {
+    //     scrollLeft: currentPosition + scrollAmount[direction],
+    //   },
+    //   "slow"
+    // );
+
+    gsap.to(carousel, {
+      scrollLeft: currentPosition + scrollAmount[direction],
+      ease: "power1.inOut",
+    });
   }
 
   $(".prev, .next").on("click", function () {
