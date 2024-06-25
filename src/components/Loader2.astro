@@ -109,7 +109,7 @@ import Globe from "./Globe.astro";
     will-change: transform;
     z-index: 2;
     font-family: var(--font-Light);
-    cursor: pointer;
+    /* cursor: pointer; */
   }
 
   .btn-text {
@@ -327,9 +327,9 @@ import Globe from "./Globe.astro";
         duration: 0.0005,
         stagger: { each: 0.004, from: "random" },
         onComplete: () => {
+          gsap.set("body", { cursor: "auto" });
           gsap.set("#square-container", { display: "none" });
           gsap.set("body", { overflow: "auto" });
-          gsap.set("body", { cursor: "auto" });
         },
       });
     };
