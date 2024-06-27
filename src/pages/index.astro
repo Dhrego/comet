@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Loader from "../components/Loader.astro";
 import Loader2 from "../components/Loader2.astro";
 import { DreamyGradient } from "@muridot0/dreamy-gradients";
+import Cards from "../components/Cards.astro";
 
 const links = [
   {
@@ -20,6 +21,33 @@ const links = [
   {
     text: "Fourth App",
     href: "#",
+  },
+];
+
+const cards = [
+  {
+    title: "Design",
+    content:
+      " Design services are focused on transforming the essence of your brand into a visually appealing and intuitively",
+    img: "design.svg",
+  },
+  {
+    title: "Development",
+    content:
+      " Design services are focused on transforming the essence of your brand into a visually appealing and intuitively",
+    img: "development.svg",
+  },
+  {
+    title: "Performance",
+    content:
+      " Design services are focused on transforming the essence of your brand into a visually appealing and intuitively",
+    img: "performance.svg",
+  },
+  {
+    title: "Compatibility",
+    content:
+      " Design services are focused on transforming the essence of your brand into a visually appealing and intuitively",
+    img: "compatibility.svg",
   },
 ];
 ---
@@ -66,7 +94,7 @@ const links = [
       </div>
       <div class="block-2">
         <div class="col">
-          <div class="title">Figma ipsum component variant main layer.</div>
+          <div class="title">Discover the journey of developer</div>
           <div class="btn-container">
             <a href="/me"
               ><span>About me</span>
@@ -152,86 +180,7 @@ const links = [
           </div>
         </div>
         <div class="block-cards">
-          <div class="card">
-            <div class="top">
-              <div class="card-icon">
-                <img src="https://via.placeholder.com/50" alt="icon" />
-              </div>
-              <div class="card-content">
-                <p>
-                  Design services are focused on transforming the essence of
-                  your brand into a visually appealing and intuitively
-                </p>
-              </div>
-            </div>
-            <div class="down">
-              <span>Design</span>
-              <span>01</span>
-            </div>
-            <div class="card-bubble_1"></div>
-            <div class="card-bubble_2"></div>
-            <div class="card-bubble_3"></div>
-          </div>
-          <div class="card">
-            <div class="top">
-              <div class="card-icon">
-                <img src="https://via.placeholder.com/50" alt="icon" />
-              </div>
-              <div class="card-content">
-                <p>
-                  Design services are focused on transforming the essence of
-                  your brand into a visually appealing and intuitively
-                </p>
-              </div>
-            </div>
-            <div class="down">
-              <span>Development</span>
-              <span>02</span>
-            </div>
-            <div class="card-bubble_1"></div>
-            <div class="card-bubble_2"></div>
-            <div class="card-bubble_3"></div>
-          </div>
-          <div class="card">
-            <div class="top">
-              <div class="card-icon">
-                <img src="https://via.placeholder.com/50" alt="icon" />
-              </div>
-              <div class="card-content">
-                <p>
-                  Design services are focused on transforming the essence of
-                  your brand into a visually appealing and intuitively
-                </p>
-              </div>
-            </div>
-            <div class="down">
-              <span>Performance</span>
-              <span>03</span>
-            </div>
-            <div class="card-bubble_1"></div>
-            <div class="card-bubble_2"></div>
-            <div class="card-bubble_3"></div>
-          </div>
-          <div class="card">
-            <div class="top">
-              <div class="card-icon">
-                <img src="https://via.placeholder.com/50" alt="icon" />
-              </div>
-              <div class="card-content">
-                <p>
-                  Design services are focused on transforming the essence of
-                  your brand into a visually appealing and intuitively
-                </p>
-              </div>
-            </div>
-            <div class="down">
-              <span>Compatibility</span>
-              <span>04</span>
-            </div>
-            <div class="card-bubble_1"></div>
-            <div class="card-bubble_2"></div>
-            <div class="card-bubble_3"></div>
-          </div>
+          <Cards items={cards} />
         </div>
         <div class="block-progress">
           <div class="progress-bar">
@@ -359,6 +308,7 @@ const links = [
     font-size: 50px;
     margin-bottom: 30px;
     color: #ddd;
+    word-wrap: normal;
   }
 
   .block-2 .col .content {
@@ -410,7 +360,7 @@ const links = [
     background-color: #fff;
     color: #000;
   }
-  /* 
+  /*
   .arrow svg {
     transition: transform 0.3s ease;
     transform: rotate(0deg);
@@ -476,6 +426,10 @@ const links = [
     font-size: clamp(13px, 2vw, 16px);
     font-family: var(--font-Light);
     color: #808080;
+  }
+  .hero-intro span,
+  .hero-intro span img {
+    vertical-align: middle;
   }
 
   .hero-main {
@@ -576,110 +530,6 @@ const links = [
   .block-cards::-webkit-scrollbar {
     display: none;
     width: 0;
-  }
-
-  .card {
-    position: relative;
-    min-height: 280px;
-    min-width: 540px;
-    border-radius: 8px;
-    padding: 10px;
-    background-color: #101019;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    overflow: hidden;
-    user-select: none;
-    /* cursor: grab; */
-  }
-
-  .card-icon {
-    width: 68px;
-    height: 68px;
-  }
-  .card-icon img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-  }
-
-  .card-content {
-    width: 60%;
-    font-family: var(--font-Light);
-    font-size: 18px;
-  }
-  .top {
-    display: flex;
-    justify-content: space-between;
-  }
-  .down {
-    display: flex;
-    justify-content: space-between;
-    font-family: var(--font-Regular);
-  }
-
-  .down span {
-    font-size: 40px;
-    color: #d5d5d5;
-    position: relative;
-    z-index: 1;
-  }
-
-  .down span:last-child {
-    color: #7f7f7f;
-  }
-
-  .card-bubble_1,
-  .card-bubble_2,
-  .card-bubble_3 {
-    pointer-events: none;
-  }
-
-  .card-bubble_1 {
-    position: absolute;
-    left: 180px;
-    height: 64px;
-    width: 64px;
-    border-radius: 50%;
-    bottom: -9px;
-    background: rgb(174, 140, 209);
-    background: linear-gradient(
-      180deg,
-      rgba(174, 140, 209, 1) 0%,
-      rgba(83, 30, 134, 1) 100%
-    );
-    filter: blur(25px);
-  }
-  .card-bubble_2 {
-    position: absolute;
-    left: 240px;
-    height: 168px;
-    width: 168px;
-    border-radius: 50%;
-    bottom: -70px;
-    background: rgb(195, 74, 57);
-    background: linear-gradient(
-      180deg,
-      rgba(195, 74, 57, 1) 0%,
-      rgba(83, 30, 134, 1) 100%
-    );
-    filter: blur(25px);
-  }
-  .card-bubble_3 {
-    position: absolute;
-    left: 434px;
-    height: 64px;
-    width: 112px;
-    border-radius: 50%;
-    bottom: -18px;
-    background: rgb(49, 114, 134);
-    background: linear-gradient(
-      180deg,
-      rgba(49, 114, 134, 1) 0%,
-      rgba(83, 30, 134, 1) 100%
-    );
-    filter: blur(25px);
   }
 
   .block-progress {
