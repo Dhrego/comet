@@ -3,13 +3,32 @@ import Layout from "../layouts/Layout.astro";
 import Loader from "../components/Loader.astro";
 import Loader2 from "../components/Loader2.astro";
 import { DreamyGradient } from "@muridot0/dreamy-gradients";
+
+const links = [
+  {
+    text: "First App",
+    href: "#",
+  },
+  {
+    text: "Second App",
+    href: "#",
+  },
+  {
+    text: "Third App",
+    href: "#",
+  },
+  {
+    text: "Fourth App",
+    href: "#",
+  },
+];
 ---
 
 <Layout
   title="Hello 👋🏾"
   description="Dive into Creativity 🌊: Immerse yourself in my projects and artworks."
 >
-  <Loader2 />
+  <!-- <Loader2 /> -->
   <div class="container">
     <main>
       <div class="block-1">
@@ -220,6 +239,38 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
           </div>
         </div>
       </div>
+      <div class="block-4">
+        <div class="title">Selected Works</div>
+        <div class="block-content">
+          <ul>
+            {
+              links.map((link) => (
+                <li>
+                  <a href={link.href}>
+                    <span>{link.text}</span>
+                    <span class="arrow">
+                      <svg
+                        width="10"
+                        height="10"
+                        viewBox="0 0 10 10"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M9.50047 0.875C9.50047 0.775544 9.46097 0.680161 9.39064 0.609835C9.32031 0.539509 9.22493 0.5 9.12547 0.5H4.62547C4.52602 0.5 4.43064 0.539509 4.36031 0.609835C4.28998 0.680161 4.25047 0.775544 4.25047 0.875C4.25047 0.974456 4.28998 1.06984 4.36031 1.14017C4.43064 1.21049 4.52602 1.25 4.62547 1.25H8.22022L0.609974 8.8595C0.575108 8.89437 0.547451 8.93576 0.528581 8.98131C0.509712 9.02687 0.5 9.07569 0.5 9.125C0.5 9.17431 0.509712 9.22313 0.528581 9.26869C0.547451 9.31424 0.575108 9.35563 0.609974 9.3905C0.64484 9.42537 0.686232 9.45302 0.731786 9.47189C0.777341 9.49076 0.826166 9.50047 0.875474 9.50047C0.924782 9.50047 0.973607 9.49076 1.01916 9.47189C1.06472 9.45302 1.10611 9.42537 1.14097 9.3905L8.75047 1.78025V5.375C8.75047 5.47446 8.78998 5.56984 8.86031 5.64017C8.93063 5.71049 9.02602 5.75 9.12547 5.75C9.22493 5.75 9.32031 5.71049 9.39064 5.64017C9.46097 5.56984 9.50047 5.47446 9.50047 5.375V0.875Z"
+                          fill="white"
+                        />
+                      </svg>
+                    </span>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
     </main>
   </div>
 
@@ -228,7 +279,7 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
 <style>
   body {
     background-color: var(--bg-color-alt);
-    overflow: hidden;
+    /* overflow: hidden; */
   }
 
   main {
@@ -276,7 +327,7 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
   }
 
   button,
-  a {
+  .block-2 a {
     position: relative;
     /* transform: translateY(-1px); */
     border: 1px solid #ffffff;
@@ -298,12 +349,12 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
   }
 
   button:hover,
-  a:hover {
+  .block-2 a:hover {
     transform: translateY(2px);
   }
 
   button:active,
-  a:active {
+  .block-2 a:active {
     transform: translateY(7px);
     background-color: #fff;
     color: #000;
@@ -320,7 +371,7 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
   } */
 
   button:active .arrow svg path,
-  a:active .arrow svg path {
+  .block-2 a:active .arrow svg path {
     fill: rgb(0, 0, 0);
   }
 
@@ -594,6 +645,63 @@ import { DreamyGradient } from "@muridot0/dreamy-gradients";
       rgba(207, 144, 165, 1) 100%
     );
     width: 65%;
+  }
+
+  .block-4 {
+    position: relative;
+    height: 80vh;
+    padding: 0 40px;
+    color: #fff;
+    font-family: var(--font-Regular);
+  }
+
+  .block-4 .title {
+    text-transform: uppercase;
+    margin-bottom: 60px;
+  }
+
+  .block-4 ul {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    list-style: none;
+    padding-inline: 82px;
+  }
+
+  .block-4 ul li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+    width: 100%;
+    font-family: var(--font-Regular);
+    font-size: 35px;
+    text-transform: uppercase;
+    transition: border 0.3s ease;
+  }
+
+  .block-4 ul li:hover {
+    border-bottom: 1px solid #fff;
+  }
+
+  .block-4 a {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .block-4 svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .block-4 svg path {
+    fill: rgba(255, 255, 255, 0.45);
+    transition: fill 0.3s ease;
+  }
+
+  .block-4 ul li:hover svg path {
+    fill: #fff;
   }
 
   @media screen and (max-width: 768px) {
