@@ -74,13 +74,10 @@ const isIndexPage = Astro.url.pathname === "/";
     position: absolute;
     background: transparent;
     width: 200%;
-    left: -50%;
     aspect-ratio: 1 / 0.7;
     border-radius: 50%;
     border-top: 1px solid rgba(244, 244, 244, 0.4);
-    top: 1px;
-    z-index: -1;
-    overflow: hidden;
+    top: 0;
   }
 
   .icon {

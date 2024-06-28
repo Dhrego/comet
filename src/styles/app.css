@@ -48,9 +48,17 @@ main {
 @media screen and (max-width: 768px) {
   body {
     cursor: auto;
+
     -webkit-tap-highlight-color: transparent;
   }
   main {
     min-height: calc(100vh - 70.88px);
+  }
+}
+
+@media screen and (min-width: 2000px) {
+  body {
+    max-width: 2000px;
+    margin-inline: auto;
   }
 }
