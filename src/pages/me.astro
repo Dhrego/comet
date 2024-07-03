@@ -399,7 +399,7 @@ const hobbies = [
   }
 
   .hobby-title:hover {
-    color: var(--white);
+    color: rgba(255, 255, 255, 0.9);
   }
 
   .hobby-title svg {
@@ -484,46 +484,48 @@ const hobbies = [
     .pt-1 {
       padding-top: 0;
     }
+
+    .hobby-title:hover {
+      color: initial;
+    }
   }
 </style>
 <script>
   import $ from "jquery";
 
-  $(document).ready(function () {
-    const $subLinks = $(".sub-link");
-    const $blocks = $(".block");
+  const $subLinks = $(".sub-link");
+  const $blocks = $(".block");
 
-    let linkActive = $subLinks.filter(".active").attr("id");
-    $blocks.not(`[data-id="${linkActive}"]`).hide();
+  let linkActive = $subLinks.filter(".active").attr("id");
+  $blocks.not(`[data-id="${linkActive}"]`).hide();
 
-    $subLinks.on("click", function () {
-      const $this = $(this);
-      const link = $this.attr("id");
+  $subLinks.on("click", function () {
+    const $this = $(this);
+    const link = $this.attr("id");
 
-      $subLinks.removeClass("active");
-      $this.addClass("active");
+    $subLinks.removeClass("active");
+    $this.addClass("active");
 
-      $blocks.hide();
-      $blocks.filter(`[data-id="${link}"]`).show();
+    $blocks.hide();
+    $blocks.filter(`[data-id="${link}"]`).show();
 
-      $("html, body").animate({ scrollTop: 0 }, "slow");
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+  });
 
-      //TOGGLE ON DROPDOWN
-      $(".hobby-title").on("click", function () {
-        var $title = $(this);
-        var $content = $title.next(".hobby-content");
+  //TOGGLE ON DROPDOWN
+  $(".hobby-title").on("click", function () {
+    var $title = $(this);
+    var $content = $title.next(".hobby-content");
 
-        if ($title.hasClass("active")) {
-          $title.removeClass("active");
-          $content.css("height", 0);
-        } else {
-          $(".hobby-title").removeClass("active");
-          $(".hobby-content").css("height", 0);
+    if ($title.hasClass("active")) {
+      $title.removeClass("active");
+      $content.css("height", 0);
+    } else {
+      $(".hobby-title").removeClass("active");
+      $(".hobby-content").css("height", 0);
 
-          $title.addClass("active");
-          $content.css("height", $content.get(0).scrollHeight + "px");
-        }
-      });
-    });
+      $title.addClass("active");
+      $content.css("height", $content.get(0).scrollHeight + "px");
+    }
   });
 </script>
