@@ -6,7 +6,7 @@ const hobbies = [
   {
     name: "Gaming",
     content:
-      "As a die-hard Real Madrid fan, my love for FIFA goes beyond just a game; it's an obsession. I relish the thrill of leading my favorite team to victory on the virtual pitch. When it's time for some adrenaline-fueled action with friends, Apex Legends is our go-to for intense, team-based battles. Through gaming, I've made valuable friends and connected with fellow developers who share my passion for both coding and gaming. Gaming is not just a pastime for me; it's a way to connect, compete, and unwind.",
+      "As a die-hard Madridista  in a love-hate relationship with FIFA, it goes beyond just a game; it's an obsession. I relish the thrill of leading my favorite team to victory on the virtual pitch. When it's time for some adrenaline-fueled action with friends, Apex Legends is our go-to for intense, team-based battles. Through gaming, I've made valuable friends and connected with fellow developers who share my passion for both coding and gaming. Gaming is not just a pastime for me; it's a way to connect, compete, and unwind.",
     tag: "gaming",
   },
   {
@@ -259,20 +259,14 @@ const hobbies = [
             <div class="pt-1">
               <em>Hobbies </em>
               <p>
-                Welcome to the sunny part of the page. When I'm not at the
-                computer, I'm usually gaming, reading manga, flying my drone or
-                going out with my friends, or running around Parco Sempione
-                enjoying whatever sunlight we have. Provident praesentium nam
-                harum pariatur eius magnam laboriosam corrupti, dolorum odit
-                dolore laudantium, accusantium error consequatur adipisci
-                repudiandae quam distinctio debitis eligendi, nostrum recusandae
-                id totam tempora nemo? Eum, adipisci. Reiciendis, tempore odit!
-                Vero deserunt quis a, itaque iste dolorum quo. Adipisci earum
-                obcaecati aliquid perferendis recusandae vel odit dolore. Neque
-                ex perspiciatis perferendis voluptatibus
+                Welcome to the sunny side of my life beyond coding! When I'm not
+                immersed in coding, I dive into a variety of hobbies that keep
+                me energized and inspired. Be it gaming, reading manga, flying
+                my drone, going out with my friends, or going for a run soaking
+                every bit of sunlight.
                 <br /><br />
-                In my free time, I love to work out, watch anime, read manga, or
-                play games with friends online.
+                These activities help me stay mentally fresh and creatively charged,
+                ensuring I bring my best self every day.
               </p>
             </div>
 
@@ -370,6 +364,10 @@ const hobbies = [
     width: calc(80% - 263px);
   }
 
+  .block {
+    font-size: clamp(14px, 2vw, 18px);
+  }
+
   .block:not(:first-child) {
     display: none;
   }
@@ -385,7 +383,7 @@ const hobbies = [
 
   .hobby-title {
     font-family: var(--font-Bold);
-    font-size: 20px;
+    font-size: clamp(16px, 2vw, 20px);
     color: rgb(149, 149, 149);
     padding-block: 20px;
     border-bottom: 0.5px solid rgba(138, 138, 138, 0.7);
@@ -424,7 +422,7 @@ const hobbies = [
     height: 0;
     overflow: hidden;
     transition: height 0.3s ease;
-    font-size: 16px;
+    font-size: clamp(14px, 2vw, 16px);
   }
 
   .hobby-title.active + .hobby-content {
@@ -432,7 +430,10 @@ const hobbies = [
   }
 
   .hobby-content p {
-    padding-block: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 8px;
+    margin-top: 20px;
   }
 
   @media screen and (max-width: 1200px) {
@@ -474,13 +475,10 @@ const hobbies = [
       letter-spacing: 1px;
     }
 
-    .block {
-      font-size: 14px;
-    }
-
     .col-8 {
       width: 100%;
     }
+
     .pt-1 {
       padding-top: 0;
     }
@@ -518,8 +516,8 @@ const hobbies = [
 
   //TOGGLE ON DROPDOWN
   $(".hobby-title").on("click", function () {
-    var $title = $(this);
-    var $content = $title.next(".hobby-content");
+    const $title = $(this);
+    const $content = $title.next(".hobby-content");
 
     if ($title.hasClass("active")) {
       $title.removeClass("active");
