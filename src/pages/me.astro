@@ -6,32 +6,32 @@ const hobbies = [
   {
     name: "Gaming",
     content:
-      "As a die-hard Madridista  in a love-hate relationship with FIFA, it goes beyond just a game; it's an obsession. I relish the thrill of leading my favorite team to victory on the virtual pitch. When it's time for some adrenaline-fueled action with friends, Apex Legends is our go-to for intense, team-based battles. Through gaming, I've made valuable friends and connected with fellow developers who share my passion for both coding and gaming. Gaming is not just a pastime for me; it's a way to connect, compete, and unwind.",
+     "As a die-hard Madridista, my relationship with FIFA has been a thrilling love-hate saga. It goes beyond just the game; it's become a part of me. I relish the thrill of dismantling my opponents 😹. I also had some great moments on Fortnite too. Through gaming, I've made invaluable friends and connected with fellow developers who share my passion for coding and gaming. Gaming has not just been a pastime for me; it's been a way to connect, compete, unwind, and annihilate others.",
     tag: "gaming",
   },
   {
     name: "Music",
     content:
-      "Listening to music is a passion of mine. I enjoy a diverse range of genres that provide the perfect soundtrack to my day, whether I'm coding, working out, or just relaxing. Music has the power to transport me to another world, and I'm always on the lookout for new artists and songs that inspire me. Music is a form of self-expression that connects me to my emotions and helps me process my thoughts. It's a constant source of joy and inspiration in my life.",
+      "Listening to music is a passion of mine. I enjoy a diverse range of genres that provide the perfect soundtrack to my day, whether I'm coding, working out, or just relaxing. Music has the power to transport me to another world, and I'm always on the lookout for new artists and songs that inspire me. Music is a form of self-expression that connects me to my emotions and helps me process my thoughts. It's a constant source of joy and inspiration in my life. Here is my wrapped of 2023 from spotify",
     tag: "music",
     img: "wrapper_2023.jpg",
   },
   {
     name: "Movies & Tv Shows",
     content:
-      "I love diving into the latest movies and TV shows. From thrilling dramas to captivating sci-fi, I appreciate the art of storytelling in visual media.",
+      "I love diving into the latest movies and TV shows. From thrilling horror to captivating sci-fi, I appreciate the art of storytelling in visual media.",
     tag: "moviesandshows",
   },
   {
     name: "Anime & Manga",
     content:
-      "Anime and manga are a significant part of my life. I enjoy following the adventures of my favorite characters and discovering new series. The rich narratives and unique art styles inspire me greatly.",
+      `Anime and manga are a part of my life, offering endless adventures with diverse characters and captivating new series. I am a perceptive critic with high standards, interested in rich narratives and unique art styles that ignite my imagination. Subpar stories usually do not cut it for me. I thrive on finding those exceptional stories that inspire and resonate deeply. My passion for unpredictable storytelling means I never settle for anything less than the best, with Attack on Titan currently being the only piece of art to exceed that criteria.`,
     tag: "animeandmanga",
   },
   {
     name: "Fitness",
     content:
-      "Working out is one of my key hobbies. I believe in maintaining a healthy and active lifestyle, and I enjoy various forms of exercise, from weightlifting to cardio workouts.",
+      'Working out is one of my key hobbies. I believe in maintaining a healthy and active lifestyle, and I enjoy various forms of exercise, from weightlifting to cardio workouts. Living by the creed stated by Thomas Jefferson, "A strong body makes the mind strong," is not just a guiding principle but also a basis of motivation and discipline for me.',
     tag: "fitness",
   },
 ];
@@ -383,6 +383,7 @@ const hobbies = [
 
   .pt-1 {
     padding-top: 1rem;
+    line-height: 1.5;
   }
 
   .pt-1 em {
@@ -411,8 +412,7 @@ const hobbies = [
 
   .hobby-title svg {
     transform: rotate(-90deg);
-
-    transition: transform 0.3s ease;
+    transition: transform 0.5s ease;
   }
 
   .hobby-title.active {
@@ -432,6 +432,7 @@ const hobbies = [
     overflow: hidden;
     transition: height 0.3s ease;
     font-size: clamp(14px, 2vw, 16px);
+    will-change: height;
   }
 
   .hobby-title.active + .hobby-content {
@@ -443,6 +444,7 @@ const hobbies = [
     border-radius: 8px;
     padding: 8px;
     margin-top: 20px;
+    line-height: 1.5;
   }
 
   .img-block {
