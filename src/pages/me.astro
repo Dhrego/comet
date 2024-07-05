@@ -453,6 +453,7 @@ const hobbies = [
     height: max-content;
     margin: 0 auto;
     margin-block: 20px;
+    perspective: 1000px;
   }
 
   .img-block img {
@@ -461,7 +462,7 @@ const hobbies = [
     object-fit: cover;
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.35);
-    transition: all 1s ease;
+    transform-style: preserve-3d;
   }
 
   .img-block .img-title {
@@ -470,10 +471,6 @@ const hobbies = [
     color: var(--white);
     text-align: center;
     margin-bottom: 10px;
-  }
-/* TODO: TEST ANIMATION IN JS */
-  .img-block img:hover {
-    transform: rotate3d(1, 1, 1, -40deg);
   }
 
   @media screen and (max-width: 1200px) {
@@ -534,6 +531,7 @@ const hobbies = [
 </style>
 <script>
   import $ from "jquery";
+  import { gsap } from "gsap";
 
   const $subLinks = $(".sub-link");
   const $blocks = $(".block");
@@ -569,5 +567,38 @@ const hobbies = [
       $title.addClass("active");
       $content.css("height", $content.get(0).scrollHeight + "px");
     }
+  });
+
+
+  //HOVER 3D ON IMG
+  const $img = $(".img-block img");
+
+  function handleMouseMove(e: any) {
+      const boundingRect = e.currentTarget.getBoundingClientRect();
+
+      const mousePosX = Math.floor(e.clientX - boundingRect.left);
+      const mousePosY = Math.floor(e.clientY - boundingRect.top);
+
+      const rotateY = (mousePosX / boundingRect.width - 0.5) * 30; 
+      const rotateX = -(mousePosY / boundingRect.height - 0.5) * 30;
+
+      gsap.to(e.currentTarget, {
+        rotateX: rotateX,
+        rotateY: rotateY,
+        duration: 0.3,
+        ease: "power1.out"
+      });
+  }
+
+  $img.on("mousemove", handleMouseMove);
+
+  $img.on("mouseleave", function(e: MouseEvent) {
+      gsap.to(e.currentTarget, {
+        delay:.3,
+          rotateX: 0,
+          rotateY: 0,
+          duration: 0.3,
+          ease: "power1.out"
+      });
   });
 </script>
