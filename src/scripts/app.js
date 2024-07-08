@@ -252,52 +252,107 @@
 //   });
 // });
 
+//LOADER SESSION V1
 // Function to generate a unique key based on current URL
-function generateUniqueKey() {
-  return "loader_state_" + window.location.href; // Using URL as key for simplicity
-}
+// function generateUniqueKey() {
+//   return "loader_state_" + window.location.href;
+// }
 
-// Function to save loader state with timestamp
-function saveLoaderState(state) {
-  const key = generateUniqueKey();
-  const timestamp = new Date().getTime();
-  const data = { state, timestamp };
-  sessionStorage.setItem(key, JSON.stringify(data));
-}
+// // Function to save loader state with timestamp
+// function saveLoaderState(state) {
+//   const key = generateUniqueKey();
+//   const timestamp = new Date().getTime();
+//   const data = { state, timestamp };
+//   sessionStorage.setItem(key, JSON.stringify(data));
+// }
 
-// Function to check and expire loader state
-function checkAndExpireLoaderState() {
-  const key = generateUniqueKey();
-  const storedData = sessionStorage.getItem(key);
-  if (storedData) {
-    const { timestamp } = JSON.parse(storedData);
-    const currentTime = new Date().getTime();
-    const fiveMinutes = 5 * 60 * 1000; // 5 minutes in milliseconds
+// // Function to check and expire loader state
+// function checkAndExpireLoaderState() {
+//   const key = generateUniqueKey();
+//   const storedData = sessionStorage.getItem(key);
+//   if (storedData) {
+//     const { timestamp } = JSON.parse(storedData);
+//     const currentTime = new Date().getTime();
+//     const fiveMinutes = 5 * 60 * 1000;
 
-    if (currentTime - timestamp >= fiveMinutes) {
-      sessionStorage.removeItem(key); // Remove expired loader state
-      console.log("Loader state expired.");
-    } else {
-      console.log("Loader state still valid.");
-    }
-  } else {
-    console.log("No loader state found.");
-  }
-}
+//     if (currentTime - timestamp >= fiveMinutes) {
+//       sessionStorage.removeItem(key);
+//       console.log("Loader state expired.");
+//     } else {
+//       console.log("Loader state still valid.");
+//     }
+//   } else {
+//     console.log("No loader state found.");
+//   }
+// }
 
-// Example usage:
-// Save loader state with 'active'
-saveLoaderState("active");
+// saveLoaderState("active");
 
-// Check and expire loader state when script is run
-checkAndExpireLoaderState();
+// // Check and expire loader state when script is run
+// checkAndExpireLoaderState();
 
-// Simulate revisiting the original index after 6 minutes (to trigger expiration)
-setTimeout(() => {
-  checkAndExpireLoaderState();
-}, 6 * 60 * 1000); // After 6 minutes
+// // Simulate revisiting the original index after 6 minutes (to trigger expiration)
+// setTimeout(() => {
+//   checkAndExpireLoaderState();
+// }, 6 * 60 * 1000); // After 6 minutes
 
-// Simulate revisiting the original index immediately (no expiration)
-setTimeout(() => {
-  checkAndExpireLoaderState();
-}, 1000); // After 1 second
+// // Simulate revisiting the original index immediately (no expiration)
+// setTimeout(() => {
+//   checkAndExpireLoaderState();
+// }, 1000); // After 1 second
+
+//LOADER SESSION V2
+
+// // Function to generate a unique key based on the current URL
+// function generateUniqueKey() {
+//   return "loader_state_" + window.location.href;
+// }
+
+// // Function to save loader state with a timestamp, only if it doesn't exist
+// function saveLoaderStateOnce(state) {
+//   const key = generateUniqueKey();
+//   const storedData = sessionStorage.getItem(key);
+
+//   if (!storedData) {
+//     const timestamp = new Date().getTime();
+//     const data = { state, timestamp };
+//     sessionStorage.setItem(key, JSON.stringify(data));
+//     console.log("Loader state saved as 'active'.");
+//   }
+// }
+
+// function checkAndExpireLoaderState() {
+//   const key = generateUniqueKey();
+//   const storedData = sessionStorage.getItem(key);
+
+//   if (storedData) {
+//     const { timestamp } = JSON.parse(storedData);
+//     const currentTime = new Date().getTime();
+//     const duration = 0.3 * 60 * 1000;
+
+//     if (currentTime - timestamp >= duration) {
+//       sessionStorage.removeItem(key);
+//       console.log("Loader state expired.");
+//       return false;
+//     } else {
+//       console.log("Loader state still valid.");
+//       return true;
+//     }
+//   } else {
+//     console.log("No loader state found.");
+//     return false;
+//   }
+// }
+
+// saveLoaderStateOnce("active");
+
+// const loaderStateValid = checkAndExpireLoaderState();
+
+// if (loaderStateValid) {
+//   console.log("Loader state is valid. Skip showing the loader.");
+// } else {
+//   console.log(
+//     "Loader state expired or not found. Reload the loader component."
+//   );
+// }
+// export { loaderStateValid };
