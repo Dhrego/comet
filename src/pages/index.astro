@@ -636,6 +636,7 @@ const cards = [
     margin-bottom: 0;
     text-transform: uppercase;
     text-shadow: 0px 0px 12px rgba(34, 34, 34);
+    text-align: center;
   }
 
   @media screen and (max-width: 768px) {
@@ -662,32 +663,6 @@ const cards = [
 <script>
   import $ from "jquery";
   import { gsap } from "gsap";
-  // import Lenis from "lenis";
-
-  // const lenis = new Lenis();
-
-  // lenis.on("scroll", (e) => {
-  //   console.log(e);
-  // });
-
-  // function raf(time) {
-  //   lenis.raf(time);
-  //   requestAnimationFrame(raf);
-  // }
-
-  // requestAnimationFrame(raf);
-
-  // function disableLenis() {
-  //   lenis.stop();
-  // }
-
-  // function enableLenis() {
-  //   lenis.start();
-  // }
-
-  // $(".hamburger-menu").on("click", function () {
-  //   $(this).hasClass("active") ? enableLenis() : disableLenis();
-  // });
 
   const scrollCarousel = (direction: string, carousel: any) => {
     let currentPosition = carousel.scrollLeft();
