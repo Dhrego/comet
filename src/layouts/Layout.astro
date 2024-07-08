@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import FontPreloader from "../components/FontPreloader.astro";
 import Cursor from "../components/Cursor.astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
 
 const { title } = Astro.props;
 const { description } = Astro.props;
@@ -45,6 +46,13 @@ const url = "https://dhrego.com";
     <Cursor />
     <Footer />
 
+    <script is:inline>
+      function speedInsightsBeforeSend(data) {
+        console.log("Speed Insights before send", data);
+        return data;
+      }
+    </script>
+    <SpeedInsights />
     <script>
       const changeColor = (index: number) => {
         root.style.setProperty("--base-color", colors[index]);
