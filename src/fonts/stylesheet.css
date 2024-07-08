@@ -69,3 +69,12 @@
   font-style: normal;
   font-display: swap;
 }
+
+@font-face {
+  font-family: "AltGothic";
+  src: url("AlternateGothicCondATF-Bold.woff2") format("woff2"),
+    url("AlternateGothicCondATF-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}

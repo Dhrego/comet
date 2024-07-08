@@ -1,6 +1,51 @@
 ---
 import Loader from "../components/Loader.astro";
 import Layout from "../layouts/Layout.astro";
+
+const tiles = [
+  {
+    img: "img_1.webp",
+    title: "REVolut",
+    type: "Commercial",
+    date: "12 March 2024",
+  },
+  {
+    img: "img_1.webp",
+    title: "All New",
+    type: "Commercial",
+    date: "12 March 2024",
+  },
+  {
+    img: "OG.png",
+    title: "App Gogo",
+    type: "Commercial",
+    date: "12 September 2024",
+  },
+  {
+    img: "OG.png",
+    title: " RERE",
+    type: "Commercial",
+    date: "1 December 2024",
+  },
+  {
+    img: "OG.png",
+    title: " All New",
+    type: "Commercial",
+    date: "3rd September 2024",
+  },
+  {
+    img: "OG.png",
+    title: " All New",
+    type: "Commercial",
+    date: "1 January 2024",
+  },
+  {
+    img: "OG.png",
+    title: " All New",
+    type: "Commercial",
+    date: "24 August 2024",
+  },
+];
 ---
 
 <Layout
@@ -9,24 +54,73 @@ import Layout from "../layouts/Layout.astro";
 >
   <div class="container">
     <main>
-      <div class="">Still working on them ........</div>
+      <!-- <div class="">Still working on them ........</div>
       <p>
         Welcome to Dhrego's Creative Hub! 🏄🏽 Explore my innovative projects and
         captivating artworks, showcasing my expertise as a Software Developer
         and UI/UX Designer.
-      </p>
+      </p> -->
+
+      <div class="container">
+        <div class="project_carousel">
+          <div class="title">
+            <span>PROJECTS</span>
+            <span>01</span>
+          </div>
+          <div
+            class="scroll"
+            data-mouseat="0"
+            data-percentage="0"
+            data-prev="0"
+          >
+            {
+              tiles.map((tile, index) => (
+                <div class={`project_tile ${index === 0 ? "active" : ""}`}>
+                  <img
+                    src="img_1.webp"
+                    draggable="false"
+                    alt=""
+                    sizes=""
+                    srcset=""
+                  />
+                  <div class="project_title">REVolut</div>
+                  <div class="project_info">
+                    <div class="keys">
+                      <div>Category</div>
+                      <div>Date</div>
+                    </div>
+                    <div class="values">
+                      <div>Commercial</div>
+                      <div>12 March 2024</div>
+                    </div>
+                  </div>
+                  <a class="btn">View project</a>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
     </main>
   </div>
 </Layout>
 
 <style>
+  body {
+    background-color: var(--bg-color-alt);
+  }
+
   main {
     color: #fff;
     height: 100%;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    overflow-x: hidden;
     font-family: var(--font-Black-It);
   }
 
@@ -38,4 +132,369 @@ import Layout from "../layouts/Layout.astro";
     margin-top: 10px;
     max-width: 900px;
   }
+
+  .container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: flex-end;
+    overflow-x: hidden;
+  }
+
+  .title {
+    font-size: 230px;
+    font-family: "AltGothic";
+    position: absolute;
+    top: -32%;
+    left: 30px;
+    z-index: 999;
+    mix-blend-mode: difference;
+    color: #fff;
+    user-select: none;
+    pointer-events: none;
+    display: flex;
+    gap: 30px;
+  }
+
+  .project_tile {
+    font-family: var(--font-Regular);
+  }
+
+  .project_tile.active img {
+    height: 400px;
+    max-width: 550px;
+    object-fit: cover;
+  }
+
+  .project_tile:not(.active) {
+    height: 400px;
+    /* transform: scale(0.6);
+    transform-origin: top left; */
+  }
+
+  .project_tile img {
+    height: 250px;
+    max-width: 350px;
+    object-fit: cover;
+    transition: all 1s ease-out;
+    /* transform: scale(1); */
+  }
+
+  .project_tile:last-child {
+    margin-right: 30px;
+  }
+
+  .project_carousel {
+    padding-bottom: 30px;
+    min-width: 100%;
+    position: fixed;
+    user-select: none;
+    height: 555px;
+  }
+
+  .project_title {
+    color: white;
+    font-size: 30px;
+    margin-top: 15px;
+    font-family: var(--font-Regular);
+  }
+
+  .project_info {
+    display: flex;
+    color: white;
+    margin-block: 15px;
+  }
+
+  .project_info .keys,
+  .project_info .values {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    text-transform: uppercase;
+  }
+
+  .project_info .keys {
+    color: gray;
+    margin-right: 70px;
+  }
+
+  .btn {
+    color: white;
+    font-size: 16px;
+    position: relative;
+    cursor: pointer;
+  }
+  /* .btn::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  bottom: -6px;
+  left: 0;
+} */
+
+  .scroll {
+    /* overflow-x: hidden; */
+    display: flex;
+    position: relative;
+    left: 40px;
+    /* margin-left: 41px; */
+    gap: 40px;
+    /* transition: transform 1s ease; */
+  }
+
+  .scroll::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
+  .cursor-outline,
+  .cursor-dot {
+    opacity: 0;
+    z-index: 99999999999;
+  }
+
+  .cursor-outline {
+    border-radius: 50px;
+    position: fixed;
+    width: 80px;
+    height: 80px;
+    border: solid 5px #fff;
+    mix-blend-mode: difference;
+    pointer-events: none;
+  }
+
+  .cursor-dot {
+    mix-blend-mode: difference;
+    border-radius: 50px;
+    position: fixed;
+    width: 80px;
+    height: 80px;
+    background-color: #fff;
+    border: solid 1px #fff;
+    pointer-events: none;
+  }
+
+  .cursor-outline,
+  .cursor-dot {
+    top: 50%;
+    left: 10%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  /* CURSOR WORKS */
+  .cursor-works {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    pointer-events: none;
+    position: fixed;
+    z-index: 999;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.2s ease 0.2s;
+  }
+
+  .cursor-works.active {
+    transition: transform 0.2s ease 0s;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .cursor-works .cursor-text {
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 2rem;
+    padding: 0.5rem 2rem;
+    display: flex;
+    color: white;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 800;
+    backdrop-filter: blur(10px);
+  }
+
+  .cursor-works .cursor-text div[data-text]::after {
+    content: attr(data-text);
+    position: absolute;
+    transform: translateY(100%);
+    left: 0;
+    mix-blend-mode: difference;
+  }
+
+  .cursor-works .cursor-text div[data-text] {
+    position: relative;
+    transition: transform 0.2s ease;
+  }
+
+  .cursor-works .cursor-text.active div[data-text] {
+    transform: translateY(-100%);
+  }
+
+  .cursor-works .cursor-svg {
+    display: flex;
+    border: 1px solid rgb(195, 195, 195);
+    border-radius: 100%;
+    padding: 0.5rem;
+    backdrop-filter: blur(15px);
+  }
+
+  .cursor-works .cursor-svg svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .mask {
+    overflow: hidden;
+  }
+
+  .cursor-hidden {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .cursor-visible {
+    opacity: 1;
+    transition: opacity 0.1s ease;
+  }
 </style>
+
+<script>
+  import { gsap } from "gsap";
+  import $ from "jquery";
+
+  const offset = $(".scroll").offset().left;
+  let startX = 0;
+  let prevPercentage = 0;
+  let percentage2 = 0;
+  let animating = false;
+  $(".scroll").on("mousedown", function (e) {
+    startX = e.pageX - offset;
+    $(document).on("mouseup", mouseUpHandler);
+    $(document).on("mousemove", handlerMove);
+    $(".container").css("cursor", "grabbing");
+
+    function handlerMove(e) {
+      if (startX == 0) return;
+      const transalte = e.pageX - offset;
+      let percentage = startX - transalte;
+      let newPercentage = percentage;
+      if (newPercentage > 50 && !animating) {
+        animating = true;
+        let el = $(".project_tile.active");
+        let i = el.index() + 1;
+        if (i >= $(".project_tile").length) return;
+        $(".project_tile.active").removeClass("active");
+        el.next().addClass("active");
+
+        const fixedWidth = 350 + 40;
+        // $('.scroll').css('transform', `translateX(-${fixedWidth * i}px)`);
+        gsap.to(".scroll", {
+          x: -fixedWidth * i,
+          ease: "power1.inOut",
+          duration: 1,
+          onComplete: () => (animating = false),
+        });
+      } else if (newPercentage < -50 && !animating) {
+        animating = true;
+        let el = $(".project_tile.active");
+        let i = el.index() - 1;
+        if (i < 0) return;
+
+        $(".project_tile.active").removeClass("active");
+        el.prev().addClass("active");
+
+        const fixedWidth = 350 + 40;
+        // $('.scroll').css('transform', `translateX(-${fixedWidth * i}px)`);
+        gsap.to(".scroll", {
+          x: -fixedWidth * i,
+          ease: "power1.inOut",
+          duration: 1,
+          onComplete: () => (animating = false),
+        });
+      }
+    }
+
+    function updateActiveTileIndex() {
+      const activeIndex = $(".project_tile.active").index() + 1;
+      $(".project_carousel .title span:last-child").text(`0${activeIndex}`);
+    }
+
+    function mouseUpHandler(e) {
+      prevPercentage = percentage2;
+      startX = 0;
+      animating = false;
+
+      updateActiveTileIndex();
+
+      $(document).off("mousemove", handlerMove);
+      $(document).off("mouseup", mouseUpHandler);
+      $(".container").css("cursor", "default");
+    }
+  });
+
+  //CURSOR WORKS
+  // const cursorWorks = document.querySelector(".cursor-works");
+  // const wrapperWorks = document.querySelector(".project_carousel");
+  // const workCells = document.querySelectorAll(".project_tile");
+  // const cursorText = document.querySelector(".cursor-text");
+  // const worksSlider = document.querySelector(".scroll");
+  // let isCursorActive = false;
+  // let timeoutId;
+  // const moveToCursor = (e: any, disableAnimation: any) => {
+  //   const { clientX, clientY } = e;
+  //   cursorWorks.classList.toggle("active", isCursorActive);
+  //   if (disableAnimation) {
+  //     cursorWorks[0].style.left = clientX + "px";
+  //     cursorWorks[0].style.top = clientY + "px";
+  //     return;
+  //   }
+  //   gsap.to(cursorWorks, {
+  //     left: clientX,
+  //     top: clientY,
+  //     duration: 1,
+  //     ease: "power2.out",
+  //   });
+  // };
+
+  // const removeActiveFromText = () => {
+  //   if (cursorText.classList.contains("active")) {
+  //     cursorText.classList.remove("active");
+  //   }
+  // };
+
+  // worksSlider.addEventListener("mouseenter", (e) => {
+  //   moveToCursor(e, true);
+  //   isCursorActive = true;
+  //   gsap.to($(".cursor"), {
+  //     duration: 0.3,
+  //     opacity: 0,
+  //     ease: "power1.in",
+  //   });
+  // });
+
+  // wrapperWorks.addEventListener("mousemove", (e) => {
+  //   moveToCursor(e, "");
+  //   removeActiveFromText();
+  // });
+
+  // worksSlider.addEventListener("mouseleave", () => {
+  //   isCursorActive = false;
+  //   cursorWorks.classList.remove("active");
+  //   gsap.to($(".cursor"), {
+  //     duration: 0.3,
+  //     delay: 0.1,
+  //     opacity: 1,
+  //     ease: "power1.in",
+  //   });
+  // });
+
+  // workCells.forEach((cell) => {
+  //   cell.addEventListener("mousemove", (e) => {
+  //     clearTimeout(timeoutId);
+  //     timeoutId = setTimeout(() => {
+  //       cursorText.classList.add("active");
+  //     }, 900);
+  //   });
+  // });
+</script>
