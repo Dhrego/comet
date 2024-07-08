@@ -196,29 +196,7 @@ const { items } = Astro.props;
   import $ from "jquery";
   import { gsap } from "gsap";
   import { CustomEase } from "gsap/CustomEase";
-
-  import Lenis from "lenis";
-
-  const lenis = new Lenis();
-
-  // lenis.on("scroll", (e: Event) => {
-  //   console.log(e);
-  // });
-
-  function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-  }
-
-  requestAnimationFrame(raf);
-
-  function disableLenis() {
-    lenis.stop();
-  }
-
-  function enableLenis() {
-    lenis.start();
-  }
+  import { lenis, disableLenis, enableLenis } from "../scripts/lenisInstance";
 
   gsap.registerPlugin(CustomEase);
 

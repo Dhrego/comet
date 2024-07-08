@@ -181,6 +181,9 @@ import Globe from "./Globe.astro";
 <script>
   import { gsap } from "gsap";
   import $ from "jquery";
+  import { lenis, disableLenis, enableLenis } from "../scripts/lenisInstance";
+
+  disableLenis();
 
   const startLoader = (delay: number) => {
     let counterElement = document.querySelector(".counter span");
@@ -330,6 +333,7 @@ import Globe from "./Globe.astro";
           gsap.set("body", { cursor: "auto" });
           gsap.set("#square-container", { display: "none" });
           gsap.set("body", { overflow: "auto" });
+          enableLenis();
         },
       });
     };
