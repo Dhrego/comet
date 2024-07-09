@@ -103,6 +103,52 @@ const tiles = [
       </div>
     </main>
   </div>
+  <div class="cursor-works">
+    <div class="cursor-text">
+      <div class="mask">
+        <div data-text="View">Drag</div>
+      </div>
+    </div>
+
+    <div class="cursor-svg">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="10px"
+        height="10px"
+        viewBox="0 0 10 10"
+        version="1.1"
+      >
+        <title>Path</title>
+        <g
+          id="Desktop"
+          stroke="none"
+          stroke-width="1"
+          fill="none"
+          fill-rule="evenodd"
+        >
+          <g
+            id="Projects-Section"
+            transform="translate(-948, -584)"
+            fill="#FFFFFF"
+            fill-rule="nonzero"
+            stroke="#FFFFFF"
+            stroke-width="0.542084"
+          >
+            <g id="View-Project-Btn" transform="translate(872, 578)">
+              <g
+                id="Group"
+                transform="translate(81.2399, 11.2386) rotate(90) translate(-81.2399, -11.2386)translate(77, 7)"
+              >
+                <path
+                  d="M6.85063698,0.991467062 L-7.54301773e-17,7.8420592 L0.635086908,8.477176 L7.48568584,1.62655669 L7.61450285,6.07517349 L8.47980533,5.82270981 L8.34759125,1.25681924 C8.33013029,0.651943185 7.82444198,0.146251474 7.21955912,0.128740921 L2.77246421,-7.54301773e-17 L2.5192124,0.864532025 L6.85063698,0.991467062 Z"
+                  id="Path"></path>
+              </g>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </div>
 </Layout>
 
 <style>
@@ -312,6 +358,7 @@ const tiles = [
     font-size: 14px;
     font-weight: 800;
     backdrop-filter: blur(10px);
+    font-family: var(--font-Regular);
   }
 
   .cursor-works .cursor-text div[data-text]::after {
@@ -420,7 +467,7 @@ const tiles = [
       $(".project_carousel .title span:last-child").text(`0${activeIndex}`);
     }
 
-    function mouseUpHandler(e) {
+    function mouseUpHandler(e: Event) {
       prevPercentage = percentage2;
       startX = 0;
       animating = false;
@@ -434,67 +481,67 @@ const tiles = [
   });
 
   //CURSOR WORKS
-  // const cursorWorks = document.querySelector(".cursor-works");
-  // const wrapperWorks = document.querySelector(".project_carousel");
-  // const workCells = document.querySelectorAll(".project_tile");
-  // const cursorText = document.querySelector(".cursor-text");
-  // const worksSlider = document.querySelector(".scroll");
-  // let isCursorActive = false;
-  // let timeoutId;
-  // const moveToCursor = (e: any, disableAnimation: any) => {
-  //   const { clientX, clientY } = e;
-  //   cursorWorks.classList.toggle("active", isCursorActive);
-  //   if (disableAnimation) {
-  //     cursorWorks[0].style.left = clientX + "px";
-  //     cursorWorks[0].style.top = clientY + "px";
-  //     return;
-  //   }
-  //   gsap.to(cursorWorks, {
-  //     left: clientX,
-  //     top: clientY,
-  //     duration: 1,
-  //     ease: "power2.out",
-  //   });
-  // };
+  const cursorWorks = document.querySelector(".cursor-works") as HTMLElement;
+  const wrapperWorks = document.querySelector(".project_carousel");
+  const workCells = document.querySelectorAll(".project_tile");
+  const cursorText = document.querySelector(".cursor-text");
+  const worksSlider = document.querySelector(".scroll");
+  let isCursorActive = false;
+  let timeoutId: any;
 
-  // const removeActiveFromText = () => {
-  //   if (cursorText.classList.contains("active")) {
-  //     cursorText.classList.remove("active");
-  //   }
-  // };
+  const moveToCursor = (e: any, disableAnimation?: boolean) => {
+    const { clientX, clientY } = e;
+    cursorWorks.classList.toggle("active", isCursorActive);
+    if (disableAnimation) {
+      cursorWorks.style.left = clientX + "px";
+      cursorWorks.style.top = clientY + "px";
+      return;
+    }
+    gsap.to(cursorWorks, {
+      left: clientX,
+      top: clientY,
+      duration: 1,
+      ease: "power2.out",
+    });
+  };
+  const removeActiveFromText = () => {
+    if (cursorText.classList.contains("active")) {
+      cursorText.classList.remove("active");
+    }
+  };
 
-  // worksSlider.addEventListener("mouseenter", (e) => {
-  //   moveToCursor(e, true);
-  //   isCursorActive = true;
-  //   gsap.to($(".cursor"), {
-  //     duration: 0.3,
-  //     opacity: 0,
-  //     ease: "power1.in",
-  //   });
-  // });
+  worksSlider.addEventListener("mouseenter", (e) => {
+    moveToCursor(e, true);
+    isCursorActive = true;
+    gsap.to(".cursor-outline, .cursor-dot", {
+      duration: 0.3,
+      opacity: 0,
+      ease: "power1.in",
+    });
+  });
 
-  // wrapperWorks.addEventListener("mousemove", (e) => {
-  //   moveToCursor(e, "");
-  //   removeActiveFromText();
-  // });
+  wrapperWorks.addEventListener("mousemove", (e) => {
+    moveToCursor(e);
+    removeActiveFromText();
+  });
 
-  // worksSlider.addEventListener("mouseleave", () => {
-  //   isCursorActive = false;
-  //   cursorWorks.classList.remove("active");
-  //   gsap.to($(".cursor"), {
-  //     duration: 0.3,
-  //     delay: 0.1,
-  //     opacity: 1,
-  //     ease: "power1.in",
-  //   });
-  // });
+  worksSlider.addEventListener("mouseleave", () => {
+    isCursorActive = false;
+    cursorWorks.classList.remove("active");
+    gsap.to($(".cursor-outline, .cursor-dot"), {
+      duration: 0.3,
+      delay: 0.1,
+      opacity: 1,
+      ease: "power1.in",
+    });
+  });
 
-  // workCells.forEach((cell) => {
-  //   cell.addEventListener("mousemove", (e) => {
-  //     clearTimeout(timeoutId);
-  //     timeoutId = setTimeout(() => {
-  //       cursorText.classList.add("active");
-  //     }, 900);
-  //   });
-  // });
+  workCells.forEach((cell) => {
+    cell.addEventListener("mousemove", (e) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        cursorText.classList.add("active");
+      }, 900);
+    });
+  });
 </script>
