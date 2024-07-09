@@ -5,45 +5,27 @@ import Layout from "../layouts/Layout.astro";
 const tiles = [
   {
     img: "img_1.webp",
-    title: "REVolut",
-    type: "Commercial",
-    date: "12 March 2024",
+    title: "Weather App",
+    type: "Web App",
+    date: "12 Oct 2022",
   },
   {
     img: "img_1.webp",
-    title: "All New",
-    type: "Commercial",
-    date: "12 March 2024",
+    title: "Asanka",
+    type: "Website",
+    date: "12 Dec 2023",
   },
   {
-    img: "OG.png",
-    title: "App Gogo",
-    type: "Commercial",
-    date: "12 September 2024",
+    img: "img_1.webp",
+    title: "BG gradient",
+    type: "Web App",
+    date: "12 Sept 2022",
   },
   {
-    img: "OG.png",
-    title: " RERE",
-    type: "Commercial",
-    date: "1 December 2024",
-  },
-  {
-    img: "OG.png",
-    title: " All New",
-    type: "Commercial",
-    date: "3rd September 2024",
-  },
-  {
-    img: "OG.png",
-    title: " All New",
-    type: "Commercial",
-    date: "1 January 2024",
-  },
-  {
-    img: "OG.png",
-    title: " All New",
-    type: "Commercial",
-    date: "24 August 2024",
+    img: "img_1.webp",
+    title: "Comet",
+    type: "Website",
+    date: "1 Nov 2023",
   },
 ];
 ---
@@ -77,21 +59,21 @@ const tiles = [
               tiles.map((tile, index) => (
                 <div class={`project_tile ${index === 0 ? "active" : ""}`}>
                   <img
-                    src="img_1.webp"
+                    src={tile.img}
                     draggable="false"
                     alt=""
                     sizes=""
                     srcset=""
                   />
-                  <div class="project_title">REVolut</div>
+                  <div class="project_title">{tile.title}</div>
                   <div class="project_info">
                     <div class="keys">
                       <div>Category</div>
                       <div>Date</div>
                     </div>
                     <div class="values">
-                      <div>Commercial</div>
-                      <div>12 March 2024</div>
+                      <div>{tile.type}</div>
+                      <div>{tile.date}</div>
                     </div>
                   </div>
                   <a class="btn">View project</a>
