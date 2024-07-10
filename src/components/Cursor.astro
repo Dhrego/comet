@@ -267,7 +267,7 @@
     link.addEventListener("mouseleave", () => handleCursorScale(0.1));
   });
 
-  // //CURSOR WORKS
+  //CURSOR WORKS
   // const cursorWorks = document.querySelector(".cursor-works") as HTMLElement;
   // const wrapperWorks = document.querySelector(".project_carousel");
   // const workCells = document.querySelectorAll(".project_tile");
@@ -331,4 +331,67 @@
   //     }, 900);
   //   });
   // });
+
+  const $cursorWorks = $(".cursor-works");
+  const $wrapperWorks = $(".project_carousel");
+  const $workCells = $(".project_tile");
+  const $cursorText = $(".cursor-text");
+  const $worksSlider = $(".scroll");
+  let isCursorActive = false;
+  let timeoutId: any;
+
+  const moveToCursor = (e: MouseEvent, disableAnimation?: any) => {
+    const clientX = e.clientX;
+    const clientY = e.clientY;
+    $cursorWorks.toggleClass("active", isCursorActive);
+    if (disableAnimation) {
+      $cursorWorks.css({ left: clientX + "px", top: clientY + "px" });
+      return;
+    }
+    gsap.to($cursorWorks, {
+      left: clientX,
+      top: clientY,
+      duration: 1,
+      ease: "power2.out",
+    });
+  };
+
+  const removeActiveFromText = () => {
+    if ($cursorText.hasClass("active")) {
+      $cursorText.removeClass("active");
+    }
+  };
+
+  $worksSlider.on("mouseenter", (e: any) => {
+    moveToCursor(e, true);
+    isCursorActive = true;
+    gsap.to(".cursor-outline, .cursor-dot", {
+      duration: 0.3,
+      opacity: 0,
+      ease: "power3",
+    });
+  });
+
+  $wrapperWorks.on("mousemove", (e) => {
+    moveToCursor(e);
+    removeActiveFromText();
+  });
+
+  $worksSlider.on("mouseleave", () => {
+    isCursorActive = false;
+    $cursorWorks.removeClass("active");
+    gsap.to($(".cursor-outline, .cursor-dot"), {
+      duration: 0.3,
+      delay: 0.1,
+      opacity: 1,
+      ease: "power3",
+    });
+  });
+
+  $workCells.on("mousemove", () => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      $cursorText.addClass("active");
+    }, 900);
+  });
 </script>
