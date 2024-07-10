@@ -267,68 +267,68 @@
     link.addEventListener("mouseleave", () => handleCursorScale(0.1));
   });
 
-  //CURSOR WORKS
-  const cursorWorks = document.querySelector(".cursor-works") as HTMLElement;
-  const wrapperWorks = document.querySelector(".project_carousel");
-  const workCells = document.querySelectorAll(".project_tile");
-  const cursorText = document.querySelector(".cursor-text");
-  const worksSlider = document.querySelector(".scroll");
-  let isCursorActive = false;
-  let timeoutId: any;
+  // //CURSOR WORKS
+  // const cursorWorks = document.querySelector(".cursor-works") as HTMLElement;
+  // const wrapperWorks = document.querySelector(".project_carousel");
+  // const workCells = document.querySelectorAll(".project_tile");
+  // const cursorText = document.querySelector(".cursor-text");
+  // const worksSlider = document.querySelector(".scroll");
+  // let isCursorActive = false;
+  // let timeoutId: any;
 
-  const moveToCursor = (e: any, disableAnimation?: boolean) => {
-    const { clientX, clientY } = e;
-    cursorWorks.classList.toggle("active", isCursorActive);
-    if (disableAnimation) {
-      cursorWorks.style.left = clientX + "px";
-      cursorWorks.style.top = clientY + "px";
-      return;
-    }
-    gsap.to(cursorWorks, {
-      left: clientX,
-      top: clientY,
-      duration: 1,
-      ease: "power2.out",
-    });
-  };
-  const removeActiveFromText = () => {
-    if (cursorText.classList.contains("active")) {
-      cursorText.classList.remove("active");
-    }
-  };
+  // const moveToCursor = (e: any, disableAnimation?: boolean) => {
+  //   const { clientX, clientY } = e;
+  //   cursorWorks.classList.toggle("active", isCursorActive);
+  //   if (disableAnimation) {
+  //     cursorWorks.style.left = clientX + "px";
+  //     cursorWorks.style.top = clientY + "px";
+  //     return;
+  //   }
+  //   gsap.to(cursorWorks, {
+  //     left: clientX,
+  //     top: clientY,
+  //     duration: 1,
+  //     ease: "power2.out",
+  //   });
+  // };
+  // const removeActiveFromText = () => {
+  //   if (cursorText.classList.contains("active")) {
+  //     cursorText.classList.remove("active");
+  //   }
+  // };
 
-  worksSlider.addEventListener("mouseenter", (e) => {
-    moveToCursor(e, true);
-    isCursorActive = true;
-    gsap.to(".cursor-outline, .cursor-dot", {
-      duration: 0.3,
-      opacity: 0,
-      ease: "power3",
-    });
-  });
+  // worksSlider.addEventListener("mouseenter", (e) => {
+  //   moveToCursor(e, true);
+  //   isCursorActive = true;
+  //   gsap.to(".cursor-outline, .cursor-dot", {
+  //     duration: 0.3,
+  //     opacity: 0,
+  //     ease: "power3",
+  //   });
+  // });
 
-  wrapperWorks.addEventListener("mousemove", (e) => {
-    moveToCursor(e);
-    removeActiveFromText();
-  });
+  // wrapperWorks.addEventListener("mousemove", (e) => {
+  //   moveToCursor(e);
+  //   removeActiveFromText();
+  // });
 
-  worksSlider.addEventListener("mouseleave", () => {
-    isCursorActive = false;
-    cursorWorks.classList.remove("active");
-    gsap.to($(".cursor-outline, .cursor-dot"), {
-      duration: 0.3,
-      delay: 0.1,
-      opacity: 1,
-      ease: "power3",
-    });
-  });
+  // worksSlider.addEventListener("mouseleave", () => {
+  //   isCursorActive = false;
+  //   cursorWorks.classList.remove("active");
+  //   gsap.to($(".cursor-outline, .cursor-dot"), {
+  //     duration: 0.3,
+  //     delay: 0.1,
+  //     opacity: 1,
+  //     ease: "power3",
+  //   });
+  // });
 
-  workCells.forEach((cell) => {
-    cell.addEventListener("mousemove", (e) => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        cursorText.classList.add("active");
-      }, 900);
-    });
-  });
+  // workCells.forEach((cell) => {
+  //   cell.addEventListener("mousemove", (e) => {
+  //     clearTimeout(timeoutId);
+  //     timeoutId = setTimeout(() => {
+  //       cursorText.classList.add("active");
+  //     }, 900);
+  //   });
+  // });
 </script>
