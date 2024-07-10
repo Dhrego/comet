@@ -1,6 +1,53 @@
 <>
   <div class="cursor-outline"></div>
   <div class="cursor-dot"></div>
+
+  <div class="cursor-works">
+    <div class="cursor-text">
+      <div class="mask">
+        <div data-text="View">Drag</div>
+      </div>
+    </div>
+
+    <div class="cursor-svg">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="10px"
+        height="10px"
+        viewBox="0 0 10 10"
+        version="1.1"
+      >
+        <title>Path</title>
+        <g
+          id="Desktop"
+          stroke="none"
+          stroke-width="1"
+          fill="none"
+          fill-rule="evenodd"
+        >
+          <g
+            id="Projects-Section"
+            transform="translate(-948, -584)"
+            fill="#FFFFFF"
+            fill-rule="nonzero"
+            stroke="#FFFFFF"
+            stroke-width="0.542084"
+          >
+            <g id="View-Project-Btn" transform="translate(872, 578)">
+              <g
+                id="Group"
+                transform="translate(81.2399, 11.2386) rotate(90) translate(-81.2399, -11.2386)translate(77, 7)"
+              >
+                <path
+                  d="M6.85063698,0.991467062 L-7.54301773e-17,7.8420592 L0.635086908,8.477176 L7.48568584,1.62655669 L7.61450285,6.07517349 L8.47980533,5.82270981 L8.34759125,1.25681924 C8.33013029,0.651943185 7.82444198,0.146251474 7.21955912,0.128740921 L2.77246421,-7.54301773e-17 L2.5192124,0.864532025 L6.85063698,0.991467062 Z"
+                  id="Path"></path>
+              </g>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </div>
 </>
 
 <style>
@@ -41,6 +88,80 @@
     transform: translate(-50%, -50%) rotate(0deg);
   }
 
+  /* CURSOR WORKS */
+  .cursor-works {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    pointer-events: none;
+    position: fixed;
+    z-index: 999;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.2s ease 0.2s;
+  }
+
+  .cursor-works.active {
+    transition: transform 0.2s ease 0s;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .cursor-works .cursor-text {
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 2rem;
+    padding: 0.5rem 2rem;
+    display: flex;
+    color: white;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 800;
+    backdrop-filter: blur(10px);
+    font-family: var(--font-Regular);
+  }
+
+  .cursor-works .cursor-text div[data-text]::after {
+    content: attr(data-text);
+    position: absolute;
+    transform: translateY(100%);
+    left: 0;
+    mix-blend-mode: difference;
+  }
+
+  .cursor-works .cursor-text div[data-text] {
+    position: relative;
+    transition: transform 0.2s ease;
+  }
+
+  .cursor-works .cursor-text.active div[data-text] {
+    transform: translateY(-100%);
+  }
+
+  .cursor-works .cursor-svg {
+    display: flex;
+    border: 1px solid rgb(195, 195, 195);
+    border-radius: 100%;
+    padding: 0.5rem;
+    backdrop-filter: blur(15px);
+  }
+
+  .cursor-works .cursor-svg svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .mask {
+    overflow: hidden;
+  }
+
+  .cursor-hidden {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .cursor-visible {
+    opacity: 1;
+    transition: opacity 0.1s ease;
+  }
+
   @media screen and (max-width: 768px) {
     .cursor-outline,
     .cursor-dot {
@@ -51,6 +172,7 @@
 
 <script>
   import gsap from "gsap";
+  import $ from "jquery";
 
   //CURSOR POINTER ANIMATION
   gsap.set(".cursor-dot", { scale: 0.1 });
@@ -143,5 +265,70 @@
   links.forEach((link) => {
     link.addEventListener("mouseenter", () => handleCursorScale(0.65));
     link.addEventListener("mouseleave", () => handleCursorScale(0.1));
+  });
+
+  //CURSOR WORKS
+  const cursorWorks = document.querySelector(".cursor-works") as HTMLElement;
+  const wrapperWorks = document.querySelector(".project_carousel");
+  const workCells = document.querySelectorAll(".project_tile");
+  const cursorText = document.querySelector(".cursor-text");
+  const worksSlider = document.querySelector(".scroll");
+  let isCursorActive = false;
+  let timeoutId: any;
+
+  const moveToCursor = (e: any, disableAnimation?: boolean) => {
+    const { clientX, clientY } = e;
+    cursorWorks.classList.toggle("active", isCursorActive);
+    if (disableAnimation) {
+      cursorWorks.style.left = clientX + "px";
+      cursorWorks.style.top = clientY + "px";
+      return;
+    }
+    gsap.to(cursorWorks, {
+      left: clientX,
+      top: clientY,
+      duration: 1,
+      ease: "power2.out",
+    });
+  };
+  const removeActiveFromText = () => {
+    if (cursorText.classList.contains("active")) {
+      cursorText.classList.remove("active");
+    }
+  };
+
+  worksSlider.addEventListener("mouseenter", (e) => {
+    moveToCursor(e, true);
+    isCursorActive = true;
+    gsap.to(".cursor-outline, .cursor-dot", {
+      duration: 0.3,
+      opacity: 0,
+      ease: "power3",
+    });
+  });
+
+  wrapperWorks.addEventListener("mousemove", (e) => {
+    moveToCursor(e);
+    removeActiveFromText();
+  });
+
+  worksSlider.addEventListener("mouseleave", () => {
+    isCursorActive = false;
+    cursorWorks.classList.remove("active");
+    gsap.to($(".cursor-outline, .cursor-dot"), {
+      duration: 0.3,
+      delay: 0.1,
+      opacity: 1,
+      ease: "power3",
+    });
+  });
+
+  workCells.forEach((cell) => {
+    cell.addEventListener("mousemove", (e) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        cursorText.classList.add("active");
+      }, 900);
+    });
   });
 </script>
