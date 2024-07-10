@@ -229,6 +229,62 @@ const tiles = [
     width: 0;
     background: transparent;
   }
+
+  @media screen and (max-width: 768px) {
+    .container {
+      width: 100%;
+      height: auto;
+      display: flex;
+      overflow: auto;
+    }
+
+    .project_carousel {
+      height: auto;
+      position: relative;
+    }
+
+    .title {
+      display: none;
+    }
+
+    .scroll {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      left: unset;
+      padding-top: 20px;
+      gap: 20px;
+    }
+
+    .project_tile {
+      padding: 20px;
+    }
+
+    .project_tile img {
+      height: 250px;
+      width: 100%;
+      max-width: unset;
+      object-fit: cover;
+    }
+
+    .project_tile.active img {
+      height: auto;
+      max-width: unset;
+      object-fit: cover;
+    }
+
+    .project_tile:not(.active) {
+      height: auto;
+    }
+
+    .project_tile:last-child {
+      margin-right: 0;
+    }
+
+    .project_info {
+      justify-content: space-between;
+    }
+  }
 </style>
 
 <script>
