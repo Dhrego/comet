@@ -166,15 +166,17 @@
   }
 
   .cursor-box {
-    width: 300px;
-    height: 300px;
+    width: clamp(10em, 27.5vw, 25em);
+    height: clamp(10em, 27.5vh, 25em);
     position: fixed;
-    border: solid 1px #ffffffb3;
+    border: solid 1px #ffffff85;
     /* mix-blend-mode: difference; */
     pointer-events: none;
-    background: #dfdfdf;
+    /* background: #dfdfdf; */
     z-index: 999999999;
     transform: scale(0);
+    /* object-fit: cover; */
+    background-size: cover;
     will-change: transform;
   }
 
@@ -417,9 +419,9 @@
   const $cursorDot = $(".cursor-dot");
   const $cursorOutline = $(".cursor-outline");
 
-  gsap.set(".block-content *", { cursor: "none" });
+  // gsap.set(".block-content *", { cursor: "none" });
 
-  $(".block-content").on("mousemove", function (e: MouseEvent) {
+  $(".block-content li").on("mousemove", function (e: MouseEvent) {
     gsap
       .timeline()
       .to($cursorDot, { scale: 0, duration: 0.3 })
@@ -428,7 +430,7 @@
     moveToBox(e);
   });
 
-  $(".block-content").on("mouseleave", function () {
+  $(".block-content li").on("mouseleave", function () {
     gsap
       .timeline()
       .to($cursorDot, { scale: 0.1, duration: 0.3 })
@@ -451,4 +453,14 @@
       ease: "power2.out",
     });
   };
+
+  $(".block-content li a").on("mousemove", function (e: MouseEvent) {
+    // console.log($(this).target.attr("[data-img]"));
+    let img = $(this).attr("data-img");
+
+    gsap.set($cursorBox, {
+      backgroundImage: `url(${img})`,
+      ease: "power1.in",
+    });
+  });
 </script>

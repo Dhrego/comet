@@ -9,18 +9,22 @@ const links = [
   {
     text: "First App",
     href: "#",
+    img: "https://images.pexels.com/photos/879109/pexels-photo-879109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     text: "Second App",
     href: "#",
+    img: "https://images.pexels.com/photos/1181359/pexels-photo-1181359.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     text: "Third App",
     href: "#",
+    img: "https://cdn.dribbble.com/userupload/15535641/file/original-00e69b46007da499e49375d6a8f33b38.png?resize=1600x1200",
   },
   {
     text: "Fourth App",
     href: "#",
+    img: "https://cdn.dribbble.com/userupload/15539819/file/original-4fe809961b1b0555900e212f0588d4a6.png?resize=2400x1800",
   },
 ];
 
@@ -200,7 +204,7 @@ const cards = [
             {
               links.map((link) => (
                 <li>
-                  <a href={link.href}>
+                  <a href={link.href} data-img={link.img}>
                     <span>{link.text}</span>
                     <span class="arrow">
                       <svg
@@ -578,7 +582,6 @@ const cards = [
   .block-4 ul {
     display: flex;
     flex-direction: column;
-    gap: 40px;
     list-style: none;
     padding-inline: 82px;
   }
@@ -589,18 +592,22 @@ const cards = [
     font-family: var(--font-Regular);
     font-size: 35px;
     text-transform: uppercase;
-    transition: border 0.3s ease;
+    transition:
+      border 0.3s ease,
+      color 0.3s ease;
+    color: #9a9a9a;
   }
 
   .block-4 ul li:hover {
     border-bottom: 1px solid #fff;
+    color: var(--white);
   }
 
   .block-4 a {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding: 10px;
+    padding: 30px 10px 30px;
     text-decoration: none;
     color: inherit;
   }
