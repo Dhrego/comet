@@ -48,6 +48,7 @@
       </svg>
     </div>
   </div>
+  <div class="cursor-box"></div>
 </>
 
 <style>
@@ -162,6 +163,18 @@
   .cursor-visible {
     opacity: 1;
     transition: opacity 0.1s ease;
+  }
+
+  .cursor-box {
+    width: 150px;
+    height: 150px;
+    position: fixed;
+    border: solid 1px #ffffffb3;
+    /* mix-blend-mode: difference; */
+    pointer-events: none;
+    background: #dfdfdf;
+    z-index: 999999999;
+    transform: scale(0);
   }
 
   @media screen and (max-width: 768px) {
@@ -365,7 +378,7 @@
     }
   };
 
-  $worksSlider.on("mouseenter", (e: any) => {
+  $worksSlider.on("mouseenter", (e: MouseEvent) => {
     moveToCursor(e, true);
     isCursorActive = true;
     gsap.to(".cursor-outline, .cursor-dot", {
@@ -375,7 +388,7 @@
     });
   });
 
-  $wrapperWorks.on("mousemove", (e) => {
+  $wrapperWorks.on("mousemove", (e: MouseEvent) => {
     moveToCursor(e);
     removeActiveFromText();
   });
@@ -397,4 +410,41 @@
       $cursorText.addClass("active");
     }, 900);
   });
+
+  // HOVER FOR WORKS ON INDEX
+  const $cursorBox = $(".cursor-box");
+  const $cursorDot = $(".cursor-dot");
+  const $cursorOutline = $(".cursor-outline");
+
+  gsap.set(".block-content *", { cursor: "none" });
+
+  $(".block-content").on("mousemove", function (e: MouseEvent) {
+    gsap.to($cursorDot, { scale: 0, duration: 0.3 });
+    gsap.to($cursorOutline, { scale: 0, duration: 0.3 });
+    gsap.to($cursorBox, { scale: 2, duration: 0.3, ease: "power1" });
+
+    moveToBox(e);
+  });
+
+  $(".block-content").on("mouseleave", function () {
+    gsap.to($cursorDot, { scale: 0.1, duration: 0.3 });
+    gsap.to($cursorOutline, { scale: 0.3, duration: 0.3 });
+    gsap.to($cursorBox, { scale: 0, duration: 0.3 });
+  });
+
+  const moveToBox = (e: MouseEvent) => {
+    const clientX = e.clientX;
+    const clientY = e.clientY;
+    const boxWidth = $cursorBox.width();
+    const boxHeight = $cursorBox.height();
+    const left = clientX - boxWidth / 2;
+    const top = clientY - boxHeight / 2;
+
+    gsap.to($cursorBox, {
+      left: left,
+      top: top,
+      duration: 0,
+      ease: "power2.out",
+    });
+  };
 </script>
