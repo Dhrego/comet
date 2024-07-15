@@ -469,7 +469,7 @@
     });
   };
 
-  $(".block-content li a").on("mousemove", function (e: MouseEvent) {
+  $(".block-content li a").on("mousemove", function () {
     let img = $(this).attr("data-img");
 
     gsap.set($cursorBox, {

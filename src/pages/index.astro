@@ -257,9 +257,12 @@ const cards = [
           <img src="blend_6.svg" alt="" srcset="" draggable="false" />
         </div>
         <DreamyGradient
-          size={{ height: "480px", width: "480px" }}
+          size={{
+            height: "clamp(200px,20vw,480px)",
+            width: "clamp(200px,20vw,480px)",
+          }}
           color={"linear-gradient(120deg, rgba(172,50,228,1) 0%, rgba(121,24,242,1) 48%, rgba(72,1,255,1) 100%)"}
-          position={{ right: "118px", top: "14px" }}
+          position={{ right: "clamp(1px,20vw,118px)", top: "14px" }}
           blur={1.5}
           borderRadius="50%"
           client:only="react"
@@ -666,6 +669,11 @@ const cards = [
       display: flex;
       flex-direction: column;
       align-items: center;
+      text-align: center;
+    }
+
+    .block-2 .title {
+      text-align: center;
     }
 
     .block-2 .col:first-child {
@@ -673,13 +681,13 @@ const cards = [
     }
 
     .block-2 .col p.content {
-      font-size: 20px;
+      font-size: 16px;
     }
 
     .title {
-      font-size: 30px;
-      text-align: center;
+      font-size: 24px;
     }
+
     .block-header,
     .block-cards {
       padding-inline: 10px;
@@ -687,6 +695,7 @@ const cards = [
 
     .block-3 {
       height: auto;
+      margin-bottom: 50px;
     }
 
     .block-cards {
@@ -695,7 +704,7 @@ const cards = [
 
     .block-progress {
       margin-top: 20px;
-      padding: 20px 10px;
+      padding: 10px;
     }
 
     .progress-bar {
@@ -706,12 +715,16 @@ const cards = [
       padding-inline: 10px;
     }
 
+    .block-4 .title {
+      margin-bottom: 20px;
+    }
+
     .block-4 ul {
       padding: 0;
     }
 
     .block-4 ul li {
-      font-size: 24px;
+      font-size: 16px;
     }
 
     .block-4 a {
@@ -733,6 +746,19 @@ const cards = [
 
     .block-5 a {
       padding: 15px 40px;
+    }
+
+    .progress-bar {
+      height: 0.5px;
+    }
+
+    .progress-bar-inner {
+      height: 0.5px;
+    }
+
+    .blend_6 {
+      right: 0;
+      bottom: 0;
     }
   }
 

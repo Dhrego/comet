@@ -135,4 +135,50 @@ const { items } = Astro.props;
     );
     filter: blur(25px);
   }
+
+  @media screen and (max-width: 768px) {
+    .card {
+      min-height: 220px;
+      min-width: 440px;
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+    }
+
+    .card-content {
+      font-size: 16px;
+    }
+
+    .down span {
+      font-size: 26px;
+    }
+
+    .card-bubble_1,
+    .card-bubble_2,
+    .card-bubble_3 {
+      pointer-events: none;
+    }
+
+    .card-bubble_1 {
+      height: 44px;
+      width: 44px;
+      bottom: -10px;
+      left: 137px;
+    }
+    .card-bubble_2 {
+      height: 148px;
+      width: 148px;
+      left: 185px;
+
+      bottom: -60px;
+    }
+    .card-bubble_3 {
+      height: 44px;
+      width: 94px;
+      left: 305px;
+      bottom: -10px;
+    }
+  }
 </style>
