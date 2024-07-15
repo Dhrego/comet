@@ -1,5 +1,4 @@
 ---
-// import Loader2 from "../components/Loader2.astro";
 import Layout from "../layouts/Layout.astro";
 
 const hobbies = [
@@ -201,9 +200,6 @@ const hobbies = [
 
   main {
     color: var(--white);
-    /* height: 100%; */
-    /* display: flex;
-    justify-content: center; */
   }
 
   ul {
@@ -237,7 +233,6 @@ const hobbies = [
     font-size: 32px;
     padding-inline: 30px;
     padding-block: 65px 35px;
-    /* text-align: justify; */
     display: flex;
     gap: 50px;
   }
@@ -436,20 +431,6 @@ const hobbies = [
 
   let linkActive = $subLinks.filter(".active").attr("id");
   $blocks.not(`[data-id="${linkActive}"]`).hide();
-
-  // $subLinks.on("click", function () {
-  //   const $this = $(this);
-  //   const link = $this.attr("id");
-
-  //   $subLinks.removeClass("active");
-  //   $this.addClass("active");
-
-  //   $blocks.hide();
-  //   $blocks.filter(`[data-id="${link}"]`).show();
-
-  //   $("html, body").animate({ scrollTop: 0 }, "slow");
-  // });
-
 
   $subLinks.on("click", function(e: any) {
 

@@ -123,16 +123,10 @@ const cards = [
         </div>
         <div class="col">
           <p class="content">
-            <!-- I'm a software developer and UI/UX designer seeking to establish a
-            strong online presence through my own website. With a focus of
-            providing exceptional user experiences, I aim to showcase my
-            expertise and skills to potential clients, By providing and sharing
-            information about my design process, I hope to attract clients who
-            are in need of my services -->
-            I'm a software developer and UI/UX designer dedicated to creating exceptional
-            user experiences. Through my website, I showcase my skills and expertise,
-            offering insights into my design process. Let's collaborate to bring
-            your vision to life.
+            I'm a software developer and UI/UX designer dedicated to creating
+            exceptional user experiences. Through my website, I showcase my
+            skills and expertise, offering insights into my design process.
+            Let's collaborate to bring your vision to life.
           </p>
         </div>
         <div class="blend_4">
@@ -339,7 +333,6 @@ const cards = [
   .block-2 a,
   .block-5 a {
     position: relative;
-    /* transform: translateY(-1px); */
     border: 1px solid #ffffff;
     padding: 14px 54px;
     border-radius: 8px;
@@ -375,16 +368,6 @@ const cards = [
     background-color: #fff;
     color: #000;
   }
-  /*
-  .arrow svg {
-    transition: transform 0.3s ease;
-    transform: rotate(0deg);
-    transform-origin: center;
-  }
-
-  button:active .arrow svg {
-    transform: rotate(45deg);
-  } */
 
   button:active .arrow svg path,
   .block-2 a:active .arrow svg path,
@@ -410,12 +393,8 @@ const cards = [
   }
 
   .block-3 {
-    /* background-color: #fff; */
     position: relative;
     height: 80vh;
-    /* display: flex; */
-    /* justify-content: space-around; */
-    /* padding: 0 40px; */
     color: #fff;
     font-family: var(--font-Regular);
     overflow: hidden;
@@ -531,7 +510,6 @@ const cards = [
   }
 
   .block-cards {
-    /* height: 100%; */
     width: 100%;
     display: flex;
     gap: 32px;
@@ -570,7 +548,6 @@ const cards = [
 
   .block-4 {
     position: relative;
-    /* height: 51vh; */
     padding: 0 40px;
     color: #fff;
     font-family: var(--font-Regular);
@@ -798,7 +775,6 @@ const cards = [
     const clientWidth = carousel.clientWidth;
 
     const scrollPercentage = (scrollLeft / (scrollWidth - clientWidth)) * 100;
-    // console.log(scrollPercentage);
 
     gsap.to($(".progress-bar-inner"), {
       duration: 0,

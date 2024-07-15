@@ -170,12 +170,9 @@
     height: clamp(10em, 27.5vh, 25em);
     position: fixed;
     border: solid 1px #ffffff85;
-    /* mix-blend-mode: difference; */
     pointer-events: none;
-    /* background: #dfdfdf; */
     z-index: 999999999;
     transform: scale(0);
-    /* object-fit: cover; */
     background-size: cover;
     will-change: transform;
   }
@@ -251,7 +248,7 @@
       0
     );
 
-  //click animation handler
+  //CLICK ANIMATION HANDLER
   function handlePointerEvent(e: MouseEvent) {
     if (e.type === "pointerdown") {
       gsap.timeline().to(".cursor-dot", { scale: 0.2, duration: 0.3 });
@@ -287,70 +284,6 @@
   });
 
   //CURSOR WORKS
-  // const cursorWorks = document.querySelector(".cursor-works") as HTMLElement;
-  // const wrapperWorks = document.querySelector(".project_carousel");
-  // const workCells = document.querySelectorAll(".project_tile");
-  // const cursorText = document.querySelector(".cursor-text");
-  // const worksSlider = document.querySelector(".scroll");
-  // let isCursorActive = false;
-  // let timeoutId: any;
-
-  // const moveToCursor = (e: any, disableAnimation?: boolean) => {
-  //   const { clientX, clientY } = e;
-  //   cursorWorks.classList.toggle("active", isCursorActive);
-  //   if (disableAnimation) {
-  //     cursorWorks.style.left = clientX + "px";
-  //     cursorWorks.style.top = clientY + "px";
-  //     return;
-  //   }
-  //   gsap.to(cursorWorks, {
-  //     left: clientX,
-  //     top: clientY,
-  //     duration: 1,
-  //     ease: "power2.out",
-  //   });
-  // };
-  // const removeActiveFromText = () => {
-  //   if (cursorText.classList.contains("active")) {
-  //     cursorText.classList.remove("active");
-  //   }
-  // };
-
-  // worksSlider.addEventListener("mouseenter", (e) => {
-  //   moveToCursor(e, true);
-  //   isCursorActive = true;
-  //   gsap.to(".cursor-outline, .cursor-dot", {
-  //     duration: 0.3,
-  //     opacity: 0,
-  //     ease: "power3",
-  //   });
-  // });
-
-  // wrapperWorks.addEventListener("mousemove", (e) => {
-  //   moveToCursor(e);
-  //   removeActiveFromText();
-  // });
-
-  // worksSlider.addEventListener("mouseleave", () => {
-  //   isCursorActive = false;
-  //   cursorWorks.classList.remove("active");
-  //   gsap.to($(".cursor-outline, .cursor-dot"), {
-  //     duration: 0.3,
-  //     delay: 0.1,
-  //     opacity: 1,
-  //     ease: "power3",
-  //   });
-  // });
-
-  // workCells.forEach((cell) => {
-  //   cell.addEventListener("mousemove", (e) => {
-  //     clearTimeout(timeoutId);
-  //     timeoutId = setTimeout(() => {
-  //       cursorText.classList.add("active");
-  //     }, 900);
-  //   });
-  // });
-
   const $cursorWorks = $(".cursor-works");
   const $wrapperWorks = $(".project_carousel");
   const $workCells = $(".project_tile");
@@ -419,7 +352,7 @@
   const $cursorDot = $(".cursor-dot");
   const $cursorOutline = $(".cursor-outline");
 
-  // Collect all image URLs from data attributes
+  // Collect image URLs from data attributes
   const imageUrls = $(".block-content li a")
     .map(function () {
       return $(this).attr("data-img");
