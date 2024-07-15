@@ -102,6 +102,17 @@ const isIndexPage = Astro.url.pathname === "/";
     footer {
       font-size: 14px;
     }
+
+    footer.index {
+      padding: 15px;
+      height: auto;
+      justify-content: unset;
+      gap: 10px;
+    }
+
+    footer.index::after {
+      border-radius: 0%;
+    }
   }
 
   @media only screen and (max-width: 480px) {

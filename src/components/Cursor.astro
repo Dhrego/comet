@@ -414,56 +414,6 @@
     }, 900);
   });
 
-  // // HOVER FOR WORKS ON INDEX
-  // const $cursorBox = $(".cursor-box");
-  // const $cursorDot = $(".cursor-dot");
-  // const $cursorOutline = $(".cursor-outline");
-
-  // // gsap.set(".block-content *", { cursor: "none" });
-
-  // $(".block-content li").on("mousemove", function (e: MouseEvent) {
-  //   gsap
-  //     .timeline()
-  //     .to($cursorDot, { scale: 0, duration: 0.3 })
-  //     .to($cursorOutline, { scale: 0, duration: 0.3 }, 0)
-  //     .to($cursorBox, { scale: 1, duration: 0.3 }, 0);
-  //   moveToBox(e);
-  // });
-
-  // $(".block-content li").on("mouseleave", function () {
-  //   gsap
-  //     .timeline()
-  //     .to($cursorDot, { scale: 0.1, duration: 0.3 })
-  //     .to($cursorOutline, { scale: 0.3, duration: 0.3 }, 0)
-  //     .to($cursorBox, { scale: 0, duration: 0.3 }, 0);
-  // });
-
-  // const moveToBox = (e: MouseEvent) => {
-  //   const clientX = e.clientX;
-  //   const clientY = e.clientY;
-  //   const boxWidth = $cursorBox.width();
-  //   const boxHeight = $cursorBox.height();
-  //   const left = clientX - boxWidth / 2;
-  //   const top = clientY - boxHeight / 2;
-
-  //   gsap.to($cursorBox, {
-  //     left: left,
-  //     top: top,
-  //     duration: 0,
-  //     ease: "power2.out",
-  //   });
-  // };
-
-  // $(".block-content li a").on("mousemove", function (e: MouseEvent) {
-  //   // console.log($(this).target.attr("[data-img]"));
-  //   let img = $(this).attr("data-img");
-
-  //   gsap.set($cursorBox, {
-  //     backgroundImage: `url(${img})`,
-  //     ease: "power1.in",
-  //   });
-  // });
-
   // HOVER FOR WORKS ON INDEX
   const $cursorBox = $(".cursor-box");
   const $cursorDot = $(".cursor-dot");
@@ -478,7 +428,7 @@
 
   // Preload images
   const preloadImages = (urls: any) => {
-    urls.forEach((url) => {
+    urls.forEach((url: any) => {
       const img = new Image();
       img.src = url;
     });
