@@ -98,6 +98,10 @@ const cards = [
         <div class="blend_3">
           <img src="blend_3.svg" alt="" srcset="" draggable="false" />
         </div>
+
+        <!-- SCROLL TIP -->
+        <div class="scroll"></div>
+        <div class="text">Scroll down</div>
       </div>
       <div class="block-2">
         <div class="col">
@@ -281,7 +285,7 @@ const cards = [
 <style>
   body {
     background-color: var(--bg-color-alt);
-    overflow: hidden;
+    /* overflow: hidden; */
   }
 
   main {
@@ -627,6 +631,70 @@ const cards = [
     text-align: center;
   }
 
+  .scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2.22rem;
+    height: 3.5rem;
+    border-radius: 3rem;
+    box-shadow: inset 0 0 0 2px #ffffff5b;
+  }
+
+  .scroll:after {
+    content: "";
+    position: absolute;
+    width: 0.25rem;
+    height: 0.25rem;
+    background-color: var(--base-color);
+    border-radius: 1rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: ballPoint 2.5s linear infinite;
+    transition: color 0.3s ease;
+  }
+
+  .text {
+    font-family: var(--font-Light);
+    color: #d0d0d0;
+    font-size: 14px;
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    user-select: none;
+  }
+
+  @keyframes ballPoint {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -300%);
+      height: 0.25rem;
+    }
+    20% {
+      opacity: 1;
+      transform: translate(-50%, -25%);
+      height: 0.9rem;
+    }
+    40% {
+      opacity: 0;
+      transform: translate(-50%, 150%);
+      height: 0.25rem;
+    }
+    60% {
+      opacity: 0;
+      transform: translate(-50%, -300%);
+      height: 0.25rem;
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -300%);
+      height: 0.25rem;
+    }
+  }
+
   @media screen and (max-width: 768px) {
     .blend_1,
     .blend_2,
@@ -746,6 +814,21 @@ const cards = [
       width: 100%;
       height: 100%;
     }
+
+    .scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1.5rem;
+      height: 2.5rem;
+      border-radius: 3rem;
+      box-shadow: inset 0 0 0 1px #ffffff5b;
+    }
+
+    .text {
+      font-size: 12px;
+    }
   }
 
   @keyframes bounce {
@@ -799,4 +882,28 @@ const cards = [
   });
 
   updateScrollPercentage();
+
+  //SCROLL TIP ANIMATION
+  $(window).on("scroll", function () {
+    if ($(this).scrollTop() > 0) {
+      gsap.to(".scroll, .text", {
+        opacity: 0,
+        duration: 0.1,
+        ease: "power1.in",
+        onComplete: () => {
+          gsap.set(".scroll, .text", {
+            delay: 0.2,
+            visibility: "hidden",
+          });
+        },
+      });
+    } else if ($(this).scrollTop() === 0) {
+      gsap.to(".scroll, .text", {
+        visibility: "visible",
+        opacity: 1,
+        ease: "power1.in",
+        duration: 0.4,
+      });
+    }
+  });
 </script>
