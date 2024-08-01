@@ -17,8 +17,8 @@ const links = [
     img: "shot.png",
   },
   {
-    text: "Third App",
-    href: "#",
+    text: "Freedom Photos",
+    href: "https://freedom-roan.vercel.app/",
     img: "shot_1.png",
   },
   {
@@ -205,7 +205,11 @@ const cards = [
             {
               links.map((link) => (
                 <li>
-                  <a href={link.href} data-img={link.img}>
+                  <a
+                    target={link.href === "#" ? "" : "_blank"}
+                    href={link.href}
+                    data-img={link.img}
+                  >
                     <span>{link.text}</span>
                     <span class="arrow">
                       <svg
