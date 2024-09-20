@@ -5,11 +5,11 @@ const { items } = Astro.props;
 ---
 
 <div class="bobo">
-  <div class="hamburger-menu">
+  <button class="hamburger-menu">
     <span></span>
     <span></span>
     <span></span>
-  </div>
+  </button>
 
   <div class="koko">
     <div class="overlay">
@@ -93,6 +93,8 @@ const { items } = Astro.props;
     align-items: center;
     z-index: 9999;
     cursor: pointer;
+    background: transparent;
+    border: 0;
   }
 
   .hamburger-menu.active span:first-child {
