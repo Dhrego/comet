@@ -5,7 +5,7 @@ const { items } = Astro.props;
 ---
 
 <div class="bobo">
-  <button class="hamburger-menu">
+  <button class="hamburger-menu" aria-label="Toggle menu" aria-expanded="false">
     <span></span>
     <span></span>
     <span></span>
@@ -196,8 +196,11 @@ const { items } = Astro.props;
   const $menu = $(".hamburger-menu");
   const $overlay = $(".koko");
   const $circle = $(".circle");
+  let menuOpen = false;
 
   $menu.on("click", () => {
+    menuOpen = !menuOpen;
+    $menu.attr("aria-expanded", menuOpen);
     $menu.toggleClass("active");
     // $overlay.toggleClass("active");
     $circle.toggleClass("open");
