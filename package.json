@@ -15,7 +15,7 @@
     "@logsnag/node": "^1.0.1",
     "@muridot0/dreamy-gradients": "^0.1.38",
     "@vercel/speed-insights": "^1.0.12",
-    "astro": "^3.4.3",
+    "astro": "^5.0.3",
     "dotenv": "^16.4.5",
     "gsap": "^3.12.5",
     "jquery": "^3.7.1",
