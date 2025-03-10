@@ -1,10 +1,10 @@
 ---
 import Circle from "./Circle.astro";
 import Navlink from "./Navlink.astro";
-const { items } = Astro.props;
+const { items, data } = Astro.props;
 ---
 
-<div class="bobo">
+<div class="bobo" data-nav={data}>
   <button class="hamburger-menu" aria-label="Toggle menu" aria-expanded="false">
     <span></span>
     <span></span>
@@ -186,6 +186,58 @@ const { items } = Astro.props;
 </style>
 
 <script>
+  // import $ from "jquery";
+  // import { gsap } from "gsap";
+  // import { CustomEase } from "gsap/CustomEase";
+  // import { lenis, disableLenis, enableLenis } from "../scripts/lenisInstance";
+
+  // gsap.registerPlugin(CustomEase);
+
+  // const $menu = $(".hamburger-menu");
+  // const $overlay = $(".koko");
+  // const $circle = $(".circle");
+  // let menuOpen = false;
+
+  // $menu.on("click", () => {
+  //   console.log($(this));
+
+  //   menuOpen = !menuOpen;
+  //   $menu.attr("aria-expanded", menuOpen);
+  //   $menu.toggleClass("active");
+  //   // $overlay.toggleClass("active");
+  //   $circle.toggleClass("open");
+  //   activeHandler();
+
+  //   const duration = 0.5;
+  //   const easing = CustomEase.create("custom", "0.104,0.204,0.492,1");
+
+  //   gsap.to($overlay, {
+  //     height: $menu.hasClass("active") ? "100vh" : "1px",
+  //     duration: duration,
+  //     ease: easing,
+  //   });
+
+  //   gsap.to(".nav-link", {
+  //     duration: 1,
+  //     opacity: $menu.hasClass("active") ? 1 : 0,
+  //     y: $menu.hasClass("active") ? 0 : 100,
+  //     ease: "power1.inOut",
+  //     stagger: {
+  //       each: 0.125,
+  //     },
+  //   });
+  // });
+
+  // const activeHandler = () => {
+  //   if ($menu.hasClass("active")) {
+  //     $("body").css("overflowY", "hidden");
+  //     disableLenis();
+  //   } else {
+  //     $("body").css("overflowY", "auto");
+  //     enableLenis();
+  //   }
+  // };
+
   import $ from "jquery";
   import { gsap } from "gsap";
   import { CustomEase } from "gsap/CustomEase";
@@ -193,32 +245,35 @@ const { items } = Astro.props;
 
   gsap.registerPlugin(CustomEase);
 
-  const $menu = $(".hamburger-menu");
-  const $overlay = $(".koko");
-  const $circle = $(".circle");
-  let menuOpen = false;
+  const navbarStates = {};
 
-  $menu.on("click", () => {
-    menuOpen = !menuOpen;
-    $menu.attr("aria-expanded", menuOpen);
+  $(".hamburger-menu").on("click", function () {
+    const $menu = $(this);
+    const $bobo = $menu.closest(".bobo");
+    const navId = $bobo.attr("data-nav");
+    const $overlay = $bobo.find(".koko");
+    const $circle = $bobo.find(".circle");
+    const $navLinks = $bobo.find(".nav-link");
+
+    navbarStates[navId] = !navbarStates[navId];
+    $menu.attr("aria-expanded", navbarStates[navId]);
     $menu.toggleClass("active");
-    // $overlay.toggleClass("active");
     $circle.toggleClass("open");
-    activeHandler();
+    activeHandler(navbarStates[navId]);
 
     const duration = 0.5;
     const easing = CustomEase.create("custom", "0.104,0.204,0.492,1");
 
     gsap.to($overlay, {
-      height: $menu.hasClass("active") ? "100vh" : "1px",
+      height: navbarStates[navId] ? "100vh" : "1px",
       duration: duration,
       ease: easing,
     });
 
-    gsap.to(".nav-link", {
+    gsap.to($navLinks, {
       duration: 1,
-      opacity: $menu.hasClass("active") ? 1 : 0,
-      y: $menu.hasClass("active") ? 0 : 100,
+      opacity: navbarStates[navId] ? 1 : 0,
+      y: navbarStates[navId] ? 0 : 100,
       ease: "power1.inOut",
       stagger: {
         each: 0.125,
@@ -226,8 +281,8 @@ const { items } = Astro.props;
     });
   });
 
-  const activeHandler = () => {
-    if ($menu.hasClass("active")) {
+  const activeHandler = (isActive: boolean) => {
+    if (isActive) {
       $("body").css("overflowY", "hidden");
       disableLenis();
     } else {
