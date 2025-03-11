@@ -1,7 +1,7 @@
 ---
 import Circle from "./Circle.astro";
 import Navlink from "./Navlink.astro";
-const { items, data } = Astro.props;
+const { items, data = "navbar1" } = Astro.props;
 ---
 
 <div class="bobo" data-nav={data}>
