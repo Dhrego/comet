@@ -203,15 +203,16 @@ const cards = [
       </div>
       <div class="block-4">
         <div class="title">Selected Works</div>
-        <div class="block-content">
+        <div class="block-content-works">
           <ul>
             {
-              links.map((link) => (
+              links.map((link, i) => (
                 <li>
                   <a
                     target={link.href === "#" ? "" : "_blank"}
                     href={link.href}
                     data-img={link.img}
+                    id={`p${i + 1}`}
                   >
                     <span>{link.text}</span>
                     <span class="arrow">

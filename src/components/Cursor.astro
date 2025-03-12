@@ -1,4 +1,7 @@
 <>
+  <div class="preview">
+    <div class="preview-img"></div>
+  </div>
   <div class="cursor-outline"></div>
   <div class="cursor-dot"></div>
 
@@ -48,6 +51,7 @@
       </svg>
     </div>
   </div>
+
   <div class="cursor-box"></div>
 </>
 
@@ -165,7 +169,7 @@
     transition: opacity 0.1s ease;
   }
 
-  .cursor-box {
+  /* .cursor-box {
     width: clamp(10em, 27.5vw, 25em);
     height: clamp(10em, 27.5vh, 25em);
     position: fixed;
@@ -176,6 +180,51 @@
     background-size: cover;
     background-position: center;
     will-change: transform;
+  } */
+
+  /* .preview {
+    position: fixed;
+    width: clamp(10em, 27.5vw, 25em);
+    height: clamp(10em, 27.5vh, 25em);
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transform: scale(0);
+    transform-origin: center center;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 9999;
+    display: block;
+    background-size: cover;
+    background-position: center;
+    will-change: transform;
+  } */
+
+  .preview {
+    position: fixed;
+    width: clamp(10em, 27.5vw, 25em); /* Adjust width as needed */
+    height: calc(width * 0.75); /* Maintain 4:3 aspect ratio */
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transform: scale(0);
+    transform-origin: center center;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 9999;
+    display: block;
+    background-size: cover;
+    background-position: center;
+    will-change: transform;
+    aspect-ratio: 4 / 3; /* Maintain 4:3 aspect ratio */
+  }
+
+  .preview-img {
+    width: 100%;
+    height: 100%;
+    background-image: url("img-group.png");
+    background-size: cover;
+    background-position: 0 0;
   }
 
   @media screen and (max-width: 768px) {
@@ -348,67 +397,258 @@
     }, 900);
   });
 
-  // HOVER FOR WORKS ON INDEX
-  const $cursorBox = $(".cursor-box");
-  const $cursorDot = $(".cursor-dot");
-  const $cursorOutline = $(".cursor-outline");
+  // // HOVER FOR WORKS ON INDEX
+  // const $cursorBox = $(".cursor-box");
+  // const $cursorDot = $(".cursor-dot");
+  // const $cursorOutline = $(".cursor-outline");
 
-  // Collect image URLs from data attributes
-  const imageUrls = $(".block-content li a")
-    .map(function () {
-      return $(this).attr("data-img");
-    })
-    .get();
+  // // Collect image URLs from data attributes
+  // const imageUrls = $(".block-content li a")
+  //   .map(function () {
+  //     return $(this).attr("data-img");
+  //   })
+  //   .get();
 
-  // Preload images
-  const preloadImages = (urls: any) => {
-    urls.forEach((url: any) => {
-      const img = new Image();
-      img.src = url;
+  // // Preload images
+  // const preloadImages = (urls: any) => {
+  //   urls.forEach((url: any) => {
+  //     const img = new Image();
+  //     img.src = url;
+  //   });
+  // };
+
+  // preloadImages(imageUrls);
+
+  // $(".block-content li").on("mousemove", function (e: MouseEvent) {
+  //   gsap
+  //     .timeline()
+  //     .to($cursorDot, { scale: 0, duration: 0.3 })
+  //     .to($cursorOutline, { scale: 0, duration: 0.3 }, 0)
+  //     .to($cursorBox, { scale: 1, duration: 0.3 }, 0);
+  //   moveToBox(e);
+  // });
+
+  // $(".block-content li").on("mouseleave", function () {
+  //   gsap
+  //     .timeline()
+  //     .to($cursorDot, { scale: 0.1, duration: 0.3 })
+  //     .to($cursorOutline, { scale: 0.3, duration: 0.3 }, 0)
+  //     .to($cursorBox, { scale: 0, duration: 0.3 }, 0);
+  // });
+
+  // const moveToBox = (e: MouseEvent) => {
+  //   const clientX = e.clientX;
+  //   const clientY = e.clientY;
+  //   const boxWidth = $cursorBox.width();
+  //   const boxHeight = $cursorBox.height();
+  //   const left = clientX - boxWidth / 2;
+  //   const top = clientY - boxHeight / 2;
+
+  //   gsap.to($cursorBox, {
+  //     left: left,
+  //     top: top,
+  //     duration: 0,
+  //     ease: "power2.out",
+  //   });
+  // };
+
+  // $(".block-content li a").on("mousemove", function () {
+  //   let img = $(this).attr("data-img");
+
+  //   gsap.set($cursorBox, {
+  //     backgroundImage: `url(${img})`,
+  //     ease: "power1.in",
+  //   });
+  // });
+
+  // document.addEventListener("DOMContentLoaded", () => {
+  //   const projects = document.querySelector(".block-content-works");
+  //   const preview = document.querySelector(".preview") as HTMLDivElement;
+  //   const previewImg = document.querySelector(".preview-img") as HTMLDivElement;
+
+  //   const bgPositions = {
+  //     p1: "0 0",
+  //     p2: "0 50%",
+  //     p3: "0 100%",
+  //   };
+
+  //   // Track mouse movement globally to keep preview centered
+  //   document.addEventListener("mousemove", (e: MouseEvent) => {
+  //     const clientX = e.clientX;
+  //     const clientY = e.clientY;
+  //     const boxWidth = preview.offsetWidth; // Width of the preview element
+  //     const boxHeight = preview.offsetHeight; // Height of the preview element
+  //     const left = clientX - boxWidth / 2; // Center horizontally
+  //     const top = clientY - boxHeight / 2; // Center vertically
+
+  //     gsap.to(preview, {
+  //       left: left,
+  //       top: top,
+  //       duration: 0, // Instant movement (no animation)
+  //       ease: "power2.out",
+  //     });
+  //   });
+
+  //   // Scale up when mouse enters .block-content-works
+  //   projects.addEventListener("mouseenter", () => {
+  //     console.log("Mouse entered .block-content-works");
+  //     gsap.to(preview, { duration: 0.3, scale: 1 }); // Scale up
+  //   });
+
+  //   // Scale down when mouse leaves .block-content-works
+  //   projects.addEventListener("mouseleave", () => {
+  //     console.log("Mouse left .block-content-works");
+  //     gsap.to(preview, { duration: 0.3, scale: 0 }); // Scale down
+  //   });
+
+  //   const moveProjectImg = (project: HTMLAnchorElement) => {
+  //     const projectId = project.id;
+  //     console.log(`Hovered project ID: ${projectId}`);
+
+  //     gsap.to(previewImg, 0.4, {
+  //       backgroundPosition: bgPositions[projectId] || "0 0",
+  //       onUpdate: () => {
+  //         console.log(
+  //           `Updated backgroundPosition: ${previewImg.style.backgroundPosition}`
+  //         );
+  //       },
+  //     });
+  //   };
+
+  //   // Attach event listeners to the <a> elements inside the <li> elements
+  //   const projectLinks = projects.querySelectorAll("ul li a");
+  //   projectLinks.forEach((link) => {
+  //     link.addEventListener("mousemove", moveProjectImg.bind(null, link));
+  //   });
+  // });
+  // $(document).ready(function () {
+  //   const projects = $(".block-content-works");
+  //   const preview = $(".preview");
+  //   const previewImg = $(".preview-img");
+
+  //   const bgPositions = {
+  //     p1: "0 0",
+  //     p2: "0 50%",
+  //     p3: "0 100%",
+  //   };
+
+  //   // Track mouse movement globally to keep preview centered
+  //   $(document).on("mousemove", function (e) {
+  //     const clientX = e.clientX;
+  //     const clientY = e.clientY;
+  //     const boxWidth = preview.outerWidth(); // Width of the preview element
+  //     const boxHeight = preview.outerHeight(); // Height of the preview element
+  //     const left = clientX - boxWidth / 2; // Center horizontally
+  //     const top = clientY - boxHeight / 2; // Center vertically
+
+  //     // Use GSAP to update the position instantly
+  //     gsap.set(preview[0], {
+  //       left: left,
+  //       top: top,
+  //     });
+  //   });
+
+  //   // Scale up when mouse enters .block-content-works
+  //   projects.on("mouseenter", function () {
+  //     console.log("Mouse entered .block-content-works");
+  //     gsap.to(preview[0], { duration: 0.3, scale: 1 }); // Scale up
+  //   });
+
+  //   // Scale down when mouse leaves .block-content-works
+  //   projects.on("mouseleave", function () {
+  //     console.log("Mouse left .block-content-works");
+  //     gsap.to(preview[0], { duration: 0.3, scale: 0 }); // Scale down
+  //   });
+
+  //   const moveProjectImg = function (project) {
+  //     const projectId = project.id;
+  //     console.log(`Hovered project ID: ${projectId}`);
+
+  //     gsap.to(previewImg[0], {
+  //       duration: 0.4,
+  //       backgroundPosition: bgPositions[projectId] || "0 0",
+  //       onUpdate: function () {
+  //         console.log(
+  //           `Updated backgroundPosition: ${previewImg.css("backgroundPosition")}`
+  //         );
+  //       },
+  //     });
+  //   };
+
+  //   // Attach event listeners to the <a> elements inside the <li> elements
+  //   const projectLinks = projects.find("ul li a");
+  //   projectLinks.each(function () {
+  //     $(this).on("mousemove", function () {
+  //       moveProjectImg(this);
+  //     });
+  //   });
+  // });
+  $(document).ready(function () {
+    const projects = $(".block-content-works");
+    const preview = $(".preview");
+    const previewImg = $(".preview-img");
+
+    // Cursor elements
+    const $cursorDot = $(".cursor-dot");
+    const $cursorOutline = $(".cursor-outline");
+
+    const bgPositions = {
+      p1: "0 0",
+      p2: "0 50%",
+      p3: "0 100%",
+    };
+
+    $(document).on("mousemove", function (e: MouseEvent) {
+      const clientX = e.clientX;
+      const clientY = e.clientY;
+      const boxWidth = preview.outerWidth();
+      const boxHeight = preview.outerHeight();
+      const left = clientX - boxWidth / 2;
+      const top = clientY - boxHeight / 2;
+
+      gsap.set(preview[0], {
+        left: left,
+        top: top,
+      });
     });
-  };
 
-  preloadImages(imageUrls);
-
-  $(".block-content li").on("mousemove", function (e: MouseEvent) {
-    gsap
-      .timeline()
-      .to($cursorDot, { scale: 0, duration: 0.3 })
-      .to($cursorOutline, { scale: 0, duration: 0.3 }, 0)
-      .to($cursorBox, { scale: 1, duration: 0.3 }, 0);
-    moveToBox(e);
-  });
-
-  $(".block-content li").on("mouseleave", function () {
-    gsap
-      .timeline()
-      .to($cursorDot, { scale: 0.1, duration: 0.3 })
-      .to($cursorOutline, { scale: 0.3, duration: 0.3 }, 0)
-      .to($cursorBox, { scale: 0, duration: 0.3 }, 0);
-  });
-
-  const moveToBox = (e: MouseEvent) => {
-    const clientX = e.clientX;
-    const clientY = e.clientY;
-    const boxWidth = $cursorBox.width();
-    const boxHeight = $cursorBox.height();
-    const left = clientX - boxWidth / 2;
-    const top = clientY - boxHeight / 2;
-
-    gsap.to($cursorBox, {
-      left: left,
-      top: top,
-      duration: 0,
-      ease: "power2.out",
+    projects.on("mouseenter", function () {
+      gsap.to(preview[0], { duration: 0.3, scale: 1 });
     });
-  };
 
-  $(".block-content li a").on("mousemove", function () {
-    let img = $(this).attr("data-img");
+    projects.on("mouseleave", function () {
+      gsap.to(preview[0], { duration: 0.3, scale: 0 });
+    });
 
-    gsap.set($cursorBox, {
-      backgroundImage: `url(${img})`,
-      ease: "power1.in",
+    const moveProjectImg = function (project: HTMLAnchorElement) {
+      const projectId = project.id;
+
+      gsap.to(previewImg[0], {
+        duration: 0.4,
+        backgroundPosition: bgPositions[projectId] || "0 0",
+      });
+    };
+
+    // Attach event listeners to the anchor elements
+    const projectLinks = projects.find("ul li a");
+    projectLinks.each(function () {
+      $(this).on("mousemove", function (e: MouseEvent) {
+        moveProjectImg(this);
+
+        // Cursor animations on mousemove
+        gsap
+          .timeline()
+          .to($cursorDot, { scale: 0, duration: 0.3 })
+          .to($cursorOutline, { scale: 0, duration: 0.3 }, 0);
+      });
+
+      $(this).on("mouseleave", function () {
+        // Cursor animations on mouseleave
+        gsap
+          .timeline()
+          .to($cursorDot, { scale: 0.1, duration: 0.3 })
+          .to($cursorOutline, { scale: 0.3, duration: 0.3 }, 0);
+      });
     });
   });
 </script>
