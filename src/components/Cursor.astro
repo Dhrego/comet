@@ -52,7 +52,7 @@
     </div>
   </div>
 
-  <div class="cursor-box"></div>
+  <!-- <div class="cursor-box"></div> -->
 </>
 
 <style>
@@ -200,10 +200,11 @@
     will-change: transform;
   } */
 
+  /* PREVIEW BOX FOR HOVER REVEAL */
   .preview {
     position: fixed;
-    width: clamp(10em, 27.5vw, 25em); /* Adjust width as needed */
-    height: calc(width * 0.75); /* Maintain 4:3 aspect ratio */
+    width: clamp(10em, 27.5vw, 25em);
+    height: calc(width * 0.75);
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -216,7 +217,7 @@
     background-size: cover;
     background-position: center;
     will-change: transform;
-    aspect-ratio: 4 / 3; /* Maintain 4:3 aspect ratio */
+    aspect-ratio: 4 / 3;
   }
 
   .preview-img {
@@ -461,128 +462,6 @@
   //   });
   // });
 
-  // document.addEventListener("DOMContentLoaded", () => {
-  //   const projects = document.querySelector(".block-content-works");
-  //   const preview = document.querySelector(".preview") as HTMLDivElement;
-  //   const previewImg = document.querySelector(".preview-img") as HTMLDivElement;
-
-  //   const bgPositions = {
-  //     p1: "0 0",
-  //     p2: "0 50%",
-  //     p3: "0 100%",
-  //   };
-
-  //   // Track mouse movement globally to keep preview centered
-  //   document.addEventListener("mousemove", (e: MouseEvent) => {
-  //     const clientX = e.clientX;
-  //     const clientY = e.clientY;
-  //     const boxWidth = preview.offsetWidth; // Width of the preview element
-  //     const boxHeight = preview.offsetHeight; // Height of the preview element
-  //     const left = clientX - boxWidth / 2; // Center horizontally
-  //     const top = clientY - boxHeight / 2; // Center vertically
-
-  //     gsap.to(preview, {
-  //       left: left,
-  //       top: top,
-  //       duration: 0, // Instant movement (no animation)
-  //       ease: "power2.out",
-  //     });
-  //   });
-
-  //   // Scale up when mouse enters .block-content-works
-  //   projects.addEventListener("mouseenter", () => {
-  //     console.log("Mouse entered .block-content-works");
-  //     gsap.to(preview, { duration: 0.3, scale: 1 }); // Scale up
-  //   });
-
-  //   // Scale down when mouse leaves .block-content-works
-  //   projects.addEventListener("mouseleave", () => {
-  //     console.log("Mouse left .block-content-works");
-  //     gsap.to(preview, { duration: 0.3, scale: 0 }); // Scale down
-  //   });
-
-  //   const moveProjectImg = (project: HTMLAnchorElement) => {
-  //     const projectId = project.id;
-  //     console.log(`Hovered project ID: ${projectId}`);
-
-  //     gsap.to(previewImg, 0.4, {
-  //       backgroundPosition: bgPositions[projectId] || "0 0",
-  //       onUpdate: () => {
-  //         console.log(
-  //           `Updated backgroundPosition: ${previewImg.style.backgroundPosition}`
-  //         );
-  //       },
-  //     });
-  //   };
-
-  //   // Attach event listeners to the <a> elements inside the <li> elements
-  //   const projectLinks = projects.querySelectorAll("ul li a");
-  //   projectLinks.forEach((link) => {
-  //     link.addEventListener("mousemove", moveProjectImg.bind(null, link));
-  //   });
-  // });
-  // $(document).ready(function () {
-  //   const projects = $(".block-content-works");
-  //   const preview = $(".preview");
-  //   const previewImg = $(".preview-img");
-
-  //   const bgPositions = {
-  //     p1: "0 0",
-  //     p2: "0 50%",
-  //     p3: "0 100%",
-  //   };
-
-  //   // Track mouse movement globally to keep preview centered
-  //   $(document).on("mousemove", function (e) {
-  //     const clientX = e.clientX;
-  //     const clientY = e.clientY;
-  //     const boxWidth = preview.outerWidth(); // Width of the preview element
-  //     const boxHeight = preview.outerHeight(); // Height of the preview element
-  //     const left = clientX - boxWidth / 2; // Center horizontally
-  //     const top = clientY - boxHeight / 2; // Center vertically
-
-  //     // Use GSAP to update the position instantly
-  //     gsap.set(preview[0], {
-  //       left: left,
-  //       top: top,
-  //     });
-  //   });
-
-  //   // Scale up when mouse enters .block-content-works
-  //   projects.on("mouseenter", function () {
-  //     console.log("Mouse entered .block-content-works");
-  //     gsap.to(preview[0], { duration: 0.3, scale: 1 }); // Scale up
-  //   });
-
-  //   // Scale down when mouse leaves .block-content-works
-  //   projects.on("mouseleave", function () {
-  //     console.log("Mouse left .block-content-works");
-  //     gsap.to(preview[0], { duration: 0.3, scale: 0 }); // Scale down
-  //   });
-
-  //   const moveProjectImg = function (project) {
-  //     const projectId = project.id;
-  //     console.log(`Hovered project ID: ${projectId}`);
-
-  //     gsap.to(previewImg[0], {
-  //       duration: 0.4,
-  //       backgroundPosition: bgPositions[projectId] || "0 0",
-  //       onUpdate: function () {
-  //         console.log(
-  //           `Updated backgroundPosition: ${previewImg.css("backgroundPosition")}`
-  //         );
-  //       },
-  //     });
-  //   };
-
-  //   // Attach event listeners to the <a> elements inside the <li> elements
-  //   const projectLinks = projects.find("ul li a");
-  //   projectLinks.each(function () {
-  //     $(this).on("mousemove", function () {
-  //       moveProjectImg(this);
-  //     });
-  //   });
-  // });
   $(document).ready(function () {
     const projects = $(".block-content-works");
     const preview = $(".preview");
@@ -594,8 +473,9 @@
 
     const bgPositions = {
       p1: "0 0",
-      p2: "0 50%",
-      p3: "0 100%",
+      p2: "0 33.33%",
+      p3: "0 66.66%",
+      p4: "0 100%",
     };
 
     $(document).on("mousemove", function (e: MouseEvent) {
@@ -629,7 +509,7 @@
       });
     };
 
-    // Attach event listeners to the anchor elements
+    // Attach event listeners to the a tags
     const projectLinks = projects.find("ul li a");
     projectLinks.each(function () {
       $(this).on("mousemove", function (e: MouseEvent) {
