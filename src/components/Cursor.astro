@@ -480,6 +480,15 @@
       p4: "0 100%",
     };
 
+    let xPreviewTo = gsap.quickTo(preview[0], "left", {
+      duration: 0.5,
+      ease: "power2.out",
+    });
+    let yPreviewTo = gsap.quickTo(preview[0], "top", {
+      duration: 0.5,
+      ease: "power2.out",
+    });
+
     $(document).on("mousemove", function (e: MouseEvent) {
       const clientX = e.clientX;
       const clientY = e.clientY;
@@ -488,10 +497,8 @@
       const left = clientX - boxWidth / 2;
       const top = clientY - boxHeight / 2;
 
-      gsap.set(preview[0], {
-        left: left,
-        top: top,
-      });
+      xPreviewTo(left);
+      yPreviewTo(top);
     });
 
     projects.on("mouseenter", function () {
