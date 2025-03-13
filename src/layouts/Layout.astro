@@ -39,6 +39,8 @@ const url = "https://dhrego.com";
     <FontPreloader />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <!-- Preload the image -->
+    <link rel="preload" href="img-group.png" as="image" />
   </head>
   <body>
     <Navbar />
