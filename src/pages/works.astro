@@ -49,7 +49,9 @@ import { tiles } from "../config";
                       <div>{tile.date}</div>
                     </div>
                   </div>
-                  <a class="btn">view project</a>
+                  <a class="btn" href={tile.link} target="_blank">
+                    view project
+                  </a>
                 </div>
               ))
             }
@@ -176,7 +178,7 @@ import { tiles } from "../config";
     position: relative;
     cursor: pointer;
     padding-bottom: 2px;
-    border-bottom: 0.1px solid #ffffffbd;
+    /* border-bottom: 0.1px solid #ffffffbd; */
   }
 
   .scroll {
@@ -184,6 +186,7 @@ import { tiles } from "../config";
     position: relative;
     left: 40px;
     gap: 40px;
+    width: min-content;
   }
 
   .scroll::-webkit-scrollbar {
@@ -212,13 +215,14 @@ import { tiles } from "../config";
       display: flex;
       flex-direction: column;
       position: relative;
+      width: 100%;
       left: unset;
-      padding-top: 20px;
+      /* padding-top: 20px; */
       gap: 20px;
     }
 
     .project_tile {
-      padding: 20px;
+      padding: 12px;
     }
 
     .project_tile img {
