@@ -26,6 +26,11 @@ interface Tiles {
   link: string;
 }
 
+interface Navlinks {
+  text: string;
+  href: string;
+}
+
 //Arrays
 const links: Link[] = [
   {
@@ -140,4 +145,23 @@ const tiles: Tiles[] = [
   },
 ];
 
-export { links, cards, hobbies, tiles };
+const navlinks = [
+  {
+    text: "Home",
+    href: "/",
+  },
+  {
+    text: "Myself",
+    href: "/me",
+  },
+  {
+    text: "Works",
+    href: "/works",
+  },
+  {
+    text: "Contact",
+    href: "/contact",
+  },
+];
+
+export { links, cards, hobbies, tiles, navlinks };

@@ -1,25 +1,7 @@
 ---
 import HamburgerMenu from "./HamburgerMenu.astro";
 import { lenis } from "../scripts/lenisInstance.js";
-
-const navlinks = [
-  {
-    text: "Home",
-    href: "/",
-  },
-  {
-    text: "Myself",
-    href: "/me",
-  },
-  {
-    text: "Works",
-    href: "/works",
-  },
-  {
-    text: "Contact",
-    href: "/contact",
-  },
-];
+import { navlinks } from "../config";
 
 const currentPath = Astro.url.pathname === "/me";
 ---
