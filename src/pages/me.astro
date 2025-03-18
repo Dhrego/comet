@@ -1,39 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
-
-const hobbies = [
-  {
-    name: "Gaming",
-    content:
-     "As a die-hard Madridista, my relationship with FIFA has been a thrilling love-hate saga. It goes beyond just the game; it's become a part of me. I relish the thrill of dismantling my opponents 😹. I also had some great moments on Fortnite too. Through gaming, I've made invaluable friends and connected with fellow developers who share my passion for coding and gaming. Gaming has not just been a pastime for me; it's been a way to connect, compete, unwind, and annihilate others.",
-    tag: "gaming",
-  },
-  {
-    name: "Music",
-    content:
-      "Listening to music is a passion of mine. I enjoy a diverse range of genres that provide the perfect soundtrack to my day, whether I am coding, working out, or relaxing. Music has the power to transport me to another world, and I am always on the lookout for new artists and songs that inspire me. Music is a form of self-expression that connects me to my emotions and helps me process my thoughts. It's a constant source of joy and inspiration in my life. Here is my wrapped of 2023 from Spotify",
-    tag: "music",
-    img: "wrapper_2023.jpg",
-  },
-  {
-    name: "Movies & Tv Shows",
-    content:
-      "I love delving into the latest movies and TV shows, exploring everything from spine-chilling horror to captivating sci-fi. Storytelling in visual media intrigues me because it offers a diverse range of narratives and characters to explore. One of my favorite franchises is Game of Thrones. It blends epic battles, political intrigue, and complex relationships into a compelling narrative. The series has a unique way of blending fantasy elements with deep themes, making it a memorable and thought-provoking watch.",
-    tag: "moviesandshows",
-  },
-  {
-    name: "Anime & Manga",
-    content:
-      `I enjoy anime and manga, offering endless adventures with diverse characters and captivating new series. I am a perceptive critic with high standards, interested in rich narratives and unique art styles that ignite my imagination. Subpar stories usually do not cut it for me. I thrive on finding those exceptional stories that inspire and resonate deeply. My passion for unpredictable storytelling means I never settle for anything less than the best, with Attack on Titan currently being the only piece of art to exceed that criteria and Vagabond being one of the best reads in manga.`,
-    tag: "animeandmanga",
-  },
-  {
-    name: "Fitness",
-    content:
-      `Working out is one of my key hobbies. I believe in maintaining a healthy and active lifestyle, and I enjoy various forms of exercise, from weightlifting to cardio workouts. Living by the creed stated by Thomas Jefferson, "A strong body makes the mind strong," is not just a guiding principle but also a basis of motivation and discipline for me. With Bulgarian splits being the simplest, and #1 as everyone's favorite workout 🤣 (if you know, you know).`,
-    tag: "fitness",
-  },
-];
+import { hobbies } from "../config";
+const extractYear = (src: string) => src.split(".")[0].split("_")[1];
 ---
 
 <Layout
@@ -175,10 +143,18 @@ const hobbies = [
                       <p>{hobby.content}</p>
                       {
                         <div class="img-block">
-                          {hobby.img && (
+                          {/* {hobby.img && (
                             <div class="img-title">My Spotify 2023 wrapped</div>
                             <img src="wrapped_2023.jpg" alt="spotify wrapped image" srcset="" />
-                          )}
+                          )} */}
+                          {hobby.img?.map((src: string) => (
+                            <div>
+                              <div class="img-title">
+                                My Spotify {extractYear(src)} wrapped
+                              </div>
+                              <img src={`/images/${src}`} alt={src} srcset="" />
+                            </div>
+                          ))}
                         </div>
                       }
                     </div>
@@ -321,17 +297,23 @@ const hobbies = [
   }
 
   .img-block {
-    display: block;
-    max-width: 300px;
+    display: flex;
+    gap: 1.5rem;
+    max-width: 100%;
     height: max-content;
     margin: 0 auto;
     margin-block: 20px;
     perspective: 1000px;
   }
+  .img-block div {
+    max-width: 300px;
+    width: 100%;
+  }
 
   .img-block img {
     width: 100%;
     height: 100%;
+    aspect-ratio: 3/5;
     object-fit: cover;
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.35);
@@ -346,23 +328,22 @@ const hobbies = [
     margin-bottom: 10px;
   }
 
-  .load{
-    font-size: clamp(24px,5vw,40px);
+  .load {
+    font-size: clamp(24px, 5vw, 40px);
     font-family: var(--font-Bold);
     text-align: center;
     padding: 20px;
-    border: .1px solid rgba(255,255,255,0.4);
-    background: rgba(255, 255, 255, .1);
+    border: 0.1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 8px;
   }
 
   .load p {
     color: #fff;
-    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.7); 
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.7);
     padding: 20px;
     text-align: center;
   }
-
 
   @media screen and (max-width: 1200px) {
     .col-8 {
@@ -432,8 +413,7 @@ const hobbies = [
   let linkActive = $subLinks.filter(".active").attr("id");
   $blocks.not(`[data-id="${linkActive}"]`).hide();
 
-  $subLinks.on("click", function(e: any) {
-
+  $subLinks.on("click", function (e: any) {
     const $this = $(this);
     const link = $this.attr("id");
 
@@ -443,18 +423,22 @@ const hobbies = [
     gsap.to($blocks, {
       opacity: 0,
       duration: 0.15,
-      onComplete: function() {
+      onComplete: function () {
         $blocks.hide();
 
         const $targetBlock = $blocks.filter(`[data-id="${link}"]`);
         $targetBlock.show();
-        gsap.fromTo($targetBlock, {
-          opacity: 0
-        }, {
-          opacity: 1,
-          duration: 0.15,
-        });
-      }
+        gsap.fromTo(
+          $targetBlock,
+          {
+            opacity: 0,
+          },
+          {
+            opacity: 1,
+            duration: 0.15,
+          }
+        );
+      },
     });
 
     $("html, body").animate({ scrollTop: 0 }, "slow");
@@ -477,36 +461,35 @@ const hobbies = [
     }
   });
 
-
   //HOVER 3D ON IMG
   const $img = $(".img-block img");
 
   function handleMouseMove(e: any) {
-      const boundingRect = e.currentTarget.getBoundingClientRect();
+    const boundingRect = e.currentTarget.getBoundingClientRect();
 
-      const mousePosX = Math.floor(e.clientX - boundingRect.left);
-      const mousePosY = Math.floor(e.clientY - boundingRect.top);
+    const mousePosX = Math.floor(e.clientX - boundingRect.left);
+    const mousePosY = Math.floor(e.clientY - boundingRect.top);
 
-      const rotateY = (mousePosX / boundingRect.width - 0.5) * 30; 
-      const rotateX = -(mousePosY / boundingRect.height - 0.5) * 30;
+    const rotateY = (mousePosX / boundingRect.width - 0.5) * 30;
+    const rotateX = -(mousePosY / boundingRect.height - 0.5) * 30;
 
-      gsap.to(e.currentTarget, {
-        rotateX: rotateX,
-        rotateY: rotateY,
-        duration: 0.3,
-        ease: "power1.out"
-      });
+    gsap.to(e.currentTarget, {
+      rotateX: rotateX,
+      rotateY: rotateY,
+      duration: 0.3,
+      ease: "power1.out",
+    });
   }
 
   $img.on("mousemove", handleMouseMove);
 
-  $img.on("mouseleave", function(e: MouseEvent) {
-      gsap.to(e.currentTarget, {
-        delay:.3,
-          rotateX: 0,
-          rotateY: 0,
-          duration: 0.3,
-          ease: "power1.out"
-      });
+  $img.on("mouseleave", function (e: MouseEvent) {
+    gsap.to(e.currentTarget, {
+      delay: 0.3,
+      rotateX: 0,
+      rotateY: 0,
+      duration: 0.3,
+      ease: "power1.out",
+    });
   });
 </script>
