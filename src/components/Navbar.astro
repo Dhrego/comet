@@ -118,24 +118,26 @@ const currentPath = Astro.url.pathname === "/me";
 </style>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const nav = document.querySelector(".sticky_one");
-    const navMarker = document.getElementById("nav-marker");
+    if (window.location.pathname !== "/me") {
+      const nav = document.querySelector(".sticky_one");
+      const navMarker = document.getElementById("nav-marker");
 
-    const observerOptions = {
-      root: null,
-      rootMargin: "20% 0px 0px 0px",
-      threshold: 0,
-    };
+      const observerOptions = {
+        root: null,
+        rootMargin: "20% 0px 0px 0px",
+        threshold: 0,
+      };
 
-    const observer = new IntersectionObserver((entries) => {
-      const [entry] = entries;
-      if (!entry.isIntersecting) {
-        nav.classList.add("sticky");
-      } else {
-        nav.classList.remove("sticky");
-      }
-    }, observerOptions);
+      const observer = new IntersectionObserver((entries) => {
+        const [entry] = entries;
+        if (!entry.isIntersecting) {
+          nav.classList.add("sticky");
+        } else {
+          nav.classList.remove("sticky");
+        }
+      }, observerOptions);
 
-    observer.observe(navMarker);
+      observer.observe(navMarker);
+    }
   });
 </script>
