@@ -145,7 +145,7 @@ const tiles: Tiles[] = [
   },
 ];
 
-const navlinks = [
+const navlinks: Navlinks[] = [
   {
     text: "Home",
     href: "/",

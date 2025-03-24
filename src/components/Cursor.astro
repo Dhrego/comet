@@ -379,7 +379,18 @@
 
   $wrapperWorks.on("mousemove", (e: MouseEvent) => {
     moveToCursor(e);
-    removeActiveFromText();
+
+    if (!$(e.target).closest(".project_tile .btn").length) {
+      removeActiveFromText();
+    }
+
+    if (isCursorActive) {
+      gsap.to(".cursor-outline, .cursor-dot", {
+        duration: 0.1,
+        opacity: 0,
+        ease: "power3",
+      });
+    }
   });
 
   $worksSlider.on("mouseleave", () => {
@@ -393,12 +404,46 @@
     });
   });
 
-  $workCells.on("mousemove", () => {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => {
-      $cursorText.addClass("active");
-    }, 900);
-  });
+  $(document).on(
+    {
+      mouseenter: function () {
+        $cursorText.addClass("active");
+        if (isCursorActive) {
+          gsap.to(".cursor-outline, .cursor-dot", {
+            duration: 0.1,
+            opacity: 0,
+            ease: "power3",
+          });
+        }
+      },
+      mouseleave: function () {
+        $cursorText.removeClass("active");
+        if (!isCursorActive) {
+          gsap.to(".cursor-outline, .cursor-dot", {
+            duration: 0.3,
+            opacity: 1,
+            ease: "power3",
+          });
+        }
+      },
+    },
+    ".project_tile .btn"
+  );
+
+  // // OLD HOVER
+  // // $workCells.on("mousemove", (e) => {
+  // //   clearTimeout(timeoutId);
+  // //   console.log("Hovered on project button:", e.target);
+
+  // //   timeoutId = setTimeout(() => {
+  // //     $cursorText.addClass("active");
+  // //   }, 900);
+  // // });
+
+  // // Change from DRAG state to VIEW
+  // $(document).on("mousemove", ".project_tile .btn", function () {
+  //   $cursorText.addClass("active");
+  // });
 
   // // HOVER FOR WORKS ON INDEX
   // const $cursorBox = $(".cursor-box");
@@ -464,6 +509,7 @@
   //   });
   // });
 
+  //Image reveal slide on index
   $(document).ready(function () {
     const projects = $(".block-content-works");
     const preview = $(".preview");

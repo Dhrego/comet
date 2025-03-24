@@ -261,13 +261,13 @@ import { tiles } from "../config";
   let prevPercentage = 0;
   let percentage2 = 0;
   let animating = false;
-  $(".scroll").on("mousedown", function (e) {
+  $(".scroll").on("mousedown", function (e: MouseEvent) {
     startX = e.pageX - offset;
     $(document).on("mouseup", mouseUpHandler);
     $(document).on("mousemove", handlerMove);
     $(".container").css("cursor", "grabbing");
 
-    function handlerMove(e) {
+    function handlerMove(e: MouseEvent) {
       if (startX == 0) return;
       const transalte = e.pageX - offset;
       let percentage = startX - transalte;
