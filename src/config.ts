@@ -34,8 +34,8 @@ interface Navlinks {
 //Arrays
 const links: Link[] = [
   {
-    text: "First App",
-    href: "#",
+    text: "The Bag Shop",
+    href: "https://thebagshopgh-seven.vercel.app/",
     // img: "https://images.pexels.com/photos/879109/pexels-photo-879109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
@@ -116,7 +116,7 @@ const hobbies: Hobbies[] = [
 
 const tiles: Tiles[] = [
   {
-    img: "img_1.webp",
+    img: "shot_3.webp",
     title: "Weather Now",
     type: "Web App",
     date: "12 Oct 2022",
