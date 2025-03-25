@@ -120,7 +120,7 @@ const tiles: Tiles[] = [
     title: "Weather Now",
     type: "Web App",
     date: "12 Oct 2022",
-    link: "https://weather-app-dhrego.vercel.app/",
+    link: "https://thebagshopgh-seven.vercel.app/",
   },
   {
     img: "shot.webp",
