@@ -1,249 +1,11 @@
 ---
-// src/pages/index.astro
 import Globe from "./Globe.astro";
 
-// Check session storage
+// To check for session storage
 const loaderSeen = false;
 ---
 
-<!-- <script>
-  import { gsap } from "gsap";
-  import $ from "jquery";
-  import { lenis, disableLenis, enableLenis } from "../scripts/lenisInstance";
-
-  disableLenis();
-
-  const startLoader = (delay: number) => {
-    let counterElement = document.querySelector(".counter span");
-    let currentValue = 0;
-
-    const updateCounter = () => {
-      if (currentValue === 100) {
-        return;
-      }
-
-      currentValue += Math.floor(Math.random() * 10) + 1;
-
-      if (currentValue > 100) {
-        currentValue = 100;
-      }
-
-      counterElement.textContent = `${currentValue}`;
-
-      let delay = Math.floor(Math.random() * 200) + 50;
-
-      setTimeout(updateCounter, delay);
-    };
-    setTimeout(updateCounter, delay);
-  };
-
-  window.addEventListener("load", () => {
-    startLoader(500);
-
-    //ALTERNATE ANIMATION
-    var tl = gsap.timeline();
-    tl.set("body", { cursor: "progress" }).to(".counter", {
-      duration: 0.25,
-      delay: 3.5,
-      opacity: 0,
-      ease: "power1.Out",
-      onComplete: () => {
-        gsap.set(".counter", { delay: 1, display: "none" });
-      },
-    });
-
-    tl.to(".ring", {
-      visibility: "visible",
-      duration: 1,
-      scale: 1.75,
-      opacity: 0,
-      stagger: {
-        each: 0.5,
-      },
-      ease: "power1.out",
-      delay: 0.5,
-    });
-
-    tl.fromTo(
-      ".ringscale",
-      {
-        scale: 0.8,
-      },
-      {
-        visibility: "visible",
-        opacity: 1,
-        duration: 1,
-        scale: Math.max(window.innerWidth, window.innerHeight) / 50,
-        ease: "power2.in",
-      },
-      "-=0.5"
-    );
-
-    tl.set("body", { cursor: "auto" }).to(
-      "#preloader-btn",
-      {
-        duration: 0.35,
-        visibility: "visible",
-        opacity: 1,
-        ease: "power1.in",
-      },
-      "-=0.5"
-    );
-  });
-
-  window.addEventListener("DOMContentLoaded", () => {
-    const getSquareSize = () => {
-      const screenWidth = window.innerWidth;
-
-      if (screenWidth < 600) {
-        return 50;
-      } else if (screenWidth < 900) {
-        return 75;
-      } else if (screenWidth <= 1800) {
-        return 100;
-      } else {
-        return 125;
-      }
-    };
-
-    const squareSize = getSquareSize();
-    console.log(squareSize);
-    const squareContainer = document.getElementById("square-container");
-
-    const initializeSquareContainer = () => {
-      const screenWidth = window.innerWidth;
-      const screenHeight = window.innerHeight;
-      const numCols = Math.ceil(screenWidth / squareSize);
-      const numRows = Math.ceil(screenHeight / squareSize);
-      squareContainer.style.width = `${numCols * squareSize}px`;
-      squareContainer.style.height = `${numRows * squareSize}px`;
-      return { numCols, numRows, numSquares: numCols * numRows };
-    };
-
-    const applyStyles = (element: any, size: number) => {
-      element.style.height = `${size}px`;
-      element.style.width = `${size}px`;
-      element.style.backgroundColor = "#dedede";
-      element.style.outline = "0.07em solid rgba(40, 40, 40, 0.14)";
-    };
-
-    const createAndStyleSquares = ({ numSquares }) => {
-      const squares = [];
-      for (let i = 0; i < numSquares; i++) {
-        const square = document.createElement("div");
-        applyStyles(square, squareSize);
-        squareContainer.appendChild(square);
-        squares.push(square);
-      }
-      return squares;
-    };
-
-    const animateSquares = (squares: any) => {
-      gsap.set("body", { cursor: "progress" });
-      gsap.fromTo(
-        squares,
-        { opacity: 0 },
-        {
-          opacity: 1,
-          delay: 0.5,
-          duration: 0.0005,
-          stagger: { each: 0.004, from: "random" },
-          onComplete: () => {
-            gsap.set(".ring", { display: "none" });
-            gsap.set(".loader-base", { display: "none" });
-          },
-        }
-      );
-
-      gsap.to(squares, {
-        opacity: 0,
-        delay: 1.5,
-        duration: 0.0005,
-        stagger: { each: 0.004, from: "random" },
-        onComplete: () => {
-          gsap.set("body", { cursor: "auto" });
-          gsap.set("#square-container", { display: "none" });
-          gsap.set("body", { overflow: "auto" });
-          enableLenis();
-        },
-      });
-    };
-
-    document.getElementById("preloader-btn").addEventListener("click", () => {
-      const dimensions = initializeSquareContainer();
-      const squares = createAndStyleSquares(dimensions);
-      animateSquares(squares);
-
-      gsap.to("#preloader-btn", { opacity: 0, ease: "power1.out" });
-    });
-  });
-
-  const button = document.querySelector("#preloader-btn");
-
-  let boundingRect = button.getBoundingClientRect();
-
-  window.addEventListener("resize", () => {
-    boundingRect = button.getBoundingClientRect();
-  });
-
-  button.addEventListener("mousemove", (e: MouseEvent) => {
-    const mousePosX = e.clientX - boundingRect.left;
-    const mousePosY = e.clientY - boundingRect.top;
-
-    gsap.to(button, {
-      x: (mousePosX - boundingRect.width / 2) * 0.4,
-      y: (mousePosY - boundingRect.height / 2) * 0.4,
-      duration: 0.8,
-      ease: "power4.out",
-    });
-    gsap.to($(".btn-text"), {
-      x: (mousePosX - boundingRect.width / 2) * 0.35,
-      y: (mousePosY - boundingRect.height / 2) * 0.35,
-      duration: 0.8,
-      ease: "power4.out",
-    });
-  });
-
-  //Event listener for when the mouse leaves the button area
-  button.addEventListener("mouseleave", () => {
-    gsap.to(button, {
-      x: 0,
-      y: 0,
-      duration: 0.8,
-      ease: "elastic.out(1,0.3)",
-    });
-    gsap.to($(".btn-text"), {
-      x: 0,
-      y: 0,
-      duration: 0.8,
-      ease: "elastic.out(1,0.3)",
-    });
-  });
-
-  $(".pre").on("mouseenter", () => {
-    gsap.to($(".btn-fill"), 0.6, {
-      startAt: { y: "76%" },
-      y: "0%",
-      ease: "power2.inOut",
-    });
-    gsap.to($(".btn-text"), 0.3, {
-      startAt: { color: "rgb(0, 0, 0)" },
-      color: "#FFFFFF",
-      ease: "power3.in",
-    });
-  });
-  $(".pre").on("mouseleave", () => {
-    gsap.to($(".btn-fill"), 0.6, {
-      y: "-76%",
-      ease: "power2.inOut",
-    });
-    gsap.to($(".btn-text"), 0.3, {
-      color: "rgb(0, 0, 0)",
-      ease: "power3.out",
-      delay: 0.3,
-    });
-  });
-</script> -->{
+{
   !loaderSeen && (
     <div class="loader-container" id="loader-container" style="display: none;">
       <div class="loader-base">
@@ -433,26 +195,27 @@ const loaderSeen = false;
 <script>
   import { gsap } from "gsap";
   import { disableLenis, enableLenis } from "../scripts/lenisInstance";
+  import $ from "jquery";
 
   if (!sessionStorage.getItem("loaderSeen")) {
-    document.getElementById("loader-container").style.display = "block";
+    $("#loader-container").css("display", "block");
     disableLenis();
 
     const startLoader = (delay: number) => {
-      let counterElement = document.querySelector(".counter span");
+      const $counterElement = $(".counter span");
       let currentValue = 0;
 
       const updateCounter = () => {
         if (currentValue === 100) return;
         currentValue += Math.floor(Math.random() * 10) + 1;
         if (currentValue > 100) currentValue = 100;
-        counterElement.textContent = `${currentValue}`;
+        $counterElement.text(`${currentValue}`);
         setTimeout(updateCounter, Math.floor(Math.random() * 200) + 50);
       };
       setTimeout(updateCounter, delay);
     };
 
-    window.addEventListener("load", () => {
+    $(window).on("load", () => {
       startLoader(500);
 
       const tl = gsap.timeline();
@@ -503,35 +266,38 @@ const loaderSeen = false;
       enableLenis();
     };
 
-    window.addEventListener("DOMContentLoaded", () => {
+    $(document).ready(() => {
       const getSquareSize = () => {
-        const screenWidth = window.innerWidth;
+        const screenWidth = $(window).width();
         if (screenWidth < 600) return 50;
         if (screenWidth < 900) return 75;
         if (screenWidth <= 1800) return 100;
         return 125;
       };
 
-      document.getElementById("preloader-btn").addEventListener("click", () => {
+      $("#preloader-btn").on("click", () => {
         const squareSize = getSquareSize();
-        const squareContainer = document.getElementById("square-container");
-        const screenWidth = window.innerWidth;
-        const screenHeight = window.innerHeight;
+        const $squareContainer = $("#square-container");
+        const screenWidth = $(window).width();
+        const screenHeight = $(window).height();
         const numCols = Math.ceil(screenWidth / squareSize);
         const numRows = Math.ceil(screenHeight / squareSize);
 
-        squareContainer.style.width = `${numCols * squareSize}px`;
-        squareContainer.style.height = `${numRows * squareSize}px`;
+        $squareContainer.css({
+          width: `${numCols * squareSize}px`,
+          height: `${numRows * squareSize}px`,
+        });
 
         const squares = [];
         for (let i = 0; i < numCols * numRows; i++) {
-          const square = document.createElement("div");
-          square.style.height = `${squareSize}px`;
-          square.style.width = `${squareSize}px`;
-          square.style.backgroundColor = "#dedede";
-          square.style.outline = "0.07em solid rgba(40, 40, 40, 0.14)";
-          squareContainer.appendChild(square);
-          squares.push(square);
+          const $square = $("<div>").css({
+            height: `${squareSize}px`,
+            width: `${squareSize}px`,
+            backgroundColor: "#dedede",
+            outline: "0.07em solid rgba(40, 40, 40, 0.14)",
+          });
+          $squareContainer.append($square);
+          squares.push($square[0]);
         }
 
         gsap.fromTo(
@@ -561,24 +327,24 @@ const loaderSeen = false;
       });
 
       // Button hover effects
-      const button = document.querySelector("#preloader-btn");
-      let boundingRect = button.getBoundingClientRect();
+      const $button = $("#preloader-btn");
+      let boundingRect = $button[0].getBoundingClientRect();
 
-      window.addEventListener("resize", () => {
-        boundingRect = button.getBoundingClientRect();
+      $(window).on("resize", () => {
+        boundingRect = $button[0].getBoundingClientRect();
       });
 
-      button.addEventListener("mousemove", (e: MouseEvent) => {
+      $button.on("mousemove", (e: MouseEvent) => {
         const mousePosX = e.clientX - boundingRect.left;
         const mousePosY = e.clientY - boundingRect.top;
 
-        gsap.to(button, {
+        gsap.to($button, {
           x: (mousePosX - boundingRect.width / 2) * 0.4,
           y: (mousePosY - boundingRect.height / 2) * 0.4,
           duration: 0.8,
           ease: "power4.out",
         });
-        gsap.to(document.querySelector(".btn-text"), {
+        gsap.to($(".btn-text"), {
           x: (mousePosX - boundingRect.width / 2) * 0.35,
           y: (mousePosY - boundingRect.height / 2) * 0.35,
           duration: 0.8,
@@ -586,14 +352,14 @@ const loaderSeen = false;
         });
       });
 
-      button.addEventListener("mouseleave", () => {
-        gsap.to(button, {
+      $button.on("mouseleave", () => {
+        gsap.to($button, {
           x: 0,
           y: 0,
           duration: 0.8,
           ease: "elastic.out(1,0.3)",
         });
-        gsap.to(document.querySelector(".btn-text"), {
+        gsap.to($(".btn-text"), {
           x: 0,
           y: 0,
           duration: 0.8,
@@ -601,14 +367,14 @@ const loaderSeen = false;
         });
       });
 
-      document.querySelector(".pre").addEventListener("mouseenter", () => {
-        gsap.to(document.querySelector(".btn-fill"), {
+      $(".pre").on("mouseenter", () => {
+        gsap.to($(".btn-fill"), {
           duration: 0.6,
           startAt: { y: "76%" },
           y: "0%",
           ease: "power2.inOut",
         });
-        gsap.to(document.querySelector(".btn-text"), {
+        gsap.to($(".btn-text"), {
           duration: 0.3,
           startAt: { color: "rgb(0, 0, 0)" },
           color: "#FFFFFF",
@@ -616,13 +382,13 @@ const loaderSeen = false;
         });
       });
 
-      document.querySelector(".pre").addEventListener("mouseleave", () => {
-        gsap.to(document.querySelector(".btn-fill"), {
+      $(".pre").on("mouseleave", () => {
+        gsap.to($(".btn-fill"), {
           duration: 0.6,
           y: "-76%",
           ease: "power2.inOut",
         });
-        gsap.to(document.querySelector(".btn-text"), {
+        gsap.to($(".btn-text"), {
           duration: 0.3,
           color: "rgb(0, 0, 0)",
           ease: "power3.out",
@@ -634,154 +400,3 @@ const loaderSeen = false;
     enableLenis();
   }
 </script>
-
-<!-- <style>
-  .loader-base {
-    position: fixed;
-    top: 0;
-    left: 0;
-    min-height: 100dvh;
-    height: 100%;
-    width: 100vw;
-    z-index: 9999;
-    min-width: 320px;
-    background-color: #dadada;
-  }
-
-  .counter {
-    padding-inline: 20px;
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    font-family: var(--font-Jolly);
-    font-size: clamp(60px, 14vw, 200px);
-    font-weight: bold;
-    z-index: 100000;
-    transition: 0.3s ease;
-    user-select: none;
-  }
-
-  .counter span {
-    display: block;
-    width: 200px;
-    height: auto;
-  }
-
-  .overlay-loader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100dvh;
-    z-index: 2;
-    display: flex;
-  }
-
-  #square-container {
-    width: 100vw;
-    height: 100dvh;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-content: flex-start;
-    overflow: hidden;
-    z-index: 1000;
-    pointer-events: none;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 9999;
-  }
-
-  #preloader-btn {
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    overflow: hidden;
-    text-transform: capitalize;
-    width: 250px;
-    height: 250px;
-    font-size: clamp(16px, 2vw, 20px);
-    color: rgb(0, 0, 0);
-    border: 0.01px solid rgba(158, 158, 158);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: color 0.3s ease;
-    will-change: transform;
-    z-index: 2;
-    font-family: var(--font-Light);
-    background: transparent;
-  }
-
-  .btn-text {
-    pointer-events: none;
-  }
-
-  .btn-fill {
-    background: #8aaae5;
-    position: absolute;
-    width: 175%;
-    height: 200%;
-    border-radius: 50%;
-    top: -50%;
-    left: -25%;
-    transform: translate3d(0, -76%, 0);
-    will-change: transform;
-    transition: background-color ease-in-out 0.25s;
-  }
-
-  .pulse {
-    visibility: hidden;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    height: 15vmax;
-    width: 15vmax;
-    border-radius: 100%;
-    z-index: 1;
-  }
-
-  .ring,
-  .ringscale {
-    position: absolute;
-    background-color: inherit;
-    height: 100%;
-    width: 100%;
-    border-radius: 100%;
-    opacity: 0.8;
-    font-size: clamp(15px, 14vw, 30px);
-    font-family: var(--font-Light);
-    pointer-events: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  @media only screen and (max-width: 768px) {
-    .counter {
-      right: 0;
-    }
-
-    .counter span {
-      width: 45px;
-    }
-
-    .ring {
-      font-size: clamp(15px, 2vw, 30px);
-    }
-
-    #preloader-btn {
-      width: 175px;
-      height: 175px;
-    }
-  }
-</style> -->
