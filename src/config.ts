@@ -133,14 +133,14 @@ const tiles: Tiles[] = [
     img: "shot_1.webp",
     title: "Freedom Photos",
     type: "Website",
-    date: "12 Sept 2023",
+    date: "12 Nov 2024",
     link: "https://freedom-roan.vercel.app/",
   },
   {
     img: "shot_2.webp",
     title: "Hairlo",
     type: "Design",
-    date: "1 Nov 2024",
+    date: "1 Dec 2024",
     link: "https://www.figma.com/proto/g3sIrJB07eXhsZTHZTBIAf/Hairlo?node-id=1-3&t=WYHzUPMf8VYRKxHs-1&starting-point-node-id=34%3A733&show-proto-sidebar=1",
   },
 ];
