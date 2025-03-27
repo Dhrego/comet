@@ -117,9 +117,9 @@ const hobbies: Hobbies[] = [
 const tiles: Tiles[] = [
   {
     img: "shot_3.webp",
-    title: "Weather Now",
+    title: "The Bag Shop",
     type: "Web App",
-    date: "12 Oct 2022",
+    date: "20 Jan 2025",
     link: "https://thebagshopgh-seven.vercel.app/",
   },
   {

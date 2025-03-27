@@ -16,6 +16,7 @@
     "@muridot0/dreamy-gradients": "^0.1.38",
     "@vercel/speed-insights": "^1.0.12",
     "astro": "^5.0.3",
+    "blurhash": "^2.0.5",
     "dotenv": "^16.4.5",
     "gsap": "^3.12.5",
     "jquery": "^3.7.1",
