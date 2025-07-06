@@ -6,5 +6,8 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   output: "server",
   integrations: [react()],
-  adapter: vercel({}),
+  adapter: vercel({
+    imageService: true,
+    devImageService: "sharp",
+  }),
 });

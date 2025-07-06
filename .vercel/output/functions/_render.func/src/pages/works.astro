@@ -1,0 +1,328 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { tiles } from "../config";
+---
+
+<Layout
+  title="Works"
+  description="Enter the realm of creativity with ✨ Andrea's portfolio. Witness the magic of innovation and the power of inspired design in every project."
+>
+  <div class="container">
+    <main>
+      <!-- <div class="">Still working on them ........</div>
+      <p>
+        Welcome to Dhrego's Creative Hub! 🏄🏽 Explore my innovative projects and
+        captivating artworks, showcasing my expertise as a Software Developer
+        and UI/UX Designer.
+      </p> -->
+
+      <div class="container">
+        <div class="project_carousel">
+          <div class="title">
+            <span>PROJECTS</span>
+            <span>01</span>
+          </div>
+          <div
+            class="scroll"
+            data-mouseat="0"
+            data-percentage="0"
+            data-prev="0"
+          >
+            {
+              tiles.map((tile, index) => (
+                <div class={`project_tile ${index === 0 ? "active" : ""}`}>
+                  <img
+                    src={tile.img}
+                    draggable="false"
+                    alt=""
+                    sizes=""
+                    srcset=""
+                  />
+                  <div class="project_title">{tile.title}</div>
+                  <div class="project_info">
+                    <div class="keys">
+                      <div>Category</div>
+                      <div>Date</div>
+                    </div>
+                    <div class="values">
+                      <div>{tile.type}</div>
+                      <div>{tile.date}</div>
+                    </div>
+                  </div>
+                  <a class="btn" href={tile.link} target="_blank">
+                    view project
+                  </a>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</Layout>
+
+<style>
+  body {
+    background-color: var(--bg-color-alt);
+  }
+
+  main {
+    color: #fff;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    overflow-x: hidden;
+    font-family: var(--font-Black-It);
+  }
+
+  p {
+    padding-inline: 10px;
+    font-family: var(--font-Light);
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 10px;
+    max-width: 900px;
+  }
+
+  .container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: flex-end;
+    overflow-x: hidden;
+  }
+
+  .title {
+    font-size: 330px;
+    font-family: "AltGothic";
+    position: absolute;
+    top: -44%;
+    left: 26px;
+    z-index: 999;
+    mix-blend-mode: difference;
+    color: #fff;
+    user-select: none;
+    -webkit-user-select: none;
+    pointer-events: none;
+    display: flex;
+    gap: 30px;
+  }
+
+  .project_tile {
+    font-family: var(--font-Regular);
+  }
+
+  .project_tile.active img {
+    height: 400px;
+    max-width: 550px;
+    object-fit: cover;
+  }
+
+  .project_tile:not(.active) {
+    height: 400px;
+  }
+
+  .project_tile img {
+    height: 250px;
+    max-width: 350px;
+    object-fit: cover;
+    transition: all 1s ease-out;
+    aspect-ratio: 16 / 9;
+  }
+
+  .project_tile:last-child {
+    margin-right: 30px;
+  }
+
+  .project_carousel {
+    padding-bottom: 30px;
+    min-width: 100%;
+    position: fixed;
+    user-select: none;
+    -webkit-user-select: none;
+    height: 555px;
+  }
+
+  .project_title {
+    color: white;
+    font-size: 24px;
+    margin-top: 15px;
+    font-family: var(--font-Regular);
+  }
+
+  .project_info {
+    display: flex;
+    color: white;
+    margin-block: 15px;
+    font-size: 16px;
+  }
+
+  .project_info .keys,
+  .project_info .values {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    text-transform: uppercase;
+  }
+
+  .project_info .keys {
+    color: gray;
+    margin-right: 70px;
+  }
+
+  .btn {
+    color: white;
+    font-size: 14px;
+    position: relative;
+    cursor: pointer;
+    padding-bottom: 2px;
+    /* border-bottom: 0.1px solid #ffffffbd; */
+  }
+
+  .scroll {
+    display: flex;
+    position: relative;
+    left: 40px;
+    gap: 40px;
+    width: min-content;
+  }
+
+  .scroll::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
+
+  @media screen and (max-width: 768px) {
+    .container {
+      width: 100%;
+      height: auto;
+      display: flex;
+      overflow: auto;
+    }
+
+    .project_carousel {
+      height: auto;
+      position: relative;
+    }
+
+    .title {
+      display: none;
+    }
+
+    .scroll {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      width: 100%;
+      left: unset;
+      /* padding-top: 20px; */
+      gap: 20px;
+    }
+
+    .project_tile {
+      padding: 12px;
+    }
+
+    .project_tile img {
+      height: 250px;
+      width: 100%;
+      max-width: unset;
+      object-fit: cover;
+    }
+
+    .project_tile.active img {
+      height: auto;
+      max-width: unset;
+      object-fit: cover;
+    }
+
+    .project_tile:not(.active) {
+      height: auto;
+    }
+
+    .project_tile:last-child {
+      margin-right: 0;
+    }
+
+    .project_info {
+      justify-content: space-between;
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import $ from "jquery";
+
+  const offset = $(".scroll").offset().left;
+  let startX = 0;
+  let prevPercentage = 0;
+  let percentage2 = 0;
+  let animating = false;
+  $(".scroll").on("mousedown", function (e: MouseEvent) {
+    startX = e.pageX - offset;
+    $(document).on("mouseup", mouseUpHandler);
+    $(document).on("mousemove", handlerMove);
+    $(".container").css("cursor", "grabbing");
+
+    function handlerMove(e: MouseEvent) {
+      if (startX == 0) return;
+      const transalte = e.pageX - offset;
+      let percentage = startX - transalte;
+      let newPercentage = percentage;
+      if (newPercentage > 50 && !animating) {
+        animating = true;
+        let el = $(".project_tile.active");
+        let i = el.index() + 1;
+        if (i >= $(".project_tile").length) return;
+        $(".project_tile.active").removeClass("active");
+        el.next().addClass("active");
+
+        const fixedWidth = 350 + 40;
+        // $('.scroll').css('transform', `translateX(-${fixedWidth * i}px)`);
+        gsap.to(".scroll", {
+          x: -fixedWidth * i,
+          ease: "power1.inOut",
+          duration: 1,
+          onComplete: () => (animating = false),
+        });
+      } else if (newPercentage < -50 && !animating) {
+        animating = true;
+        let el = $(".project_tile.active");
+        let i = el.index() - 1;
+        if (i < 0) return;
+
+        $(".project_tile.active").removeClass("active");
+        el.prev().addClass("active");
+
+        const fixedWidth = 350 + 40;
+        // $('.scroll').css('transform', `translateX(-${fixedWidth * i}px)`);
+        gsap.to(".scroll", {
+          x: -fixedWidth * i,
+          ease: "power1.inOut",
+          duration: 1,
+          onComplete: () => (animating = false),
+        });
+      }
+    }
+
+    function updateActiveTileIndex() {
+      const activeIndex = $(".project_tile.active").index() + 1;
+      $(".project_carousel .title span:last-child").text(`0${activeIndex}`);
+    }
+
+    function mouseUpHandler(e: Event) {
+      prevPercentage = percentage2;
+      startX = 0;
+      animating = false;
+
+      updateActiveTileIndex();
+
+      $(document).off("mousemove", handlerMove);
+      $(document).off("mouseup", mouseUpHandler);
+      $(".container").css("cursor", "default");
+    }
+  });
+</script>
