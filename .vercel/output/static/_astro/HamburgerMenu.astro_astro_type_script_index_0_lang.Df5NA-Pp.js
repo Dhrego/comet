@@ -1,4 +1,4 @@
-import{g as U,$ as Z}from"./jquery.BKCda4HF.js";import{d as ft,e as ct}from"./lenisInstance.CiTg-1G1.js";import"./_commonjsHelpers.CqkleIqs.js";/*!
+import{g as U,$ as Z}from"./index.C2O3cY4t.js";import{d as ft,e as ct}from"./lenisInstance.CiTg-1G1.js";import"./_commonjsHelpers.CqkleIqs.js";/*!
  * paths 3.12.5
  * https://gsap.com
  *
