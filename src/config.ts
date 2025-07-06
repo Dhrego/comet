@@ -104,7 +104,8 @@ const hobbies: Hobbies[] = [
   },
   {
     name: "Anime & Manga",
-    content: `I enjoy anime and manga, offering endless adventures with diverse characters and captivating new series. I am a perceptive critic with high standards, interested in rich narratives and unique art styles that ignite my imagination. Subpar stories usually do not cut it for me. I thrive on finding those exceptional stories that inspire and resonate deeply. My passion for unpredictable storytelling means I never settle for anything less than the best, with Attack on Titan currently being the only piece of art to exceed that criteria and Vagabond being one of the best reads in manga.`,
+    content:
+      "I enjoy anime and manga, offering endless adventures with diverse characters and captivating new series. I am a perceptive critic with high standards, interested in rich narratives and unique art styles that ignite my imagination. Subpar stories usually do not cut it for me. I thrive on finding those exceptional stories that inspire and resonate deeply. My passion for unpredictable storytelling means I never settle for anything less than the best, with Attack on Titan currently being the only piece of art to exceed that criteria and Vagabond being one of the best reads in manga.",
     tag: "animeandmanga",
   },
   {
