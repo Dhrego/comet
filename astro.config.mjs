@@ -4,10 +4,10 @@ import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "server",
-  integrations: [react()],
+  output: "static",
   adapter: vercel({
     imageService: true,
     devImageService: "sharp",
   }),
+  integrations: [react()],
 });
