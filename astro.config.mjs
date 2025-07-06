@@ -9,5 +9,6 @@ export default defineConfig({
   adapter: vercel({
     imageService: true,
     devImageService: "sharp",
+    maxDuration: 10,
   }),
 });
