@@ -14,6 +14,7 @@
     "@astrojs/vercel": "8.2.1",
     "@logsnag/node": "^1.0.1",
     "@muridot0/dreamy-gradients": "^0.1.38",
+    "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.0.12",
     "astro": "5.11.0",
     "blurhash": "^2.0.5",
