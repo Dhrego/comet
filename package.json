@@ -11,12 +11,12 @@
   },
   "dependencies": {
     "@astrojs/react": "4.3.0",
-    "@astrojs/vercel": "8.2.1",
+    "@astrojs/vercel": "8.2.6",
     "@logsnag/node": "^1.0.1",
     "@muridot0/dreamy-gradients": "^0.1.38",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.0.12",
-    "astro": "5.11.0",
+    "astro": "5.13.2",
     "blurhash": "^2.0.5",
     "dotenv": "^16.4.5",
     "gsap": "^3.12.5",
@@ -25,6 +25,8 @@
     "logsnag": "^1.0.0",
     "nodemailer": "^6.9.13",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
-  }
+    "react-dom": "^18.3.1",
+    "string-width": "4"
+  },
+  "packageManager": "yarn@4.9.2"
 }

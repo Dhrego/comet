@@ -83,25 +83,67 @@ const extractYear = (src: string) => src.split(".")[0].split("_")[1];
             </p>
           </div>
           <div class="block" data-id="Experience">
-            <!-- <p class="pt-1">
+            <div class="pt-1">
               <em>Experience</em>
-              <br /><br />
-              <div class="load">
-                <p>No info loaded yet</p>
-                <p>Check back later for updates.</p>
-              </div>
-            </p> -->
-            <div class="experience-list pt-1">
-              <div class="experience-item">
-                <em>Experience</em>
-                <ul>
-                  <li>
-                    <h6>Ott 2023 - Feb 2025</h6>
-                    <div>Software Developer</div>
-                    <div>G.farm Italia S.r.l</div>
-                  </li>
-                </ul>
-              </div>
+              <ul class="experience-list">
+                <li>
+                  <div class="experience-title">Frontend Developer</div>
+                  <span class="experience-date">Apr 2025 - Present</span>
+                  <p class="experience-description">
+                    Currently responsible for the front-end development at
+                    Multi-consult, building responsive, optimized, and
+                    SEO-friendly user interfaces with Astro, React, and
+                    TypeScript, integrated with dynamic content from DatoCMS
+                    (headless CMS). I also implement smooth, performant
+                    animations and transitions using GSAP and Framer Motion,
+                    delivering engaging, user-friendly, and accessible
+                    experiences.
+                  </p>
+                </li>
+                <li>
+                  <div class="experience-title">
+                    Freelance Frontend Developer
+                  </div>
+                  <span class="experience-date">Feb 2025 - Mar 2025</span>
+                  <p class="experience-description">
+                    I delivered custom web design and development solutions
+                    using Figma and React, working directly with clients to
+                    gather requirements and provide tailored, on-time, and
+                    budget-friendly results. Collaborated closely with a backend
+                    developer to integrate APIs and ensure smooth end-to-end
+                    functionality.
+                  </p>
+                </li>
+                <li>
+                  <div class="experience-title">Frontend Developer</div>
+                  <span class="experience-date">Oct 2023 - Feb 2025</span>
+                  <p class="experience-description">
+                    I worked at G.farm Italia and was responsible for the design
+                    and development of websites and web applications using
+                    JavaScript, jQuery, React and PHP, integrated with
+                    relational databases. Key activities included:
+
+                    <ul class="experience-inner-list">
+                      <li>
+                        Designing and developing responsive, accessible, and
+                        SEO-friendly web interfaces and applications to deliver
+                        optimized, user-friendly experiences.
+                      </li>
+                      <li>
+                        Collaborating with multidisciplinary teams (designers,
+                        project managers, other developers) to define
+                        requirements and provide technical solutions aligned
+                        with business goals.
+                      </li>
+                      <li>
+                        Documentation of code and processes to ensure
+                        maintainability and facilitate collaboration with other
+                        developers.
+                      </li>
+                    </ul>
+                  </p>
+                </li>
+              </ul>
             </div>
           </div>
           <div class="block" data-id="Resume">
@@ -190,7 +232,7 @@ const extractYear = (src: string) => src.split(".")[0].split("_")[1];
     color: var(--white);
   }
 
-  ul {
+  ul.sub-pages {
     list-style: none;
     font-size: 48px;
     font-family: var(--font-Bold);
@@ -355,6 +397,45 @@ const extractYear = (src: string) => src.split(".")[0].split("_")[1];
     -webkit-text-stroke: 1px rgba(0, 0, 0, 0.7);
     padding: 20px;
     text-align: center;
+  }
+
+  .experience-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 18px;
+  }
+
+  .experience-list > li {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 18px;
+    color: white;
+  }
+
+  .experience-date {
+    font-size: 14px;
+    color: rgb(135, 135, 135);
+  }
+
+  .experience-description {
+    /* max-width: 900px; */
+    font-size: 16px;
+  }
+
+  .experience-inner-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 16px;
+    margin-bottom: 0;
+    list-style-position: inside;
+  }
+
+  .experience-inner-list > li {
+    margin-bottom: 0;
+    color: white;
   }
 
   @media screen and (max-width: 1200px) {
