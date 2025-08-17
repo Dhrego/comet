@@ -28,5 +28,8 @@
     "react-dom": "^18.3.1",
     "string-width": "4"
   },
-  "packageManager": "yarn@4.9.2"
+  "packageManager": "yarn@4.9.2",
+  "devDependencies": {
+    "@types/babel__core": "^7.20.5"
+  }
 }
