@@ -111,7 +111,11 @@ const extractYear = (src: string) => src.split(".")[0].split("_")[1];
                   <div class="experience-title">
                     Freelance Frontend Developer
                   </div>
-                  <span class="experience-date">Feb 2025 - Mar 2025</span>
+                  <div class="experience-date">
+                    <span>Feb 2025</span>
+                    <span>-</span>
+                    <span>Mar 2025</span>
+                  </div>
                   <p class="experience-description">
                     I delivered custom web design and development solutions
                     using Figma and React, working directly with clients to
@@ -123,7 +127,11 @@ const extractYear = (src: string) => src.split(".")[0].split("_")[1];
                 </li>
                 <li>
                   <div class="experience-title">Frontend Developer</div>
-                  <span class="experience-date">Oct 2023 - Feb 2025</span>
+                  <div class="experience-date">
+                    <span>Oct 2023</span>
+                    <span>-</span>
+                    <span>Feb 2025</span>
+                  </div>
                   <p class="experience-description">
                     I worked at G.farm Italia and was responsible for the design
                     and development of websites and web applications using
@@ -412,6 +420,11 @@ const extractYear = (src: string) => src.split(".")[0].split("_")[1];
     font-size: 18px;
   }
 
+  .experience-title {
+    font-size: 18px;
+    color: var(--green);
+  }
+
   .experience-list > li {
     display: flex;
     flex-direction: column;
@@ -444,7 +457,7 @@ const extractYear = (src: string) => src.split(".")[0].split("_")[1];
 
   .experience-inner-list > li {
     margin-bottom: 0;
-    color: white;
+    color: var(--white);
   }
 
   .pill {
@@ -456,10 +469,10 @@ const extractYear = (src: string) => src.split(".")[0].split("_")[1];
   }
 
   .pill.current {
-    color: #0e0f0f;
+    color: var(--green);
     display: flex;
     align-items: center;
-    background: rgb(255, 255, 255);
+    background: var(--light-green);
     gap: 6px;
   }
 
@@ -467,8 +480,7 @@ const extractYear = (src: string) => src.split(".")[0].split("_")[1];
     width: 6px;
     height: 6px;
     position: relative;
-    background: var(--base-color);
-    transition: background 0.5s ease-in-out;
+    background: var(--green);
     border-radius: 50%;
   }
 
@@ -482,8 +494,7 @@ const extractYear = (src: string) => src.split(".")[0].split("_")[1];
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: var(--base-color);
-    transition: background 0.3s ease-in-out;
+    background-color: var(--green);
     border-radius: 50%;
     animation: 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) 0s infinite normal none
       running pulse-ring;
