@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@astrojs/react": "4.3.0",
+    "@astrojs/sitemap": "^3.5.0",
     "@astrojs/vercel": "8.2.6",
     "@logsnag/node": "^1.0.1",
     "@muridot0/dreamy-gradients": "^0.1.38",
