@@ -1,6 +1,12 @@
 <>
-  <!-- I tried to preload to prevent that slight mouse reveal side effect   -->
-  <!-- <img src="img-group.png" style="display: none;" alt="Preload Image" /> -->
+  <!-- Force early image load and decode to prevent flickering -->
+  <img
+    src="/img-group.png"
+    style="position: absolute; opacity: 0; pointer-events: none; width: 1px; height: 1px;"
+    alt="Preload"
+    loading="eager"
+    fetchpriority="high"
+  />
 
   <div class="preview">
     <div class="preview-img"></div>
@@ -229,6 +235,9 @@
     background-image: url("/img-group.png");
     background-size: cover;
     background-position: 0 0;
+    will-change: background-position;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
   }
 
   @media screen and (max-width: 768px) {
@@ -516,6 +525,21 @@
     const preview = $(".preview");
     const previewImg = $(".preview-img");
 
+    // Wait for image to fully load before enabling preview
+    let imageLoaded = false;
+    const img = new Image();
+
+    img.onload = () => {
+      imageLoaded = true;
+      console.log('img-group.png loaded and ready');
+    };
+
+    img.onerror = () => {
+      console.error('Failed to load img-group.png');
+    };
+
+    img.src = '/img-group.png';
+
     // Cursor elements
     const $cursorDot = $(".cursor-dot");
     const $cursorOutline = $(".cursor-outline");
@@ -549,7 +573,10 @@
     });
 
     projects.on("mouseenter", function () {
-      gsap.to(preview[0], { duration: 0.3, scale: 1 });
+      // Only show preview if image is fully loaded
+      if (imageLoaded) {
+        gsap.to(preview[0], { duration: 0.3, scale: 1 });
+      }
     });
 
     projects.on("mouseleave", function () {
