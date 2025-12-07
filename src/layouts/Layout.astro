@@ -9,9 +9,9 @@ import Footer from "../components/Footer.astro";
 import Navbar from "../components/Navbar.astro";
 
 const { title, description } = Astro.props;
-const OgImage = "https://dhrego.com/OG.png";
-const url = Astro.site.href;
-// const url = "https://dhrego.com";
+const OgImage = "https://www.dhrego.com/OG.png";
+// Construct the canonical URL without trailing slash
+const canonicalURL = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', Astro.site).href;
 ---
 
 <!doctype html>
@@ -21,9 +21,10 @@ const url = Astro.site.href;
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="canonical" href={canonicalURL} />
 
     <!-- FB -->
-    <meta property="og:url" content={url} />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -31,8 +32,8 @@ const url = Astro.site.href;
 
     <!-- Twitter-->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:domain" content="dhrego.com" />
-    <meta property="twitter:url" content={url} />
+    <meta property="twitter:domain" content="www.dhrego.com" />
+    <meta property="twitter:url" content={canonicalURL} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={OgImage} />

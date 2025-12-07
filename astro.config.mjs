@@ -7,7 +7,7 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.dhrego.com",
-  trailingSlash: "ignore",
+  trailingSlash: "never",
   adapter: vercel(),
   integrations: [react(), sitemap()],
 });
