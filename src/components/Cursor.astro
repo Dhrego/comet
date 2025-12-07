@@ -1,6 +1,12 @@
 <>
-  <!-- I tried to preload to prevent that slight mouse reveal side effect   -->
-  <!-- <img src="img-group.png" style="display: none;" alt="Preload Image" /> -->
+  <!-- Force early image load and decode to prevent flickering -->
+  <img
+    src="/img-group.png"
+    style="position: absolute; opacity: 0; pointer-events: none; width: 1px; height: 1px;"
+    alt="Preload"
+    loading="eager"
+    fetchpriority="high"
+  />
 
   <div class="preview">
     <div class="preview-img"></div>
@@ -229,6 +235,9 @@
     background-image: url("/img-group.png");
     background-size: cover;
     background-position: 0 0;
+    will-change: background-position;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
   }
 
   @media screen and (max-width: 768px) {
