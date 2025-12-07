@@ -35,7 +35,7 @@ interface Navlinks {
 const links: Link[] = [
 	{
 		text: "The Bag Shop",
-		href: "https://thebagshopgh-seven.vercel.app/",
+		href: "https://thebagshopgh.com/",
 		// img: "https://images.pexels.com/photos/879109/pexels-photo-879109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
 	},
 	{
