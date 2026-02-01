@@ -1,13 +1,4 @@
 <>
-  <!-- Force early image load and decode to prevent flickering -->
-  <img
-    src="/img-group.png"
-    style="position: absolute; opacity: 0; pointer-events: none; width: 1px; height: 1px;"
-    alt="Preload"
-    loading="eager"
-    fetchpriority="high"
-  />
-
   <div class="preview">
     <div class="preview-img"></div>
   </div>
@@ -218,6 +209,7 @@
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transform: scale(0);
+    opacity: 0;
     transform-origin: center center;
     pointer-events: none;
     overflow: hidden;
@@ -225,7 +217,7 @@
     display: block;
     background-size: cover;
     background-position: center;
-    will-change: transform;
+    will-change: transform, opacity;
     aspect-ratio: 4 / 3;
   }
 
@@ -531,11 +523,6 @@
 
     img.onload = () => {
       imageLoaded = true;
-      console.log('img-group.png loaded and ready');
-    };
-
-    img.onerror = () => {
-      console.error('Failed to load img-group.png');
     };
 
     img.src = '/img-group.png';
@@ -560,28 +547,91 @@
       ease: "power2.out",
     });
 
+    // Track cursor position for scroll-based detection
+    let cursorX = 0;
+    let cursorY = 0;
+
     $(document).on("mousemove", function (e: MouseEvent) {
-      const clientX = e.clientX;
-      const clientY = e.clientY;
+      cursorX = e.clientX;
+      cursorY = e.clientY;
+
       const boxWidth = preview.outerWidth();
       const boxHeight = preview.outerHeight();
-      const left = clientX - boxWidth / 2;
-      const top = clientY - boxHeight / 2;
+      const left = cursorX - boxWidth / 2;
+      const top = cursorY - boxHeight / 2;
 
       xPreviewTo(left);
       yPreviewTo(top);
     });
 
-    projects.on("mouseenter", function () {
-      // Only show preview if image is fully loaded
-      if (imageLoaded) {
-        gsap.to(preview[0], { duration: 0.3, scale: 1 });
+    let previewVisible = false;
+
+    const isCursorOverProjects = () => {
+      const rect = projects[0]?.getBoundingClientRect();
+      if (!rect) return false;
+      return (
+        cursorX >= rect.left &&
+        cursorX <= rect.right &&
+        cursorY >= rect.top &&
+        cursorY <= rect.bottom
+      );
+    };
+
+    const showPreview = () => {
+      if (!previewVisible && imageLoaded) {
+        previewVisible = true;
+        // Hide dot/outline instantly to avoid mix-blend-mode flash
+        gsap.set($cursorDot, { opacity: 0 });
+        gsap.set($cursorOutline, { opacity: 0 });
+        // Use "auto" overwrite so only conflicting properties (scale/opacity) are killed,
+        // not the quickTo tweens on left/top
+        gsap.to(preview[0], {
+          duration: 0.3,
+          scale: 1,
+          opacity: 1,
+          overwrite: "auto",
+        });
       }
+    };
+
+    const hidePreview = () => {
+      if (previewVisible) {
+        previewVisible = false;
+        gsap.to(preview[0], {
+          duration: 0.3,
+          scale: 0,
+          opacity: 0,
+          overwrite: "auto",
+          onComplete: () => {
+            // Restore dot/outline only after preview is fully hidden
+            gsap.to($cursorDot, { opacity: 1, scale: 0.1, duration: 0.2 });
+            gsap.to($cursorOutline, { opacity: 1, scale: 0.3, duration: 0.2 });
+          },
+        });
+      }
+    };
+
+    // Show/hide on mouse enter/leave
+    projects.on("mouseenter", function () {
+      showPreview();
+    });
+
+    projects.on("mousemove", function () {
+      showPreview();
     });
 
     projects.on("mouseleave", function () {
-      gsap.to(preview[0], { duration: 0.3, scale: 0 });
+      hidePreview();
     });
+
+    // Also detect when section scrolls under the cursor
+    window.addEventListener("scroll", function () {
+      if (isCursorOverProjects()) {
+        showPreview();
+      } else if (previewVisible) {
+        hidePreview();
+      }
+    }, { passive: true });
 
     const moveProjectImg = function (project: HTMLAnchorElement) {
       const projectId = project.id;
@@ -595,22 +645,8 @@
     // Attach event listeners to the a tags
     const projectLinks = projects.find("ul li a");
     projectLinks.each(function () {
-      $(this).on("mousemove", function (e: MouseEvent) {
+      $(this).on("mousemove", function () {
         moveProjectImg(this);
-
-        // Cursor animations on mousemove
-        gsap
-          .timeline()
-          .to($cursorDot, { scale: 0, duration: 0.3 })
-          .to($cursorOutline, { scale: 0, duration: 0.3 }, 0);
-      });
-
-      $(this).on("mouseleave", function () {
-        // Cursor animations on mouseleave
-        gsap
-          .timeline()
-          .to($cursorDot, { scale: 0.1, duration: 0.3 })
-          .to($cursorOutline, { scale: 0.3, duration: 0.3 }, 0);
       });
     });
   });

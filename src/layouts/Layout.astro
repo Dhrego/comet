@@ -11,7 +11,10 @@ import Navbar from "../components/Navbar.astro";
 const { title, description } = Astro.props;
 const OgImage = "https://www.dhrego.com/OG.png";
 // Construct the canonical URL without trailing slash
-const canonicalURL = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', Astro.site).href;
+const canonicalURL = new URL(
+  Astro.url.pathname.replace(/\/$/, "") || "/",
+  Astro.site,
+).href;
 ---
 
 <!doctype html>
