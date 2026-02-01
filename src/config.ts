@@ -121,7 +121,7 @@ const tiles: Tiles[] = [
 		title: "The Bag Shop",
 		type: "Web App",
 		date: "20 Jan 2025",
-		link: "https://thebagshopgh-seven.vercel.app/",
+		link: "https://www.thebagshopgh.com/",
 	},
 	{
 		img: "shot.webp",
