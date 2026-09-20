@@ -9,7 +9,8 @@ import Footer from "../components/Footer.astro";
 import Navbar from "../components/Navbar.astro";
 
 const { title, description } = Astro.props;
-const SITE_NAME = "Dhrego";
+const SITE_NAME = "Andrea";
+const SITE_ALT_NAME = "Dhrego"; // the string people actually search for
 const PERSON_NAME = "Andrea";
 const JOB_TITLE = "Designer & Developer";
 const SITE_URL = "https://www.dhrego.com";
@@ -18,7 +19,8 @@ const OgImage = `${SITE_URL}/OG.png`;
 const canonicalURL = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', Astro.site).href;
 
 // Tells Google who owns this site, so "dhrego" resolves to a known entity
-// instead of an unrecognised string.
+// instead of an unrecognised string. alternateName is what ties the domain
+// name to the person; it is never displayed.
 const schema = {
   "@context": "https://schema.org",
   "@graph": [
@@ -28,7 +30,7 @@ const schema = {
       url: SITE_URL,
       name: SITE_NAME,
       description:
-        "Portfolio of Andrea (Dhrego), a designer and developer building fast, considered websites and digital products.",
+        "Portfolio of Andrea, a designer and developer building fast, considered websites and digital products.",
       inLanguage: "en",
       publisher: { "@id": `${SITE_URL}/#person` },
     },
@@ -36,7 +38,7 @@ const schema = {
       "@type": "Person",
       "@id": `${SITE_URL}/#person`,
       name: PERSON_NAME,
-      alternateName: SITE_NAME,
+      alternateName: SITE_ALT_NAME,
       jobTitle: JOB_TITLE,
       url: SITE_URL,
       image: OgImage,
