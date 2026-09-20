@@ -9,9 +9,51 @@ import Footer from "../components/Footer.astro";
 import Navbar from "../components/Navbar.astro";
 
 const { title, description } = Astro.props;
-const OgImage = "https://www.dhrego.com/OG.png";
+const SITE_NAME = "Dhrego";
+const PERSON_NAME = "Andrea";
+const JOB_TITLE = "Designer & Developer";
+const SITE_URL = "https://www.dhrego.com";
+const OgImage = `${SITE_URL}/OG.png`;
 // Construct the canonical URL without trailing slash
 const canonicalURL = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', Astro.site).href;
+
+// Tells Google who owns this site, so "dhrego" resolves to a known entity
+// instead of an unrecognised string.
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: SITE_NAME,
+      description:
+        "Portfolio of Andrea (Dhrego), a designer and developer building fast, considered websites and digital products.",
+      inLanguage: "en",
+      publisher: { "@id": `${SITE_URL}/#person` },
+    },
+    {
+      "@type": "Person",
+      "@id": `${SITE_URL}/#person`,
+      name: PERSON_NAME,
+      alternateName: SITE_NAME,
+      jobTitle: JOB_TITLE,
+      url: SITE_URL,
+      image: OgImage,
+      email: "mailto:work@dhrego.com",
+      sameAs: ["https://github.com/Dhrego"],
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${canonicalURL}#webpage`,
+      url: canonicalURL,
+      name: title,
+      description: description,
+      isPartOf: { "@id": `${SITE_URL}/#website` },
+      about: { "@id": `${SITE_URL}/#person` },
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -20,11 +62,12 @@ const canonicalURL = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', Astro
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalURL} />
 
     <!-- FB -->
     <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content={SITE_NAME} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -44,6 +87,7 @@ const canonicalURL = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', Astro
     <!-- Preload the image -->
 
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
     <link rel="preload" href="img-group.png" as="image" /></head
   >
 
