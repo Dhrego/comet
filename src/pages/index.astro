@@ -39,9 +39,9 @@ import { links, cards } from "../config";
             <div class="blend_1">
               <img src="blend_1.svg" alt="" srcset="" draggable="false" />
             </div>
-            <span>andrea</span>
+            <h1 class="hero-title">andrea</h1>
           </div>
-          <div class="hero-sub">software developer and ui/ux designer</div>
+          <p class="hero-sub">software developer and ui/ux designer</p>
         </div>
         <div class="blend_2">
           <img src="blend_2.svg" alt="" srcset="" draggable="false" />
@@ -56,7 +56,7 @@ import { links, cards } from "../config";
       </div>
       <div class="block-2">
         <div class="col">
-          <div class="title">Discover my journey as a developer</div>
+          <h2 class="title">Discover my journey as a developer</h2>
           <div class="btn-container">
             <a href="/me"
               ><span>About me</span>
@@ -96,7 +96,7 @@ import { links, cards } from "../config";
       </div>
       <div class="block-3">
         <div class="block-header">
-          <div class="title">SERVICES</div>
+          <h2 class="title">SERVICES</h2>
           <div class="block-0">
             <div class="btn-container">
               <button class="prev" aria-label="Previous slide">
@@ -153,7 +153,7 @@ import { links, cards } from "../config";
         </div>
       </div>
       <div class="block-4">
-        <div class="title">Selected Works</div>
+        <h2 class="title">Selected Works</h2>
         <div class="block-content-works">
           <ul>
             {
@@ -191,7 +191,7 @@ import { links, cards } from "../config";
       </div>
 
       <div class="block-5">
-        <div class="title">Let's create <br />great things</div>
+        <h2 class="title">Let's create <br />great things</h2>
         <div class="btn-container">
           <a href="/contact"
             ><span>Drop me a line</span>
@@ -277,6 +277,7 @@ import { links, cards } from "../config";
 
   .title {
     font-family: var(--font-Regular);
+    font-weight: inherit;
     font-size: 50px;
     margin-bottom: 30px;
     color: #ddd;
@@ -406,6 +407,10 @@ import { links, cards } from "../config";
     -webkit-text-fill-color: transparent;
     font-family: var(--font-Exp-Black);
     text-transform: uppercase;
+  }
+
+  .hero-title {
+    font: inherit;
   }
 
   .hero-sub {
