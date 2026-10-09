@@ -1,18 +1,39 @@
 ---
-// const fonts = await Astro.glob("../fonts/*.woff2");
-const fonts = Object.values(
-  import.meta.glob("../fonts/*.woff2", { eager: true })
+const files = Object.fromEntries(
+  Object.entries(
+    import.meta.glob("../fonts/*.woff2", { eager: true })
+  ).map(([path, mod]: [string, any]) => [
+    path.split("/").pop()!.replace(".woff2", ""),
+    mod.default,
+  ])
 );
+
+const SHARED = ["SedgwickAveDisplay-Regular", "JollyLodger"];
+
+const perRoute: Record<string, string[]> = {
+  "/": ["MonaSansExpanded-Black", "MonaSans-Light", "MonaSans-Regular"],
+  "/me": ["MonaSans-Bold", "MonaSans-Regular"],
+  "/works": ["AlternateGothicCondATF-Bold", "MonaSans-Regular"],
+  "/contact": ["MonaSans-BlackItalic", "MonaSans-Bold", "MonaSans-Light", "MonaSans-Regular"],
+  "/404": ["MonaSans-Regular"],
+};
+
+const route = Astro.url.pathname.replace(/\/$/, "") || "/";
+const names = perRoute[route] ?? Object.keys(files);
+
+const fonts = [...new Set([...SHARED, ...names])]
+  .map((name) => files[name])
+  .filter(Boolean);
 ---
 
 <>
   {
-    fonts.map((font: any) => (
+    fonts.map((href: string) => (
       <link
         rel="preload"
         as="font"
-        href={font.default}
-        type={`font/${font.default.split(".").pop()}`}
+        href={href}
+        type="font/woff2"
         crossorigin="anonymous"
       />
     ))
