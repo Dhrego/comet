@@ -18,10 +18,10 @@ import Layout from "../layouts/Layout.astro";
 
       <div class="container">
         <div class="project_carousel">
-          <div class="title">
+          <h1 class="title">
             <span>PROJECTS</span>
             <span>01</span>
-          </div>
+          </h1>
           <div
             class="scroll"
             data-mouseat="0"
@@ -38,7 +38,7 @@ import Layout from "../layouts/Layout.astro";
                     sizes=""
                     srcset=""
                   />
-                  <div class="project_title">{tile.title}</div>
+                  <h2 class="project_title">{tile.title}</h2>
                   <div class="project_info">
                     <div class="keys">
                       <div>Category</div>
@@ -96,7 +96,8 @@ import Layout from "../layouts/Layout.astro";
 
   .title {
     font-size: 330px;
-    font-family: "AltGothic";
+    font-family: "AltGothic", "Arial Narrow", sans-serif;
+    font-weight: inherit;
     position: absolute;
     top: -44%;
     left: 26px;
@@ -148,6 +149,7 @@ import Layout from "../layouts/Layout.astro";
   .project_title {
     color: white;
     font-size: 24px;
+    font-weight: inherit;
     margin-top: 15px;
     font-family: var(--font-Regular);
   }
@@ -208,7 +210,12 @@ import Layout from "../layouts/Layout.astro";
     }
 
     .title {
-      display: none;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      top: 0;
+      left: 0;
     }
 
     .scroll {

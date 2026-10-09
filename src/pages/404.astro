@@ -8,8 +8,8 @@ import Layout from "../layouts/Layout.astro";
 >
   <div class="container">
     <main>
-      <!-- <h1>404</h1> -->
-      <div class="error">
+      <h1 class="error">
+        <span class="sr-only">404 — Page not found</span>
         <svg
           width="728"
           height="334"
@@ -63,7 +63,7 @@ import Layout from "../layouts/Layout.astro";
             </filter>
           </defs>
         </svg>
-      </div>
+      </h1>
       <p class="subtitle">Uhmmmm. Are you lost?</p>
       <div class="return">
         <a href="/">
@@ -179,6 +179,10 @@ import Layout from "../layouts/Layout.astro";
   .subtitle,
   .return {
     opacity: 0;
+  }
+
+  .error {
+    font: inherit;
   }
 
   .error svg {

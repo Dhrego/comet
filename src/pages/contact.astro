@@ -11,9 +11,9 @@ import Layout from "../layouts/Layout.astro";
       <form action="#" id="emailForm">
         <div class="contact-row">
           <div class="contact-form">
-            <div class="heading">
+            <h1 class="heading">
               Let's work together! <br />Fill out this form.
-            </div>
+            </h1>
             <div class="form-group">
               <label for="inputFullname">first and last name *</label>
               <input
@@ -133,6 +133,7 @@ import Layout from "../layouts/Layout.astro";
   .heading {
     font-size: clamp(30px, 5vw, 48px);
     font-family: var(--font-Light);
+    font-weight: inherit;
     margin-bottom: 2rem;
     letter-spacing: 2px;
   }

@@ -17,7 +17,7 @@ const { items } = Astro.props;
             </div>
           </div>
           <div class="down">
-            <span>{card.title}</span>
+            <h3>{card.title}</h3>
             <span>{"0" + count}</span>
           </div>
           <div class="card-bubble_1" />
@@ -73,9 +73,10 @@ const { items } = Astro.props;
     font-family: var(--font-Regular);
   }
 
-  .down span {
+  .down > * {
     font-size: 40px;
     color: #d5d5d5;
+    font-weight: inherit;
     position: relative;
     z-index: 1;
   }
@@ -151,7 +152,7 @@ const { items } = Astro.props;
       font-size: 16px;
     }
 
-    .down span {
+    .down > * {
       font-size: 26px;
     }
 
