@@ -8,14 +8,14 @@
   --light-green: #30d15840;
   /* --bg-color: #fff; when on LIGHT theme */
 
-  --font-Sedgwick: "Sedgwick Ave Display";
-  --font-Jolly: "Jolly Lodger";
-  --font-Exp-Black: "Mona Sans Expanded Black";
-  --font-Black-It: "Mona Sans Black Italic";
-  --font-Black: "Mona Sans Black";
-  --font-Bold: "Mona Sans Bold";
-  --font-Regular: "Mona Sans Regular";
-  --font-Light: "Mona Sans Light";
+  --font-Sedgwick: "Sedgwick Ave Display", cursive;
+  --font-Jolly: "Jolly Lodger", cursive;
+  --font-Exp-Black: "Mona Sans Expanded Black", system-ui, sans-serif;
+  --font-Black-It: "Mona Sans Black Italic", system-ui, sans-serif;
+  --font-Black: "Mona Sans Black", system-ui, sans-serif;
+  --font-Bold: "Mona Sans Bold", system-ui, sans-serif;
+  --font-Regular: "Mona Sans Regular", system-ui, sans-serif;
+  --font-Light: "Mona Sans Light", system-ui, sans-serif;
 }
 
 * {
@@ -25,7 +25,7 @@
 }
 
 body {
-  font-family: var(--font-Sedgwick), cursive;
+  font-family: var(--font-Sedgwick);
   font-size: 20px;
   background-color: var(--bg-color);
   /* cursor: none; */
